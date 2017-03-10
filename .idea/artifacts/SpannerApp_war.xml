@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="SpannerApp:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="SpannerApp_war.war">
+      <element id="artifact" artifact-name="SpannerApp:war exploded" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/target/SpannerApp/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="directory" name="WEB-INF" />
+      <element id="dir-copy" path="$PROJECT_DIR$/src/main/webapp" />
+    </root>
+  </artifact>
+</component>

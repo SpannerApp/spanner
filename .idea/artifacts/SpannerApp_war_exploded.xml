@@ -1,0 +1,15 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="SpannerApp:war exploded">
+    <output-path>$PROJECT_DIR$/target/SpannerApp</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="SpannerApp/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="SpannerApp" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF" />
+      <element id="dir-copy" path="$PROJECT_DIR$/src/main/webapp" />
+    </root>
+  </artifact>
+</component>
