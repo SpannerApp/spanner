@@ -36,7 +36,7 @@
         <div class="row">
             <div class="col-sm-12 col-lg-12">
                 <h1 class="h1">
-                    Contact us!<small> contact us anytime</small></h1>
+                    Contact us!<small> contact us anytime.</small></h1>
             </div>
         </div>
     </div>
