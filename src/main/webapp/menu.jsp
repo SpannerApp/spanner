@@ -24,6 +24,7 @@
                 <li><a href="menu.jsp">Company</a></li>
                 <li><a href="information.jsp">Information</a></li>
                 <li><a href="contact.jsp">Contact and Help</a></li>
+                <li><a href="admin.jsp"> Admin </a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Register</a></li>
