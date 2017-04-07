@@ -3,13 +3,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Bootstrap Case</title>
+    <title>SpannerApp</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="spannerApp.css">
+    <link rel="stylesheet" href="SpannerApp.css">
 </head>
 <body>
 <nav class="navbar navbar-light">
@@ -18,7 +18,7 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
+                <li class="active"><a href="menu.jsp">Home</a></li>
                 <li><a href="menu.jsp">Company</a></li>
                 <li><a href="information.jsp">Information</a></li>
                 <li><a href="contact.jsp">Contact and Help</a></li>
@@ -30,12 +30,12 @@
     </div>
 </nav>
 
-<div class="jumbotron">
+<div class="jumbotron pasek">
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-lg-12">
                 <h1 class="h1">
-                    Spanner App <small> info about app.</small></h1>
+                    Spanner App <small> Information about SpannerApp application.</small></h1>
             </div>
         </div>
     </div>

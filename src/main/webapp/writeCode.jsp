@@ -20,7 +20,7 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
+                <li class="active"><a href="menu.jsp">Home</a></li>
                 <li><a href="menu.jsp">Company</a></li>
                 <li><a href="information.jsp">Information</a></li>
                 <li><a href="contact.jsp">Contact and Help</a></li>
@@ -37,7 +37,7 @@
         <div class="row">
             <div class="col-sm-12 col-lg-12">
                 <h1 class="h1">SpannerApp
-                     <small> Chose what you want to do!</small></h1>
+                     <small> Check what you have!</small></h1>
             </div>
         </div>
     </div>
@@ -50,16 +50,23 @@
             <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
             <p>Logo Spannerapp</p>
         </div>
-        <div class="col-sm-5">
+        <div class="col-sm-1">
 
         </div>
+        <div class="col-sm-4">
+        <h3>Check the serial number</h3>
+        <form class="form-signin">
 
-        <div class="col-sm-4 btn-group-vertical">
-            <button type="button" class="btn btn-sky btn-lg"><a href="writeCode.jsp"> WRITE CODE</a></button><br>
-            <button type="button" class="btn btn-sky btn-lg"><a href="index.jsp"> SCAN CODE</a></button><br>
-            <button type="button" class="btn btn-sky btn-lg"><a href="index.jsp"> REPORTED ISSUES</a></button><br>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-barcode"></i></span>
+                <input id="code"  class="form-control" name="code" value="EXTR/19855" placeholder="">
+            </div>
+            </br>
+            <a href=""> <button type="submit"  class="btn btn-primary btn-lg btn-block">Search</button></a>
 
+        </form>
         </div>
+        <div class="col-sm-2"></div>
     </div>
 </div><br>
 
