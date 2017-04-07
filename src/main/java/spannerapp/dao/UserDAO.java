@@ -2,6 +2,7 @@ package spannerapp.dao;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
+import spannerapp.UserNotFoundException;
 import spannerapp.model.User;
 
 import java.util.Collection;
@@ -58,4 +59,15 @@ public class UserDAO implements IUserDAO {
     public void insertUser(User user) {
         this.users.put(user.getId(), user);
     }
+
+    @Override
+    public boolean validateUser(User user) {
+        Collection<User> usersList = users.values();
+        for(User iterator : usersList)
+            if(iterator.getUsername().equals(user.getUsername())&&iterator.getPassword().equals(user.getPassword()))
+                return true;
+        throw new UserNotFoundException(user.getUsername());
+    }
+
+
 }

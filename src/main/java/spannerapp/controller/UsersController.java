@@ -42,4 +42,9 @@ public class UsersController {
     public void insertUserByID(@RequestBody User user){
         userService.insertUser(user);
     }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public void validateUser(@RequestBody User user){
+        userService.validateUser(user);
+    }
 }

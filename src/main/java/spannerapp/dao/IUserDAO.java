@@ -17,4 +17,6 @@ public interface IUserDAO {
     void updateUserByID(User user);
 
     void insertUser(User user);
+
+    boolean validateUser(User user);
 }

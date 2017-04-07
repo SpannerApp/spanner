@@ -63,5 +63,6 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-context:4.3.7.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-webmvc:4.3.7.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-expression:4.3.7.RELEASE" level="project" />
+    <orderEntry type="library" name="sqljdbc42" level="project" />
   </component>
 </module>

@@ -40,4 +40,7 @@ public class UserService {
     public void insertUser(User user) {
         userDAO.insertUser(user);
     }
+
+    public void validateUser(User user) { userDAO.validateUser(user); }
+
 }
