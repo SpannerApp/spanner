@@ -37,14 +37,13 @@
         <div class="row">
             <div class="col-sm-12 col-lg-12">
                 <h1 class="h1">
-                     <small> View available after login</small></h1>
+                    Spanner App <small> info about app.</small></h1>
             </div>
         </div>
     </div>
 </div>
 
 <div class="container text-center">
-    <h3></h3><br>
     <div class="row">
         <div class="col-sm-5">
             <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
