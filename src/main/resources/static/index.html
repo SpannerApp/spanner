@@ -1,12 +1,16 @@
-<%--<%@ page import="Sample.HelloWorld" %><%--<%@ page import="Sample.HelloWorld" %>--%>
+
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="demo" lang="en">
 <head>
     <title>SpannerApp</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+    <script src="static/demo.js"></script>
+
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="SpannerApp.css">
 </head>
@@ -49,7 +53,15 @@
 <div class="container text-center">
     <h3>PLEASE SIGN IN</h3><br>
     <div class="row">
-        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <div ng-controller="Users">
+                <ul>
+              <li ng-repeat="user in users"> <h5>{{user.id}}</h5>
+                        <h6>{{user.username}}</h6>
+                  <h6 style="color:red">{{user.password}}</h6></li>
+                </ul>
+            </div>
+        </div>
         <div class="col-sm-4">
             <form class="form-signin">
 
@@ -70,16 +82,20 @@
         </div>
     </div><br>
 </div>
-    <br>
-    <div class="container text-center">
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-    </div>
+<br>
+<div class="container text-center">
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+</div>
 
 
 </body>
+<script>angular.module('demo', []).controller('Users', function($scope, $http) {
+    $http.get('http://localhost:8080/users').then(function(response) {
+        $scope.users = response.data;
+    });
+});</script>
 </html>
-

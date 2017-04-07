@@ -8,9 +8,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by Siekacz on 23.03.2017.
- */
+
 @Repository
 @Qualifier("userDAO")
 public class UserDAO implements IUserDAO {
@@ -29,7 +27,7 @@ public class UserDAO implements IUserDAO {
         };
     }
 
-    @Override
+   // @Override
     public Collection<User> getAllUsers(){
         return this.users.values();
     }
@@ -58,4 +56,5 @@ public class UserDAO implements IUserDAO {
     public void insertUser(User user) {
         this.users.put(user.getId(), user);
     }
+
 }
