@@ -1,8 +1,8 @@
 package spannerapp.model;
+import javax.persistence.Entity;
 
-/**
- * Created by Siekacz on 23.03.2017.
- */
+
+@Entity
 public class User {
 
     private int id;

@@ -57,3 +57,12 @@ footer {
  .btn-sky a {color:#fff;}
 .btn-sky a:hover {text-decoration:none; color:#fff;}
 
+.row .col-lg-3 img{
+    padding:1px 10px 10px 2px;
+    margin-left: 30px;
+    position:relative;
+    width:190px;
+    height:210px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.4);
+
+}
