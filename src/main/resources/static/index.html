@@ -1,19 +1,23 @@
-<%--<%@ page import="Sample.HelloWorld" %><%--<%@ page import="Sample.HelloWorld" %>--%>
+
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="login" lang="en">
 <head>
     <title>SpannerApp</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+
+    <script src="login.js"></script>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="SpannerApp.css">
 </head>
 <body>
 
 <nav class="navbar navbar-light ">
-    <div class="container-fluid">
+    <div class="container-fluid" >
         <div class="navbar-header">
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
@@ -49,37 +53,52 @@
 <div class="container text-center">
     <h3>PLEASE SIGN IN</h3><br>
     <div class="row">
-        <div class="col-sm-4"></div>
         <div class="col-sm-4">
-            <form class="form-signin">
-
+            <!--<div ng-controller="Users">
+                <ul>
+              <li ng-repeat="user in users"> <h5>{{user.id}}</h5>
+                        <h6>{{user.username}}</h6>
+                  <h6 style="color:red">{{user.password}}</h6></li>
+                </ul>
+            </div>-->
+        </div>
+        <div class="col-sm-4" ng-controller="controller">
+            <div class="alert alert-danger" ng-show="error">
+                There was a problem logging in. Please try again.
+            </div>
+            <div class="alert alert-success" ng-show="!error">
+                We have found user:{{username}} with password:{{password}}
+        </div>
                 <div class="input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                    <input id="email" type="email" class="form-control" name="email" value="" placeholder="Email Address">
+                    <input id="username" type="text" class="form-control" name="username" ng-model="username" placeholder="User Name" >
                 </div>
                 </br>
                 <div class="input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                    <input id="password" type="password" class="form-control" name="password" value="" placeholder="Password">
+                    <input id="password" type="password" class="form-control" name="password" ng-model="password" placeholder="Password" >
                 </div>
                 </br>
-                <button type="submit"  class="btn btn-sky btn-lg btn-block"><a href="">Login</a></button>
-
-            </form>
+                <button ng-click="Login()"  class="btn btn-sky btn-lg btn-block">Login</button>
+            <!--    <p ng-model="result">Result: {{result}}</p>-->
             <div class="col-sm-4"></div>
         </div>
     </div><br>
 </div>
-    <br>
-    <div class="container text-center">
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-    </div>
+<br>
+<div class="container text-center">
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+</div>
 
 
-</body>
+</body><!--
+<script>angular.module('demo', []).controller('Users', function($scope, $http) {
+    $http.get('http://localhost:8080/users').then(function(response) {
+        $scope.users = response.data;
+    });
+});</script>-->
 </html>
-
