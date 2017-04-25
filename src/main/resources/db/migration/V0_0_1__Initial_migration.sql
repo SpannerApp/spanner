@@ -25,7 +25,7 @@ CREATE TABLE dbo.AuthUser
   UserID INT PRIMARY KEY NOT NULL IDENTITY,
   Login NVARCHAR(50) NOT NULL,
   Password NVARCHAR(50) NOT NULL,
-  EmployeeID INT NOT NULL,
+  EmployeeID INT,
   UserTypeID INT,
   CONSTRAINT FK_AuthUser_ModelEmployee FOREIGN KEY (EmployeeID) REFERENCES ModelEmployee (EmployeeID)
 );
