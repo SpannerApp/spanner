@@ -65,10 +65,10 @@
                 <version>3.2.1</version>
                 <configuration>
                     <url>
-                        jdbc:sqlserver://KOMBAJN-TURBO\\SQLEXPRESS:1433;databaseName=SpannerApp
+                        jdbc:sqlserver://DESKTOP-2JT8KVU\\SQLEXPRESS:1433;databaseName=SpannerApp
                     </url>
                     <user>sa</user>
-                    <password>neiklot</password>
+                    <password>root</password>
                     <locations>
                         <location>filesystem:src/resources/db/migration</location>
                     </locations>

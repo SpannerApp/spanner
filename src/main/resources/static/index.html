@@ -10,7 +10,7 @@
     <script src="login.js"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="SpannerApp.css">
 </head>
@@ -68,18 +68,18 @@
             </div>
             <div class="alert alert-success" ng-show="!error">
                 We have found user:{{username}} with password:{{password}}
-        </div>
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                    <input id="username" type="text" class="form-control" name="username" ng-model="username" placeholder="User Name" >
-                </div>
-                </br>
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                    <input id="password" type="password" class="form-control" name="password" ng-model="password" placeholder="Password" >
-                </div>
-                </br>
-                <button ng-click="Login()"  class="btn btn-sky btn-lg btn-block">Login</button>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input id="username" type="text" class="form-control" name="username" ng-model="username" placeholder="User Name" >
+            </div>
+            </br>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                <input id="password" type="password" class="form-control" name="password" ng-model="password" placeholder="Password" >
+            </div>
+            </br>
+            <button ng-click="Login()"  class="btn btn-sky btn-lg btn-block">Login</button>
             <!--    <p ng-model="result">Result: {{result}}</p>-->
             <div class="col-sm-4"></div>
         </div>

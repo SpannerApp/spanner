@@ -1,6 +1,6 @@
 var app = angular.module('login', []);
 
-app.controller('controller', function($scope,$http) {
+app.controller('controller', function($scope,$http,$window,$log) {
 
       $scope.Login=function(){
         var data={
@@ -14,7 +14,10 @@ app.controller('controller', function($scope,$http) {
             .success(function (data, status, headers, config) {
                 $scope.result =data;
                 $scope.error=false;
-            })
+                var url = "http://" + $window.location.host + "/menu.html";
+                $log.log(url);
+                $window.location.href = url;
+              })
             .error(function (data, status, header, config) {
                /* $scope.result = "Data: " + data +
                     "<hr />status: " + status +
