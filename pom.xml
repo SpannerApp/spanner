@@ -51,13 +51,14 @@
         <java.version>1.8</java.version>
     </properties>
 
-
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+
+            <!--FLYWAY CONFIGURATION-->
             <plugin>
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-maven-plugin</artifactId>
@@ -69,13 +70,15 @@
                     <user>sa</user>
                     <password>neiklot</password>
                     <locations>
-                        <location>filesystem:src/main/db</location>
+                        <location>filesystem:src/resources/db/migration</location>
                     </locations>
                     <schemas>
                         <schema>dbo</schema>
                     </schemas>
                 </configuration>
             </plugin>
+            <!--FLYWAY CONFIGURATION-->
+
         </plugins>
     </build>
     <repositories>
