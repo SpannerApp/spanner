@@ -16,7 +16,7 @@ import java.util.Collection;
 public class UserService {
 
     @Autowired
-    @Qualifier("userDAO")
+    @Qualifier("sqlserver")
     private IUserDAO userDAO;
 
     public Collection<User> getAllUsers() {
