@@ -73,3 +73,16 @@ footer {
     box-shadow: 0 0 5px rgba(0,0,0,0.4);
 
 }
+
+
+ .logo {
+     font-size: 200px;
+     color: #f4511e;
+ }
+@media screen and (max-width: 768px) {
+    .col-sm-4 {
+        text-align: center;
+        margin: 25px 0;
+    }
+
+}
