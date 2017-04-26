@@ -8,6 +8,13 @@ footer {
     background-color: #f2f2f2;
     padding: 25px;
 }
+.pasek{
+    background-color: #6f5499;
+    color: white;
+}
+.pasek .h1 small{
+    color:black;
+}
 
 .carousel-inner img {
     width: 100%; /* Set width to 100% */

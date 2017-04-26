@@ -1,13 +1,12 @@
-
 <!DOCTYPE html>
-<html ng-app="login" lang="en">
+<html ng-app="registration" lang="en">
 <head>
     <title>SpannerApp</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
 
-    <script src="login.js"></script>
+    <script src="registration.js"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
@@ -23,9 +22,9 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Home</a></li>
-                <li><a href="menu.jsp">Company</a></li>
-                <li><a href="information.jsp">Information</a></li>
-                <li><a href="contact.jsp">Contact and Help</a></li>
+            <!--   <li><a href="menu.jsp">Company</a></li>
+               <li><a href="information.jsp">Information</a></li>
+                <li><a href="contact.jsp">Contact and Help</a></li>-->
             </ul>
             </div>
     </div>
@@ -63,9 +62,6 @@
             <div class="alert alert-danger" ng-show="error">
                 There was a problem logging in. Please try again.
             </div>
-            <div class="alert alert-success" ng-show="!error">
-                We have found user:{{username}} with password:{{password}}
-            </div>
 
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
@@ -97,26 +93,22 @@
 
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                <input id="email" type="email" class="form-control" name="email" ng-model="email" placeholder="Email" required>
+                <input id="email" type="email" class="form-control" name="email" ng-model="mail" placeholder="Email" required>
             </div>
 
             </br>
-            <button ng-click="Register()"  class="btn btn-sky btn-lg btn-block">Register</button> </div>
+            <button ng-click="Register()"  class="btn btn-sky btn-lg btn-block">Register</button>
+        </div>
             <!--    <p ng-model="result">Result: {{result}}</p>-->
             <div class="col-sm-4"></div>
 
 
 
         </div>
-    </div><br>
-</div>
-<br>
+</div><br></br>
+
 <div class="container text-center">
-    </br>
-    </br>
-    </br>
-    </br>
-    </br>
+
 </div>
 
 
