@@ -13,6 +13,15 @@ public class Employee {
     private String phone;
     private String mail;
 
+    public Employee(){};
+
+    public Employee(int employeeID, String name, String surname, String mail){
+        this.employeeID = employeeID;
+        this.name = name;
+        this.surname = surname;
+        this.mail = mail;
+    }
+
     public int getEmployeeID() {
         return employeeID;
     }

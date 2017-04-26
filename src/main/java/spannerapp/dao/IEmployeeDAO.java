@@ -17,6 +17,8 @@ public interface IEmployeeDAO {
 
     void updateUserByID(Employee user);
 
+    Employee getEmployeeByMail(String mail);
+
     void insertUser(Employee user);
 
     boolean validateUser(Employee user);
