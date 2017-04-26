@@ -21,8 +21,14 @@ public class JdbcModelEmployeeDAO implements IEmployeeDAO {
     private static final String ADD_EMPLOYEE = "INSERT INTO ModelEmployee (Name, Surname, PositionID, SupervisorID, Address, Phone, Mail) VALUES (";
     private static final String GET_EMPLOYEE_BY_MAIL = "SELECT * FROM ModelEmployee WHERE Mail=:mail";
 
+    private final JdbcTemplate jdbcTemplate;
+    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
     @Autowired
-    private JdbcTemplate jdbcTemplate;
+    public JdbcModelEmployeeDAO(JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate){
+        this.jdbcTemplate = jdbcTemplate;
+        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+    }
 
     @Override
     public List<Employee> getAllUsers() {
@@ -46,10 +52,10 @@ public class JdbcModelEmployeeDAO implements IEmployeeDAO {
 
     @Override
     public Employee getEmployeeByMail(String mail) {
-        NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
+//        NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("mail", mail);
-        return namedParameterJdbcTemplate.queryForObject(GET_EMPLOYEE_BY_MAIL, param, new RowMapper<Employee>() {
+        return this.namedParameterJdbcTemplate.queryForObject(GET_EMPLOYEE_BY_MAIL, param, new RowMapper<Employee>() {
             @Override
             public Employee mapRow(ResultSet resultSet, int i) throws SQLException {
                 return new Employee(resultSet.getInt("EmployeeID"), resultSet.getString("Name"), resultSet.getString("Surname"), resultSet.getString("Mail"));
@@ -59,6 +65,7 @@ public class JdbcModelEmployeeDAO implements IEmployeeDAO {
 
     @Override
     public void insertUser(Employee employee) {
+
         StringBuilder builder = new StringBuilder();
         builder.append(ADD_EMPLOYEE);
 

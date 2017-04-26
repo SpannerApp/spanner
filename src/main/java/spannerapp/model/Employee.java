@@ -4,29 +4,29 @@ package spannerapp.model;
  * Created by Siekacz on 25.04.2017.
  */
 public class Employee {
-    private int employeeID;
+    private Integer employeeID;
     private String name;
     private String surname;
-    private int positionID;
-    private int supervisorID;
+    private Integer positionID;
+    private Integer supervisorID;
     private String address;
     private String phone;
     private String mail;
 
     public Employee(){};
 
-    public Employee(int employeeID, String name, String surname, String mail){
+    public Employee(Integer employeeID, String name, String surname, String mail){
         this.employeeID = employeeID;
         this.name = name;
         this.surname = surname;
         this.mail = mail;
     }
 
-    public int getEmployeeID() {
+    public Integer getEmployeeID() {
         return employeeID;
     }
 
-    public void setEmployeeID(int employeeID) {
+    public void setEmployeeID(Integer employeeID) {
         this.employeeID = employeeID;
     }
 
@@ -46,19 +46,19 @@ public class Employee {
         this.surname = surname;
     }
 
-    public int getPositionID() {
+    public Integer getPositionID() {
         return positionID;
     }
 
-    public void setPositionID(int positionID) {
+    public void setPositionID(Integer positionID) {
         this.positionID = positionID;
     }
 
-    public int getSupervisorID() {
+    public Integer getSupervisorID() {
         return supervisorID;
     }
 
-    public void setSupervisorID(int supervisorID) {
+    public void setSupervisorID(Integer supervisorID) {
         this.supervisorID = supervisorID;
     }
 

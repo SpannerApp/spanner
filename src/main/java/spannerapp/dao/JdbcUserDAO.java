@@ -27,12 +27,18 @@ public class JdbcUserDAO implements IUserDAO {
     private static final String ADD_USER = "INSERT INTO AuthUser (Login, Password, EmployeeID, UserTypeID) VALUES (";
     private static final String VALIDATE_USER = "SELECT * FROM AuthUser WHERE Login=:login AND Password=:password";
 
-    @Autowired
     private JdbcTemplate jdbcTemplate;
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+    @Autowired
+    public JdbcUserDAO (JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate){
+        this.jdbcTemplate = jdbcTemplate;
+        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+    }
 
     @Override
     public Collection<User> getAllUsers() {
-        List<User> users = jdbcTemplate.query(GET_ALL_USERS, new RowMapper<User>() {
+        List<User> users = this.jdbcTemplate.query(GET_ALL_USERS, new RowMapper<User>() {
             @Override
             public User mapRow(ResultSet resultSet, int i) throws SQLException {
                 return new User(resultSet.getInt("UserID"), resultSet.getString("Login"), resultSet.getString("Password"));
@@ -43,11 +49,11 @@ public class JdbcUserDAO implements IUserDAO {
 
     @Override
     public User getUserByID(int ID) {
-        NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
+
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("id", ID);
 
-        return namedParameterJdbcTemplate.queryForObject(GET_USER_BY_ID, param, new RowMapper<User>() {
+        return this.namedParameterJdbcTemplate.queryForObject(GET_USER_BY_ID, param, new RowMapper<User>() {
             @Override
             public User mapRow(ResultSet resultSet, int i) throws SQLException {
 
@@ -58,11 +64,10 @@ public class JdbcUserDAO implements IUserDAO {
 
     @Override
     public void removeUserByID(int id) {
-        NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("id", id);
 
-        namedParameterJdbcTemplate.update(DELETE_USER_BY_ID, param);
+        this.namedParameterJdbcTemplate.update(DELETE_USER_BY_ID, param);
     }
 
     @Override
@@ -73,7 +78,7 @@ public class JdbcUserDAO implements IUserDAO {
         param.addValue("login", user.getUsername());
         param.addValue("password", user.getPassword());
 
-        namedParameterJdbcTemplate.update(UPDATE_USER_BY_ID, param);
+        this.namedParameterJdbcTemplate.update(UPDATE_USER_BY_ID, param);
     }
 
     @Override
@@ -96,11 +101,11 @@ public class JdbcUserDAO implements IUserDAO {
 
     @Override
     public boolean validateUser(User user) {
-        NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
+
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("login", user.getUsername());
         param.addValue("password", user.getPassword());
-        User validation = namedParameterJdbcTemplate.queryForObject(VALIDATE_USER, param, new RowMapper<User>() {
+        User validation = this.namedParameterJdbcTemplate.queryForObject(VALIDATE_USER, param, new RowMapper<User>() {
             @Override
             public User mapRow(ResultSet resultSet, int i) throws SQLException {
                 return new User(resultSet.getInt("UserID"), resultSet.getString("Login"), resultSet.getString("Password"));
