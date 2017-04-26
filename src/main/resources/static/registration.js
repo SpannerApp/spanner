@@ -1,11 +1,19 @@
-var app = angular.module('login', []);
+
+/**
+ * Created by klaud on 26.04.2017.
+ */
+var app = angular.module('registration', []);
 
 app.controller('controller', function($scope,$http,$window,$log) {
 
-      $scope.Login=function(){
+    $scope.Registartion=function(){
         var data={
             username: $scope.username,
-            password: $scope.password
+            password: $scope.password,
+            repeatPassword: $scope.repeatPassword,
+            email: $scope.email,
+            name: $scope.name
+
         };
         var config={ headers : {
             'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
@@ -17,13 +25,13 @@ app.controller('controller', function($scope,$http,$window,$log) {
                 var url = "http://" + $window.location.host + "/menu.html";
                 $log.log(url);
                 $window.location.href = url;
-              })
+            })
             .error(function (data, status, header, config) {
-               /* $scope.result = "Data: " + data +
-                    "<hr />status: " + status +
-                    "<hr />headers: " + header +
-                    "<hr />config: " + config;*/
-               $scope.error=true;
+                /* $scope.result = "Data: " + data +
+                 "<hr />status: " + status +
+                 "<hr />headers: " + header +
+                 "<hr />config: " + config;*/
+                $scope.error=true;
             });
     };
 

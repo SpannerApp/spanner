@@ -27,10 +27,7 @@
                 <li><a href="information.jsp">Information</a></li>
                 <li><a href="contact.jsp">Contact and Help</a></li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span>  Register</a></li>
-            </ul>
-        </div>
+            </div>
     </div>
 </nav>
 <div class="jumbotron jumbotron-sm pasek">
@@ -69,9 +66,22 @@
             <div class="alert alert-success" ng-show="!error">
                 We have found user:{{username}} with password:{{password}}
             </div>
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                <input id="name" type="text" class="form-control" name="name" ng-model="name" placeholder="Name" >
+            </div>
+            </br>
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                <input id="surname" type="text" class="form-control" name="surname" ng-model="surname" placeholder="Surname" >
+            </div>
+            </br>
+
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                <input id="username" type="text" class="form-control" name="username" ng-model="username" placeholder="User Name" >
+                <input id="login" type="text" class="form-control" name="login" ng-model="login" placeholder="Login" >
             </div>
             </br>
             <div class="input-group">
@@ -79,9 +89,24 @@
                 <input id="password" type="password" class="form-control" name="password" ng-model="password" placeholder="Password" >
             </div>
             </br>
-            <button ng-click="Login()"  class="btn btn-sky btn-lg btn-block">Login</button>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                <input id="repeatPassword" type="password" class="form-control" name="repeatPassword" ng-model="repeatPassword" placeholder="Repeat Password" >
+            </div>
+            </br>
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                <input id="email" type="email" class="form-control" name="email" ng-model="email" placeholder="Email" required>
+            </div>
+
+            </br>
+            <button ng-click="Register()"  class="btn btn-sky btn-lg btn-block">Register</button> </div>
             <!--    <p ng-model="result">Result: {{result}}</p>-->
             <div class="col-sm-4"></div>
+
+
+
         </div>
     </div><br>
 </div>
