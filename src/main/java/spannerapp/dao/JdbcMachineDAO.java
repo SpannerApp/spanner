@@ -21,6 +21,7 @@ public class JdbcMachineDAO implements IMachineDAO {
 
     private static final String GET_ALL_MACHINES = "SELECT MachineID, Code, Name, Model, Section, Colour, LastRepair, LastServiceman FROM Machine WHERE 1 = 1";
     private static final String GET_MACHINE_BY_ID = "SELECT MachineID, Code, Name, Model, Section, Colour, LastRepair, LastServiceman FROM Machine WHERE MachineID=:id";
+    private static final String GET_MACHINE_BY_CODE = "SELECT MachineID, Code, Name, Model, Section, Colour, LastRepair, LastServiceman FROM Machine WHERE Code=:code";
 
     private JdbcTemplate jdbcTemplate;
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
@@ -59,6 +60,23 @@ public class JdbcMachineDAO implements IMachineDAO {
                         resultSet.getString("Section"),  resultSet.getString("Colour"),
                         resultSet.getString("LastRepair"),resultSet.getString("LastServiceman"));
 
+            }
+        });
+    }
+
+    @Override
+    public Machine getMachineByCode(String code) {
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("code", code);
+
+        return this.namedParameterJdbcTemplate.queryForObject(GET_MACHINE_BY_CODE, param, new RowMapper<Machine>() {
+            @Override
+            public Machine mapRow(ResultSet resultSet, int i) throws SQLException {
+
+                return new Machine(resultSet.getInt("MachineID"), resultSet.getString("Code"),
+                        resultSet.getString("Name"), resultSet.getString("Model"),
+                        resultSet.getString("Section"),  resultSet.getString("Colour"),
+                        resultSet.getString("LastRepair"),resultSet.getString("LastServiceman"));
             }
         });
     }

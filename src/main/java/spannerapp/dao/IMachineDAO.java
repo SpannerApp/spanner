@@ -12,7 +12,9 @@ public interface IMachineDAO {
 
     Machine getMachineByID(int ID);
 
-   // User getUserByID(int ID);
+    Machine getMachineByCode(String code);
+
+    // User getUserByID(int ID);
 
     /*void removeUserByID(int id);
 
