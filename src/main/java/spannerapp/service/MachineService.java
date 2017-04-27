@@ -25,4 +25,8 @@ public class MachineService {
     public Machine getMachineByID(int ID) {
         return this.machineDAO.getMachineByID(ID);
     }
+
+    public Machine getMachineByCode(String code) {
+        return this.machineDAO.getMachineByCode(code);
+    }
 }
