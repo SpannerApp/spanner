@@ -23,9 +23,9 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Home</a></li>
-                <li><a href="menu.jsp">Company</a></li>
-                <li><a href="information.jsp">Information</a></li>
-                <li><a href="contact.jsp">Contact and Help</a></li>
+                <li><a href="menu.html">Company</a></li>
+                <li><a href="information.html">Information</a></li>
+                <li><a href="contact.html">Contact and Help</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#"><span class="glyphicon glyphicon-log-in"></span>  Register</a></li>
@@ -66,9 +66,9 @@
             <div class="alert alert-danger" ng-show="error">
                 There was a problem logging in. Please try again.
             </div>
-            <div class="alert alert-success" ng-show="!error">
+          <!--  <div class="alert alert-success" ng-show="!error">
                 We have found user:{{username}} with password:{{password}}
-            </div>
+            </div>-->
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                 <input id="username" type="text" class="form-control" name="username" ng-model="username" placeholder="User Name" >
