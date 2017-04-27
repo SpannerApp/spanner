@@ -20,10 +20,16 @@ import java.util.List;
 public class JdbcMachineDAO implements IMachineDAO {
 
     private static final String GET_ALL_MACHINES = "SELECT MachineID, Code, Name, Model, Section, Colour, LastRepair, LastServiceman FROM Machine WHERE 1 = 1";
-    private static final String GET_MACHINE_BY_ID = "SELECT MachineID, Code, Name, Model, Section, Colour, LastRepair, LastServiceman FROM Machine WHERE UserID=:id";
+    private static final String GET_MACHINE_BY_ID = "SELECT MachineID, Code, Name, Model, Section, Colour, LastRepair, LastServiceman FROM Machine WHERE MachineID=:id";
+
+    private JdbcTemplate jdbcTemplate;
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     @Autowired
-    private JdbcTemplate jdbcTemplate;
+    public JdbcMachineDAO(JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate){
+        this.jdbcTemplate = jdbcTemplate;
+        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+    }
 
     @Override
     public Collection<Machine> getAllMachines() {
@@ -41,11 +47,10 @@ public class JdbcMachineDAO implements IMachineDAO {
 
     @Override
     public Machine getMachineByID(int ID) {
-        NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("id", ID);
 
-        return namedParameterJdbcTemplate.queryForObject(GET_MACHINE_BY_ID, param, new RowMapper<Machine>() {
+        return this.namedParameterJdbcTemplate.queryForObject(GET_MACHINE_BY_ID, param, new RowMapper<Machine>() {
             @Override
             public Machine mapRow(ResultSet resultSet, int i) throws SQLException {
 

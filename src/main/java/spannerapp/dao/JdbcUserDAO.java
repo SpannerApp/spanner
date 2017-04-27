@@ -91,7 +91,7 @@ public class JdbcUserDAO implements IUserDAO {
         builder.append("','");
         builder.append(user.getPassword());
         builder.append("',");
-        builder.append("NULL");
+        builder.append(user.getEmployeeID());
         builder.append(",");
         builder.append("NULL");
         builder.append(")");

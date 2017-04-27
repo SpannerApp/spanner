@@ -1,10 +1,11 @@
 package spannerapp.dao.procedure;
 
-import org.apache.tomcat.jdbc.pool.DataSource;
+import org.springframework.jdbc.core.SqlOutParameter;
 import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.jdbc.object.StoredProcedure;
 import spannerapp.model.Employee;
 
+import javax.sql.DataSource;
 import java.sql.Types;
 import java.util.HashMap;
 import java.util.Map;
@@ -26,6 +27,7 @@ public class CreateEmployeeProcedure extends StoredProcedure {
         declareParameter(new SqlParameter("Address", Types.NVARCHAR));
         declareParameter(new SqlParameter("Phone", Types.NVARCHAR));
         declareParameter(new SqlParameter("Mail", Types.NVARCHAR));
+        declareParameter(new SqlOutParameter("EmployeeID", Types.INTEGER));
 
         compile();
     }
@@ -43,7 +45,7 @@ public class CreateEmployeeProcedure extends StoredProcedure {
          Map<String, Object> output = execute(row);
 
          if(output.size() > 0)
-             return (Integer) output.get("NewID");
+             return (Integer) output.get("EmployeeID");
          else
              return -1;
      }

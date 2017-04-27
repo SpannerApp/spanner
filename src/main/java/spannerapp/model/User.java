@@ -5,6 +5,7 @@ public class User {
     private int id;
     private String username;
     private String password;
+    private int employeeID;
 
     public User () {};
 
@@ -37,5 +38,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public int getEmployeeID() {
+        return employeeID;
+    }
+
+    public void setEmployeeID(int employeeID) {
+        this.employeeID = employeeID;
     }
 }

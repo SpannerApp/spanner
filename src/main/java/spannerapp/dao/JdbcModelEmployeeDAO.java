@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
+import spannerapp.dao.procedure.CreateEmployeeProcedure;
 import spannerapp.model.Employee;
 
 import java.sql.ResultSet;
@@ -64,28 +65,10 @@ public class JdbcModelEmployeeDAO implements IEmployeeDAO {
     }
 
     @Override
-    public void insertUser(Employee employee) {
+    public int insertUser(Employee employee) {
 
-        StringBuilder builder = new StringBuilder();
-        builder.append(ADD_EMPLOYEE);
-
-        builder.append("'");
-        builder.append(employee.getName());
-        builder.append("','");
-        builder.append(employee.getSurname());
-        builder.append("',");
-        builder.append("NULL");
-        builder.append(",");
-        builder.append("NULL");
-        builder.append(",");
-        builder.append("NULL");
-        builder.append(",");
-        builder.append("NULL");
-        builder.append(",'");
-        builder.append(employee.getMail());
-        builder.append("')");
-
-        this.jdbcTemplate.update(builder.toString());
+        CreateEmployeeProcedure procedure = new CreateEmployeeProcedure(jdbcTemplate.getDataSource());
+        return procedure.execute(employee);
 
     }
 

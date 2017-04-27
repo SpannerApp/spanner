@@ -27,11 +27,13 @@ public class RegistrationService {
         employee.setSurname(model.getSurname());
         employee.setMail(model.getEmail());
 
-        employeeDAO.insertUser(employee);
+        Integer employeeID = employeeDAO.insertUser(employee);
+
 
         User user = new User();
         user.setUsername(model.getLogin());
         user.setPassword(model.getPassword());
+        user.setEmployeeID(employeeID);
 
         userDAO.insertUser(user);
     }

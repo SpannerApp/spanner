@@ -19,7 +19,7 @@ public interface IEmployeeDAO {
 
     Employee getEmployeeByMail(String mail);
 
-    void insertUser(Employee user);
+    int insertUser(Employee user);
 
     boolean validateUser(Employee user);
 
