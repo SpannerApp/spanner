@@ -116,7 +116,7 @@
                             <user>sa</user>
                             <password>123</password>
                             <locations>
-                                <location>filesystem:src/resources/db/migration</location>
+                                <location>filesystem:src/main/resources/db/migration</location>
                             </locations>
                             <schemas>
                                 <schema>dbo</schema>
@@ -148,7 +148,7 @@
                             <user>sa</user>
                             <password>Widzew93</password>
                             <locations>
-                                <location>filesystem:src/resources/db/migration</location>
+                                <location>filesystem:src/main/resources/db/migration</location>
                             </locations>
                             <schemas>
                                 <schema>dbo</schema>
@@ -182,6 +182,24 @@
                     <plugin>
                         <groupId>org.springframework.boot</groupId>
                         <artifactId>spring-boot-maven-plugin</artifactId>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.flywaydb</groupId>
+                        <artifactId>flyway-maven-plugin</artifactId>
+                        <version>3.2.1</version>
+                        <configuration>
+                            <url>
+                                jdbc:sqlserver://DESKTOP-2JT8KVU:1433;databaseName=SpannerApp
+                            </url>
+                            <user>sa</user>
+                            <password>root</password>
+                            <locations>
+                                <location>filesystem:src/main/resources/db/migration</location>
+                            </locations>
+                            <schemas>
+                                <schema>dbo</schema>
+                            </schemas>
+                        </configuration>
                     </plugin>
                 </plugins>
             </build>
