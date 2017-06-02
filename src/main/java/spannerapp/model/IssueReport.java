@@ -2,27 +2,28 @@ package spannerapp.model;
 
 public class IssueReport {
 
-    private int ID;
-    private int defectedMachineID;
-    private int reportingEmployeeID;
+    private int id;
+    private Machine defectedMachine;
+    private Employee reportingEmployee;
     private String issueStatus;
     private String issueText;
 
     public IssueReport(){}
 
-    public IssueReport(int defectedMachineID, int reportingEmployeeID, String issueStatus, String issueText) {
-        this.defectedMachineID = defectedMachineID;
-        this.reportingEmployeeID = reportingEmployeeID;
+    public IssueReport(int id, Machine defectedMachine, Employee reportingEmployee, String issueStatus, String issueText) {
+        this.id=id;
+        this.defectedMachine = defectedMachine;
+        this.reportingEmployee = reportingEmployee;
         this.issueStatus = issueStatus;
         this.issueText = issueText;
     }
 
     public int getID() {
-        return ID;
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setID(int id) {
+        this.id = id;
     }
 
     public String getIssueText() {
@@ -33,20 +34,20 @@ public class IssueReport {
         this.issueText = issueText;
     }
 
-    public int getDefectedMachineID() {
-        return defectedMachineID;
+    public Machine getDefectedMachine() {
+        return defectedMachine;
     }
 
-    public void setDefectedMachineID(int defectedMachineID) {
-        this.defectedMachineID = defectedMachineID;
+    public void setDefectedMachine(Machine defectedMachine) {
+        this.defectedMachine = defectedMachine;
     }
 
-    public int getReportingEmployeeID() {
-        return reportingEmployeeID;
+    public Employee getReportingEmployee() {
+        return reportingEmployee;
     }
 
-    public void setReportingEmployeeID(int reportingEmployeeID) {
-        this.reportingEmployeeID = reportingEmployeeID;
+    public void setReportingEmployee(Employee reportingEmployee) {
+        this.reportingEmployee = reportingEmployee;
     }
 
     public String getIssueStatus() {
