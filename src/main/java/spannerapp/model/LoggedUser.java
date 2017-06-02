@@ -1,15 +1,16 @@
 package spannerapp.model;
 
-public class User {
+public class LoggedUser {
 
     private int id;
+    private Employee employee;
     private String username;
     private String password;
-    private int employeeID;
 
-    public User () {};
 
-    public User (int ID, String username, String password)
+    public LoggedUser() {};
+
+    public LoggedUser(int ID, String username, String password)
     {
         this.id = ID;
         this.username = username;
@@ -40,11 +41,11 @@ public class User {
         this.password = password;
     }
 
-    public int getEmployeeID() {
-        return employeeID;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setEmployeeID(int employeeID) {
-        this.employeeID = employeeID;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 }
