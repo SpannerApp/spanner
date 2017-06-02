@@ -1,10 +1,8 @@
 package spannerapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 import spannerapp.model.IssueReport;
 import spannerapp.service.ReportedIssueService;
 
@@ -15,11 +13,16 @@ import java.util.Collection;
 public class IssueReportController {
 
     @Autowired
-    private ReportedIssueService reportedIsueService;
+    private ReportedIssueService reportedIssueService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public Collection<IssueReport> getAllReportedIssues(){ return reportedIsueService.getAllReportedIssues();}
+    public Collection<IssueReport> getAllReportedIssues(){ return reportedIssueService.getAllReportedIssues();}
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public IssueReport getReportedIssueById(@PathVariable("id") int id){ return  reportedIsueService.getReportedIssueByID(id);}
+    public IssueReport getReportedIssueById(@PathVariable("id") int id){ return  reportedIssueService.getReportedIssueByID(id);}
+
+    @RequestMapping(value = "/newReport", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public int reportNewIssue(@RequestBody IssueReport report){
+        return reportedIssueService.saveNewReport(report);
+    }
 }

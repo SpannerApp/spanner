@@ -1,50 +1,60 @@
 package spannerapp.model;
 
 public class IssueReport {
-    public String availability;
-    public String serialNumber;
-    public String model;
-    public String department;
 
-    public String getAvailibility() {
-        return availability;
-    }
-
-    public void setAvailibility(String availibility) {
-        this.availability = availibility;
-    }
-
-    public String getSerialNumber() {
-        return serialNumber;
-    }
-
-    public void setSerialNumber(String serialNumber) {
-        this.serialNumber = serialNumber;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public String getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(String department) {
-        this.department = department;
-    }
+    private int ID;
+    private int defectedMachineID;
+    private int reportingEmployeeID;
+    private String issueStatus;
+    private String issueText;
 
     public IssueReport(){}
 
-    public IssueReport(String availability, String serialNumber, String model, String department) {
-        this.availability = availability;
-        this.serialNumber = serialNumber;
-        this.model = model;
-        this.department = department;
+    public IssueReport(int defectedMachineID, int reportingEmployeeID, String issueStatus, String issueText) {
+        this.defectedMachineID = defectedMachineID;
+        this.reportingEmployeeID = reportingEmployeeID;
+        this.issueStatus = issueStatus;
+        this.issueText = issueText;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public String getIssueText() {
+        return issueText;
+    }
+
+    public void setIssueText(String issueText) {
+        this.issueText = issueText;
+    }
+
+    public int getDefectedMachineID() {
+        return defectedMachineID;
+    }
+
+    public void setDefectedMachineID(int defectedMachineID) {
+        this.defectedMachineID = defectedMachineID;
+    }
+
+    public int getReportingEmployeeID() {
+        return reportingEmployeeID;
+    }
+
+    public void setReportingEmployeeID(int reportingEmployeeID) {
+        this.reportingEmployeeID = reportingEmployeeID;
+    }
+
+    public String getIssueStatus() {
+        return issueStatus;
+    }
+
+    public void setIssueStatus(String issueStatus) {
+        this.issueStatus = issueStatus;
     }
 }
 
