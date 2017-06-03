@@ -1,19 +1,21 @@
-var app = angular.module('adminAddUser', []);
+var app = angular.module('adminAddEmployee', []);
 
 app.controller('controller', function($scope,$http,$window,$log) {
 
-    $scope.Register=function(){
+    $scope.AddEmployee=function(){
         var data={
-            name: $scope.name,
-            surname: $scope.surname,
+            positionID: $scope.positionID,
+            supervisorID: $scope.supervisorID,
+            address: $scope.address,
             mail: $scope.mail,
-            login: $scope.login,
-            password: $scope.password
+            phone: $scope.phone,
+            name: $scope.name,
+            surname: $scope.name,
         };
         var config={ headers : {
             'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
         }};
-        $http.post('http://localhost:8080/registration', data)
+        $http.post('http://localhost:8080/employees/insertEmployee', data)
             .success(function (data, status, headers, config) {
                 $scope.result =data;
                 $scope.error=false;
@@ -28,12 +30,6 @@ app.controller('controller', function($scope,$http,$window,$log) {
                     "<hr />config: " + config;
                 $scope.error=true;
             });
-
     };
-
-    $scope.getEmployess=function(){
-
-    }
-
 
 });

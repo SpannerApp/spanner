@@ -27,6 +27,8 @@
                 <li><a href="infoProduct.html">Product Info</a></li>
                 <li><a href="writeCode.html">Write Code</a></li>
                 <li><a href="workerTaskList.html">WORKER TASKS</a></li>
+                <li><a href="adminAddUser.html">Add User Account</a></li>
+                <li><a href="adminAddEmployee.html">Add Employee</a></li>
             </ul>
         </div>
     </div>
@@ -49,56 +51,16 @@
         <div class="col-sm-4"><br></div>
     </div></div>
 <div class="container text-center">
-    <h3>Add New User</h3><br>
+    <h3>Add New User Account</h3><br>
     <div class="row" >
         <div class="col-sm-4">
             <div class="alert alert-danger" ng-show="error">
                 There was a problem with adding to DB. Please try again.
             </div>
 
-            <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                <input id="positionID" type="text" class="form-control" name="positionID" ng-model="positionID" placeholder="Position Id" >
-            </div>
-            </br>
-
-            <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                <input id="suervisorID" type="text" class="form-control" name="supervisorID" ng-model="supervisorID" placeholder="Supervisor Id" >
-            </div>
-            </br>
-
-            <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                <input id="adress" type="text" class="form-control" name="adress" ng-model="adress" placeholder="Adress" >
-            </div>
-            </br>
-
-            <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                <input id="phone" type="text" class="form-control" name="phone" ng-model="phone" placeholder="Phone" >
-            </div>
-            </br>
-
         </div>
         <div class="col-sm-4" ng-controller="controller">
 
-
-            <div class="alert alert-danger" ng-show="error">
-                There was a problem with adding to DB. Please try again.
-            </div>
-
-            <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                <input id="name" type="text" class="form-control" name="name" ng-model="name" placeholder="Name" >
-            </div>
-            </br>
-
-            <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                <input id="surname" type="text" class="form-control" name="surname" ng-model="surname" placeholder="Surname" >
-            </div>
-            </br>
 
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -128,7 +90,8 @@
 
 
             </br>
-            <select class="form-control" name="userStatus" ng-model="userStatus">
+
+            <select class="form-control" name="userStatus" ng-model="userStatus" placeholder="EMPLOYEE">
                 <option value="one">ADMIN</option>
                 <option value="two">WORKER</option>
                 <option value="three">SERVICEMAN</option>

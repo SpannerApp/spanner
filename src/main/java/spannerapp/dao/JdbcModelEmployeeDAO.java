@@ -8,9 +8,12 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 import spannerapp.dao.procedure.CreateEmployeeProcedure;
 import spannerapp.model.Employee;
+import spannerapp.model.LoggedUser;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -21,6 +24,7 @@ public class JdbcModelEmployeeDAO implements IEmployeeDAO {
 
     private static final String ADD_EMPLOYEE = "INSERT INTO ModelEmployee (Name, Surname, PositionID, SupervisorID, Address, Phone, Mail) VALUES (";
     private static final String GET_EMPLOYEE_BY_MAIL = "SELECT * FROM ModelEmployee WHERE Mail=:mail";
+    private static final String GET_ALL_EMPLOYEES = "SELECT * FROM ModelEmployee";
 
     private final JdbcTemplate jdbcTemplate;
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
@@ -31,9 +35,18 @@ public class JdbcModelEmployeeDAO implements IEmployeeDAO {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
+
+
+
     @Override
     public List<Employee> getAllUsers() {
-        return null;
+        List<Employee> employees = this.jdbcTemplate.query(GET_ALL_EMPLOYEES, new RowMapper<Employee>() {
+            @Override
+            public Employee mapRow(ResultSet resultSet, int i) throws SQLException {
+                return new Employee(resultSet.getInt("EmployeeID"),resultSet.getString("Name"), resultSet.getString("Surname"), resultSet.getInt("PositionID"), resultSet.getInt("SupervisorID"),resultSet.getString("Address"), resultSet.getString("Phone"), resultSet.getString("Mail"));
+            }
+        });
+        return employees;
     }
 
     @Override

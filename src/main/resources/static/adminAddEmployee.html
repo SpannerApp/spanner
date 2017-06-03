@@ -1,14 +1,13 @@
-
 <!DOCTYPE html>
-<html ng-app="login" lang="en">
+<html ng-app="adminAddEmployee" lang="en">
 <head>
     <title>SpannerApp</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
 
-    <script src="login.js"></script>
-
+    <script src="adminAddEmployee.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -31,9 +30,6 @@
                 <li><a href="adminAddUser.html">Add User Account</a></li>
                 <li><a href="adminAddEmployee.html">Add Employee</a></li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="register.html"><span class="glyphicon glyphicon-log-in"></span>  Register</a></li>
-            </ul>
         </div>
     </div>
 </nav>
@@ -55,47 +51,73 @@
         <div class="col-sm-4"><br></div>
     </div></div>
 <div class="container text-center">
-    <h3>PLEASE SIGN IN</h3><br>
-    <div class="row">
+    <h3>Add New Employee</h3><br>
+    <div class="row" >
         <div class="col-sm-4">
-            <!--<div ng-controller="Users">
-                <ul>
-              <li ng-repeat="user in users"> <h5>{{user.id}}</h5>
-                        <h6>{{user.username}}</h6>
-                  <h6 style="color:red">{{user.password}}</h6></li>
-                </ul>
-            </div>-->
+
         </div>
         <div class="col-sm-4" ng-controller="controller">
+
+
             <div class="alert alert-danger" ng-show="error">
-                There was a problem logging in. Please try again.
+                There was a problem with adding to DB. Please try again.
             </div>
-          <!--  <div class="alert alert-success" ng-show="!error">
-                We have found user:{{username}} with password:{{password}}
-            </div>-->
-            <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                <input id="username" type="text" class="form-control" name="username" ng-model="username" placeholder="User Name" >
-            </div>
-            </br>
+
+
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                <input id="password" type="password" class="form-control" name="password" ng-model="password" placeholder="Password" >
+                <input id="positionID" type="text" class="form-control" name="positionID" ng-model="positionID" placeholder="Position Id" >
             </div>
             </br>
-            <button ng-click="Login()"  class="btn btn-sky btn-lg btn-block">Login</button>
-            <!--    <p ng-model="result">Result: {{result}}</p>-->
-            <div class="col-sm-4"></div>
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                <input id="suervisorID" type="text" class="form-control" name="supervisorID" ng-model="supervisorID" placeholder="Supervisor Id" >
+            </div>
+            </br>
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input id="address" type="text" class="form-control" name="address" ng-model="address" placeholder="Adress" >
+            </div>
+            </br>
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input id="mail" type="text" class="form-control" name="mail" ng-model="mail" placeholder="mail" >
+            </div>
+            </br>
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                <input id="phone" type="text" class="form-control" name="phone" ng-model="phone" placeholder="Phone" >
+            </div>
+            </br>
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                <input id="name" type="text" class="form-control" name="name" ng-model="name" placeholder="Name" >
+            </div>
+            </br>
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                <input id="surname" type="text" class="form-control" name="surname" ng-model="surname" placeholder="Surname" >
+            </div>
+            </br>
+
+
+            </br>
+            <button ng-click="AddEmployee()"  class="btn btn-sky btn-lg btn-block">ADD EMPLOYEE</button>
         </div>
-    </div><br>
-</div>
-<br>
+        <div class="col-sm-4"></div>
+
+
+    </div>
+</div><br></br>
+
 <div class="container text-center">
-    </br>
-    </br>
-    </br>
-    </br>
-    </br>
+
 </div>
 
 

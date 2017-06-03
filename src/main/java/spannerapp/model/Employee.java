@@ -15,6 +15,17 @@ public class Employee {
 
     public Employee(){};
 
+    public Employee(Integer employeeID, String name, String surname, Integer positionID, Integer supervisorID, String address, String phone, String mail) {
+        this.employeeID = employeeID;
+        this.name = name;
+        this.surname = surname;
+        this.positionID = positionID;
+        this.supervisorID = supervisorID;
+        this.address = address;
+        this.phone = phone;
+        this.mail = mail;
+    }
+
     public Employee(Integer employeeID, String name, String surname, String mail){
         this.employeeID = employeeID;
         this.name = name;
@@ -85,4 +96,6 @@ public class Employee {
     public void setMail(String mail) {
         this.mail = mail;
     }
+
+
 }
