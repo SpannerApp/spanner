@@ -1,6 +1,6 @@
 package spannerapp.model;
 
-public class LoggedUser {
+public class AuthorizationUser {
 
     private int id;
     private Employee employee;
@@ -8,9 +8,9 @@ public class LoggedUser {
     private String password;
 
 
-    public LoggedUser() {};
+    public AuthorizationUser() {};
 
-    public LoggedUser(int ID, String username, String password)
+    public AuthorizationUser(int ID, String username, String password)
     {
         this.id = ID;
         this.username = username;

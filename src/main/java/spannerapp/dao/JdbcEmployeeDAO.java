@@ -8,59 +8,59 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 import spannerapp.dao.procedure.CreateEmployeeProcedure;
 import spannerapp.model.Employee;
-import spannerapp.model.LoggedUser;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**
  * Created by Siekacz on 25.04.2017.
  */
 @Repository
-public class JdbcModelEmployeeDAO implements IEmployeeDAO {
+public class JdbcEmployeeDAO implements IEmployeeDAO {
 
     private static final String ADD_EMPLOYEE = "INSERT INTO ModelEmployee (Name, Surname, PositionID, SupervisorID, Address, Phone, Mail) VALUES (";
     private static final String GET_EMPLOYEE_BY_MAIL = "SELECT * FROM ModelEmployee WHERE Mail=:mail";
-    private static final String GET_ALL_EMPLOYEES = "SELECT * FROM ModelEmployee";
+    private static final String GET_EMPLOYEE_BY_ID = "SELECT * FROM ModelEmployee WHERE EmployeeID=:id";
 
     private final JdbcTemplate jdbcTemplate;
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     @Autowired
-    public JdbcModelEmployeeDAO(JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate){
+    public JdbcEmployeeDAO(JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate){
         this.jdbcTemplate = jdbcTemplate;
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
-
-
-
     @Override
-    public List<Employee> getAllUsers() {
-        List<Employee> employees = this.jdbcTemplate.query(GET_ALL_EMPLOYEES, new RowMapper<Employee>() {
-            @Override
-            public Employee mapRow(ResultSet resultSet, int i) throws SQLException {
-                return new Employee(resultSet.getInt("EmployeeID"),resultSet.getString("Name"), resultSet.getString("Surname"), resultSet.getInt("PositionID"), resultSet.getInt("SupervisorID"),resultSet.getString("Address"), resultSet.getString("Phone"), resultSet.getString("Mail"));
-            }
-        });
-        return employees;
-    }
-
-    @Override
-    public Employee getUserByID(int ID) {
+    public List<Employee> getAllEmployees() {
         return null;
     }
 
     @Override
-    public void removeUserByID(int id) {
+    public Employee getEmployeeByID(int ID) {
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("id", ID);
+
+        return this.namedParameterJdbcTemplate.queryForObject(GET_EMPLOYEE_BY_ID, param, new RowMapper<Employee>() {
+            @Override
+            public Employee mapRow(ResultSet rs, int i) throws SQLException {
+                return new Employee(rs.getInt("EmployeeID"), rs.getString("Name"), rs.getString("Surname"), rs.getInt("PositionID"), rs.getInt("SupervisorID"), rs.getString("Address"), rs.getString("Phone"), rs.getString("Mail"));
+            }
+        });
+    }
+
+    @Override
+    public void removeEmployeeByID(int id) {
 
     }
 
     @Override
     public void updateUserByID(Employee employee) {
+
+    }
+
+    public void updateEmployeeByID(Employee employee) {
 
     }
 
@@ -71,14 +71,14 @@ public class JdbcModelEmployeeDAO implements IEmployeeDAO {
         param.addValue("mail", mail);
         return this.namedParameterJdbcTemplate.queryForObject(GET_EMPLOYEE_BY_MAIL, param, new RowMapper<Employee>() {
             @Override
-            public Employee mapRow(ResultSet resultSet, int i) throws SQLException {
-                return new Employee(resultSet.getInt("EmployeeID"), resultSet.getString("Name"), resultSet.getString("Surname"), resultSet.getString("Mail"));
+            public Employee mapRow(ResultSet rs, int i) throws SQLException {
+                return new Employee(rs.getInt("EmployeeID"), rs.getString("Name"), rs.getString("Surname"), rs.getInt("PositionID"), rs.getInt("SupervisorID"), rs.getString("Address"), rs.getString("Phone"), rs.getString("Mail"));
             }
         });
     }
 
     @Override
-    public int insertUser(Employee employee) {
+    public int insertEmployee(Employee employee) {
 
         CreateEmployeeProcedure procedure = new CreateEmployeeProcedure(jdbcTemplate.getDataSource());
         return procedure.execute(employee);

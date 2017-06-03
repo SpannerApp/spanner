@@ -1,6 +1,6 @@
 package spannerapp.service;
 
-import spannerapp.model.LoggedUser;
+import spannerapp.model.AuthorizationUser;
 
 import java.util.Collection;
 
@@ -10,16 +10,16 @@ import java.util.Collection;
 
 public interface IUserService {
 
-    Collection<LoggedUser> getAllUsers();
+    Collection<AuthorizationUser> getAllUsers();
 
-    LoggedUser getUserByID(int ID);
+    AuthorizationUser getUserByID(int ID);
 
     void removeStudentByID(int id);
 
-    void updateUser(LoggedUser user);
+    void updateUser(AuthorizationUser user);
 
-    void insertUser(LoggedUser user);
+    void insertUser(AuthorizationUser user);
 
-    void validateUser(LoggedUser user);
+    void validateUser(AuthorizationUser user);
 
 }

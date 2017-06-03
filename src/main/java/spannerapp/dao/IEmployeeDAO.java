@@ -9,18 +9,18 @@ import java.util.List;
  */
 public interface IEmployeeDAO {
 
-    List<Employee> getAllUsers();
+    List<Employee> getAllEmployees();
 
-    Employee getUserByID(int ID);
+    Employee getEmployeeByID(int ID);
 
-    void removeUserByID(int id);
+    void removeEmployeeByID(int id);
 
-    void updateUserByID(Employee user);
+    void updateUserByID(Employee employee);
 
     Employee getEmployeeByMail(String mail);
 
-    int insertUser(Employee user);
+    int insertEmployee(Employee employee);
 
-    boolean validateUser(Employee user);
+    boolean validateUser(Employee employee);
 
 }

@@ -2,12 +2,11 @@ package spannerapp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import spannerapp.dao.IEmployeeDAO;
 import spannerapp.dao.IUserDAO;
 import spannerapp.model.Employee;
-import spannerapp.model.LoggedUser;
+import spannerapp.model.AuthorizationUser;
 import spannerapp.model.RegistrationFormModel;
 
 /**
@@ -28,10 +27,10 @@ public class RegistrationService implements IRegistrationService {
         employee.setSurname(model.getSurname());
         employee.setMail(model.getEmail());
 
-        Integer employeeID = employeeDAO.insertUser(employee);
+        Integer employeeID = employeeDAO.insertEmployee(employee);
 
 
-        LoggedUser user = new LoggedUser();
+        AuthorizationUser user = new AuthorizationUser();
         user.setUsername(model.getLogin());
         user.setPassword(model.getPassword());
         user.setEmployee(employee);

@@ -13,14 +13,4 @@ public interface IMachineDAO {
     Machine getMachineByID(int ID);
 
     Machine getMachineByCode(String code);
-
-    // LoggedUser getUserByID(int ID);
-
-    /*void removeUserByID(int id);
-
-    void updateUserByID(LoggedUser user);
-
-    void insertUser(LoggedUser user);
-
-    boolean validateUser(LoggedUser user);*/
 }

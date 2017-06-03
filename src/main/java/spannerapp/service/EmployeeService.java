@@ -11,14 +11,23 @@ import java.util.List;
  * Created by Siekacz on 25.04.2017.
  */
 @Service
-public class EmployeeService{
+public class EmployeeService implements IEmployeeService {
 
     @Autowired
     private IEmployeeDAO employeeDAO;
 
-    public List<Employee> getAllEmployees(){ return employeeDAO.getAllUsers();}
+    @Override
+    public Employee findEmployeeByID(int ID) {
+        return employeeDAO.getEmployeeByID(ID);
+    }
 
-    public Employee getEmployeeByMail(String mail){ return  employeeDAO.getEmployeeByMail(mail);}
+    @Override
+    public List<Employee> getAllEmployees() {
+        return employeeDAO.getAllEmployees();
+    }
 
-    public int insertUser(Employee employee){ return employeeDAO.insertUser(employee);}
+    @Override
+    public int insertEmployee(Employee employee) {
+        return employeeDAO.insertEmployee(employee);
+    }
 }
