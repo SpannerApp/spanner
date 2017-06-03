@@ -1,4 +1,4 @@
-var app = angular.module('registration', []);
+var app = angular.module('adminAddUser', []);
 
 app.controller('controller', function($scope,$http,$window,$log) {
 
@@ -9,7 +9,7 @@ app.controller('controller', function($scope,$http,$window,$log) {
             mail: $scope.mail,
             login: $scope.login,
             password: $scope.password
-                };
+        };
         var config={ headers : {
             'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
         }};
@@ -23,9 +23,9 @@ app.controller('controller', function($scope,$http,$window,$log) {
             })
             .error(function (data, status, header, config) {
                 $scope.result = "Data: " + data +
-                 "<hr />status: " + status +
-                 "<hr />headers: " + header +
-                 "<hr />config: " + config;
+                    "<hr />status: " + status +
+                    "<hr />headers: " + header +
+                    "<hr />config: " + config;
                 $scope.error=true;
             });
     };
