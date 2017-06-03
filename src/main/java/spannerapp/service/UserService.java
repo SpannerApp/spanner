@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import spannerapp.dao.IUserDAO;
-import spannerapp.model.LoggedUser;
+import spannerapp.model.AuthorizationUser;
 
 import java.util.Collection;
 
@@ -18,11 +18,11 @@ public class UserService implements IUserService {
     @Qualifier("sqlserver")
     private IUserDAO userDAO;
 
-    public Collection<LoggedUser> getAllUsers() {
+    public Collection<AuthorizationUser> getAllUsers() {
         return userDAO.getAllUsers();
     }
 
-    public LoggedUser getUserByID(int ID) {
+    public AuthorizationUser getUserByID(int ID) {
         return this.userDAO.getUserByID(ID);
     }
 
@@ -30,16 +30,16 @@ public class UserService implements IUserService {
         this.userDAO.removeUserByID(id);
     }
 
-    public void updateUser(LoggedUser user){
+    public void updateUser(AuthorizationUser user){
 
         userDAO.updateUserByID(user);
 
     }
 
-    public void insertUser(LoggedUser user) {
+    public void insertUser(AuthorizationUser user) {
         userDAO.insertUser(user);
     }
 
-    public void validateUser(LoggedUser user) { userDAO.validateUser(user); }
+    public void validateUser(AuthorizationUser user) { userDAO.validateUser(user); }
 
 }

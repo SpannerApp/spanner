@@ -3,7 +3,7 @@ package spannerapp.dao;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import spannerapp.UserNotFoundException;
-import spannerapp.model.LoggedUser;
+import spannerapp.model.AuthorizationUser;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -16,27 +16,27 @@ import java.util.Map;
 @Qualifier("userDAO")
 public class UserDAO implements IUserDAO {
 
-    private static Map<Integer, LoggedUser> users;
+    private static Map<Integer, AuthorizationUser> users;
 
     static {
 
-        users = new HashMap<Integer, LoggedUser>(){
+        users = new HashMap<Integer, AuthorizationUser>(){
 
             {
-            put(1, new LoggedUser(1, "Zabek", "hehehe"));
-            put(2, new LoggedUser(2, "Owca", "cococo"));
-            put(3, new LoggedUser(3, "Miszu", "gdziedzie"));
+            put(1, new AuthorizationUser(1, "Zabek", "hehehe"));
+            put(2, new AuthorizationUser(2, "Owca", "cococo"));
+            put(3, new AuthorizationUser(3, "Miszu", "gdziedzie"));
             }
         };
     }
 
     @Override
-    public Collection<LoggedUser> getAllUsers(){
+    public Collection<AuthorizationUser> getAllUsers(){
         return this.users.values();
     }
 
     @Override
-    public LoggedUser getUserByID(int ID) {
+    public AuthorizationUser getUserByID(int ID) {
         return this.users.get(ID);
     }
 
@@ -46,9 +46,9 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
-    public void updateUserByID(LoggedUser user){
+    public void updateUserByID(AuthorizationUser user){
 
-        LoggedUser userTmp = users.get(user.getId());
+        AuthorizationUser userTmp = users.get(user.getId());
         userTmp.setUsername(user.getUsername());
         userTmp.setPassword(user.getPassword());
         users.put(user.getId(), userTmp);
@@ -56,14 +56,14 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
-    public void insertUser(LoggedUser user) {
+    public void insertUser(AuthorizationUser user) {
         this.users.put(user.getId(), user);
     }
 
     @Override
-    public boolean validateUser(LoggedUser user) {
-        Collection<LoggedUser> usersList = users.values();
-        for(LoggedUser iterator : usersList)
+    public boolean validateUser(AuthorizationUser user) {
+        Collection<AuthorizationUser> usersList = users.values();
+        for(AuthorizationUser iterator : usersList)
             if(iterator.getUsername().equals(user.getUsername())&&iterator.getPassword().equals(user.getPassword()))
                 return true;
         throw new UserNotFoundException(user.getUsername());
