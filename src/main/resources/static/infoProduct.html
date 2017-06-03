@@ -6,8 +6,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
-
+    <script src="https://code.angularjs.org/1.2.28/angular-route.js"></script>
     <script src="search.js"></script>
+    <script src="productInfo.js"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
@@ -43,27 +44,29 @@
     <div class="container ">
         <div class="row">
             <div class="col-sm-12 col-lg-12">
-                <h1 class="h1"> Info about product</h1>
+                <h1 class="h1"> Found!
+                    <small> information about product:</small></h1>
             </div>
         </div>
     </div>
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid"  ng-controller="InfoController">
     <div class="content-wrapper">
         <div class="item-container">
-            <div class="container" ng-controller="controller">
-
-                <div class="col-md-7">
-                    <div class="product-title">PRODUCT TITLE</div>
-                    <div class="product-desc" ng-model="result">{{result}}</div>
-                    <div class="product-stock">availibility</div>
-                    <div class="serial number">serial number</div>
-                    <div class="model">model</div>
-                    <div class="department">DEPARTMENT</div>
+            <div class="container" >
+    <div class="row">
+                <div class="col-md-4">
+                    <div class="product-title" ng-show="information">{{information.code}}</div>
+                   <!--<div class="product-desc" ng-show="information">InFO:{{information.name}}</div>-->
+                    <button  ng-click="GetInfo()">SHOW</button>
+                    <!--<div class="product-stock" ng-model="jas">{{jas}}</div>-->
+                    <!--<div class="serial number">serial number</div>-->
+                    <!--<div class="model">model</div>-->
+                    <!--<div class="department">DEPARTMENT</div> -->
                     <hr>
                     <div class="alert alert-danger" ng-show="error">
-                        There was a problem with registration. Please try again.
+                        There was a problem with database.
                     </div>
                     <div class="btn-group wishlist">
                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">
@@ -71,6 +74,12 @@
                         </button>
                     </div>
                 </div>
+                <div class="col-md-8">
+
+                    <img src="images/logo2.png"></img>
+
+                </div>
+            </div>
             </div>
         </div>
 
@@ -101,15 +110,15 @@
                 </div>
             </div>
         </div>
-
+<!--END of MODAL to ISSU RAPORT-->
 
 
         <div class="container-fluid">
             <div class="col-md-12 product-info">
                 <ul id="myTab" class="nav nav-tabs nav_tabs">
 
-                    <li class="active"><a href="#service-one" data-toggle="tab">DESCRIPTION</a></li>
-                    <li><a href="#service-two" data-toggle="tab">PRODUCT INFO</a></li>
+                    <li class="active"><a href="#service-one" data-toggle="tab">PRODUCT INFO</a></li>
+                    <li><a href="#service-two" data-toggle="tab">DESCRIPTION</a></li>
                     <li><a href="#service-three" data-toggle="tab">RESPONISIBLE PERSONS</a></li>
 
 
@@ -119,22 +128,29 @@
                     <div class="tab-pane fade in active" id="service-one">
 
                         <section class="container product-info">
-                            The Corsair Gaming Series GS600 power supply is the ideal price-performance solution for building or upgrading a Gaming PC. A single +12V rail provides up to 48A of reliable, continuous power for multi-core gaming PCs with multiple graphics cards. The ultra-quiet, dual ball-bearing fan automatically adjusts its speed according to temperature, so it will never intrude on your music and games. Blue LEDs bathe the transparent fan blades in a cool glow. Not feeling blue? You can turn off the lighting with the press of a button.
+                            <div class="product-title" ng-show="information">{{information.code}}</div>
+                            <h3>PRODUCT NAME: </h3><div class="product-desc" ng-show="information">{{information.name}}</div>
+                            <h3>PRODUCT MODEL: </h3><div class="product-stock" ng-model="information">{{information.model}}</div>
 
-                            <h3>Header for info</h3>
-                            <li>more info....</li>
+
                         </section>
 
                     </div>
                     <div class="tab-pane fade" id="service-two">
-
                         <section class="container">
-
+                            <div class="product-title" ng-show="information">{{information.code}}</div>
+                            <p>This is plastic 1.75mm extruder with the 0.4mm nozzle from Marketing Departure. If you found it and don't know what to do, please return it to the room number 3.
+                                If it has some issue please raport the issue or return it to the Marketing Deparutre.</p>
                         </section>
+
 
                     </div>
                     <div class="tab-pane fade" id="service-three">
-
+                        <section class="container">
+                            <h3>DEPARTMENT RESPONSIBLE: </h3><div class="department">{{information.section}}</div>
+                            <h3>LAST REPARATION: </h3><div class="serial number">{{information.lastrepair}}</div>
+                            <h3>LAST SERVICEMAN: </h3><div class="model">{{information.lastserviceman}}</div>
+                        </section>
                     </div>
                 </div>
                 <hr>
