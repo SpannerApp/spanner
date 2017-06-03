@@ -122,7 +122,9 @@ footer {
 }
 
 .product-title{
-    font-size: 20px;
+    font-size: 45px;
+    font-weight: bold;
+    font-family: "Comic Sans MS";
 }
 
 .product-desc{
