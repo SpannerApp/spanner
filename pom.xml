@@ -193,6 +193,24 @@
                         <groupId>org.springframework.boot</groupId>
                         <artifactId>spring-boot-maven-plugin</artifactId>
                     </plugin>
+                    <plugin>
+                        <groupId>org.flywaydb</groupId>
+                        <artifactId>flyway-maven-plugin</artifactId>
+                        <version>3.2.1</version>
+                        <configuration>
+                            <url>
+                                jdbc:sqlserver://DESKTOP-OEJEP8S:1433;databaseName=SpannerApp
+                            </url>
+                            <user>sa</user>
+                            <password>gabi143ff</password>
+                            <locations>
+                                <location>filesystem:src/main/resources/db/migration</location>
+                            </locations>
+                            <schemas>
+                                <schema>dbo</schema>
+                            </schemas>
+                        </configuration>
+                    </plugin>
                 </plugins>
             </build>
         </profile>

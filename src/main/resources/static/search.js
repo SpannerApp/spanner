@@ -14,13 +14,15 @@ app.config(["$routeProvider", "$locationProvider", function($routeProvider, $loc
     ;
 }]);
    app.controller('controller', function($scope,srvShareData,$http,$window,$log) {
-       $scope.kurwa=$scope.code2;
+
        var kod= $scope.code2;
-       srvShareData.addData(kod);
+       $scope.kurwa=kod;
+      srvShareData.addData(kod);
     $scope.Search=function(){
         var data={
             code: $scope.code2
         };
+
         var config={ headers : {
             'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
         }};
@@ -30,7 +32,7 @@ app.config(["$routeProvider", "$locationProvider", function($routeProvider, $loc
 
                 $log.log(url);
 
-             $window.location.href = url;
+             //$window.location.href = url;
             })
             .error(function (data, status, header, config) {
                 /* $scope.result = "Data: " + data +
@@ -57,7 +59,7 @@ app.controller('InfoController', function($scope, srvShareData,$http) {
         var config={ headers : {
             'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
         }};
-        $http.post('http://localhost:8080/machines/findByCode',data)
+        $http.post('http://localhost:8080/machines/findByCode',srvShareData.getData())
             .success(function (data, status, headers, config) {
               $scope.information=data;
 
