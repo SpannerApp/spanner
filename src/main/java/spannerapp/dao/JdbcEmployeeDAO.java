@@ -22,6 +22,7 @@ public class JdbcEmployeeDAO implements IEmployeeDAO {
     private static final String ADD_EMPLOYEE = "INSERT INTO ModelEmployee (Name, Surname, PositionID, SupervisorID, Address, Phone, Mail) VALUES (";
     private static final String GET_EMPLOYEE_BY_MAIL = "SELECT * FROM ModelEmployee WHERE Mail=:mail";
     private static final String GET_EMPLOYEE_BY_ID = "SELECT * FROM ModelEmployee WHERE EmployeeID=:id";
+    private static final String GET_ALL_EMPLOYEES = "SELECT * FROM ModelEmployee WHERE 1=1";
 
     private final JdbcTemplate jdbcTemplate;
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
@@ -34,7 +35,12 @@ public class JdbcEmployeeDAO implements IEmployeeDAO {
 
     @Override
     public List<Employee> getAllEmployees() {
-        return null;
+        return this.namedParameterJdbcTemplate.query(GET_ALL_EMPLOYEES, new RowMapper<Employee>() {
+            @Override
+            public Employee mapRow(ResultSet rs, int i) throws SQLException {
+                return new Employee(rs.getInt("EmployeeID"), rs.getString("Name"), rs.getString("Surname"), rs.getInt("PositionID"), rs.getInt("SupervisorID"), rs.getString("Address"), rs.getString("Phone"), rs.getString("Mail"));
+            }
+        });
     }
 
     @Override
