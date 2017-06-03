@@ -27,7 +27,7 @@ public class RegistrationService implements IRegistrationService {
         employee.setSurname(model.getSurname());
         employee.setMail(model.getEmail());
 
-        Integer employeeID = employeeDAO.insertUser(employee);
+        Integer employeeID = employeeDAO.insertEmployee(employee);
 
 
         AuthorizationUser user = new AuthorizationUser();

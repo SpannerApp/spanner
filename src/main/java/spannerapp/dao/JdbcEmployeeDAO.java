@@ -33,7 +33,7 @@ public class JdbcEmployeeDAO implements IEmployeeDAO {
     }
 
     @Override
-    public List<Employee> getAllUsers() {
+    public List<Employee> getAllEmployees() {
         return null;
     }
 
@@ -56,7 +56,7 @@ public class JdbcEmployeeDAO implements IEmployeeDAO {
     }
 
     @Override
-    public void updateUserByID(Employee user) {
+    public void updateUserByID(Employee employee) {
 
     }
 
@@ -78,7 +78,7 @@ public class JdbcEmployeeDAO implements IEmployeeDAO {
     }
 
     @Override
-    public int insertUser(Employee employee) {
+    public int insertEmployee(Employee employee) {
 
         CreateEmployeeProcedure procedure = new CreateEmployeeProcedure(jdbcTemplate.getDataSource());
         return procedure.execute(employee);
