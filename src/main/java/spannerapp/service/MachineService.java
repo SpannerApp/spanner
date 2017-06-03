@@ -12,7 +12,7 @@ import java.util.Collection;
  * Created by MATI on 26.04.2017.
  */
 @Service
-public class MachineService {
+public class MachineService implements IMachineService{
 
     @Autowired
     @Qualifier("sqlserver2")

@@ -11,10 +11,12 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="SpannerApp.css">
 </head>
 <body>
+
 
 <nav class="navbar navbar-light ">
     <div class="container-fluid" >
@@ -22,13 +24,15 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="menu.html">Company</a></li>
-                <li><a href="information.html">Information</a></li>
+                <li class="active"><a href="menu.html">Home</a></li>
+                <li><a href="info.html">Information</a></li>
                 <li><a href="contact.html">Contact and Help</a></li>
+                <li><a href="infoProduct.html">Product Info</a></li>
+                <li><a href="writeCode.html">Write Code</a></li>
+                <li><a href="workerTaskList.html">WORKER TASKS</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span>  Register</a></li>
+                <li><a href="registration.html"><span class="glyphicon glyphicon-log-in"></span>  Register</a></li>
             </ul>
         </div>
     </div>
@@ -60,13 +64,44 @@
                         There was a problem with registration. Please try again.
                     </div>
                     <div class="btn-group wishlist">
-                        <button type="button" class="btn btn-danger">
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">
                             REPORT ISSSUE
                         </button>
                     </div>
                 </div>
             </div>
         </div>
+
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Report Issue</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Please write some details about your problems:</p>
+                        <div class="form-group">
+                            <label for="message-text" class="control-label">Message:</label>
+                            <textarea class="form-control" id="message-text"></textarea>
+                        </div>
+                    </div>
+
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Send Report</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
         <div class="container-fluid">
             <div class="col-md-12 product-info">
                 <ul id="myTab" class="nav nav-tabs nav_tabs">
@@ -105,6 +140,7 @@
         </div>
     </div>
 </div>
+
 </body><!--
 
 </html>

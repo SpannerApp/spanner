@@ -2,18 +2,19 @@ package spannerapp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import spannerapp.dao.IEmployeeDAO;
 import spannerapp.dao.IUserDAO;
 import spannerapp.model.Employee;
+import spannerapp.model.LoggedUser;
 import spannerapp.model.RegistrationFormModel;
-import spannerapp.model.User;
 
 /**
  * Created by Siekacz on 25.04.2017.
  */
 @Service
-public class RegistrationService {
+public class RegistrationService implements IRegistrationService {
 
     @Autowired
     @Qualifier("sqlserver")
@@ -30,10 +31,10 @@ public class RegistrationService {
         Integer employeeID = employeeDAO.insertUser(employee);
 
 
-        User user = new User();
+        LoggedUser user = new LoggedUser();
         user.setUsername(model.getLogin());
         user.setPassword(model.getPassword());
-        user.setEmployeeID(employeeID);
+        user.setEmployee(employee);
 
         userDAO.insertUser(user);
     }

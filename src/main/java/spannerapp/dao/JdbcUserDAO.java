@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 import spannerapp.UserNotFoundException;
-import spannerapp.model.User;
+import spannerapp.model.LoggedUser;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -37,27 +37,27 @@ public class JdbcUserDAO implements IUserDAO {
     }
 
     @Override
-    public Collection<User> getAllUsers() {
-        List<User> users = this.jdbcTemplate.query(GET_ALL_USERS, new RowMapper<User>() {
+    public Collection<LoggedUser> getAllUsers() {
+        List<LoggedUser> users = this.jdbcTemplate.query(GET_ALL_USERS, new RowMapper<LoggedUser>() {
             @Override
-            public User mapRow(ResultSet resultSet, int i) throws SQLException {
-                return new User(resultSet.getInt("UserID"), resultSet.getString("Login"), resultSet.getString("Password"));
+            public LoggedUser mapRow(ResultSet resultSet, int i) throws SQLException {
+                return new LoggedUser(resultSet.getInt("UserID"), resultSet.getString("Login"), resultSet.getString("Password"));
             }
         });
         return users;
     }
 
     @Override
-    public User getUserByID(int ID) {
+    public LoggedUser getUserByID(int ID) {
 
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("id", ID);
 
-        return this.namedParameterJdbcTemplate.queryForObject(GET_USER_BY_ID, param, new RowMapper<User>() {
+        return this.namedParameterJdbcTemplate.queryForObject(GET_USER_BY_ID, param, new RowMapper<LoggedUser>() {
             @Override
-            public User mapRow(ResultSet resultSet, int i) throws SQLException {
+            public LoggedUser mapRow(ResultSet resultSet, int i) throws SQLException {
 
-                return new User(resultSet.getInt("UserID"), resultSet.getString("Login"), resultSet.getString("Password"));
+                return new LoggedUser(resultSet.getInt("UserID"), resultSet.getString("Login"), resultSet.getString("Password"));
             }
         });
     }
@@ -71,7 +71,7 @@ public class JdbcUserDAO implements IUserDAO {
     }
 
     @Override
-    public void updateUserByID(User user) {
+    public void updateUserByID(LoggedUser user) {
         NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("id", user.getId());
@@ -82,7 +82,7 @@ public class JdbcUserDAO implements IUserDAO {
     }
 
     @Override
-    public void insertUser(User user) {
+    public void insertUser(LoggedUser user) {
         StringBuilder builder = new StringBuilder();
         builder.append(ADD_USER);
 
@@ -91,7 +91,7 @@ public class JdbcUserDAO implements IUserDAO {
         builder.append("','");
         builder.append(user.getPassword());
         builder.append("',");
-        builder.append(user.getEmployeeID());
+        builder.append(user.getEmployee().getEmployeeID());
         builder.append(",");
         builder.append("NULL");
         builder.append(")");
@@ -100,15 +100,15 @@ public class JdbcUserDAO implements IUserDAO {
     }
 
     @Override
-    public boolean validateUser(User user) {
+    public boolean validateUser(LoggedUser user) {
 
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("login", user.getUsername());
         param.addValue("password", user.getPassword());
-        User validation = this.namedParameterJdbcTemplate.queryForObject(VALIDATE_USER, param, new RowMapper<User>() {
+        LoggedUser validation = this.namedParameterJdbcTemplate.queryForObject(VALIDATE_USER, param, new RowMapper<LoggedUser>() {
             @Override
-            public User mapRow(ResultSet resultSet, int i) throws SQLException {
-                return new User(resultSet.getInt("UserID"), resultSet.getString("Login"), resultSet.getString("Password"));
+            public LoggedUser mapRow(ResultSet resultSet, int i) throws SQLException {
+                return new LoggedUser(resultSet.getInt("UserID"), resultSet.getString("Login"), resultSet.getString("Password"));
             }
         });
         if (validation != null)

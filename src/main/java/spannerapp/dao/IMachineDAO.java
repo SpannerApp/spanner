@@ -14,13 +14,13 @@ public interface IMachineDAO {
 
     Machine getMachineByCode(String code);
 
-    // User getUserByID(int ID);
+    // LoggedUser getUserByID(int ID);
 
     /*void removeUserByID(int id);
 
-    void updateUserByID(User user);
+    void updateUserByID(LoggedUser user);
 
-    void insertUser(User user);
+    void insertUser(LoggedUser user);
 
-    boolean validateUser(User user);*/
+    boolean validateUser(LoggedUser user);*/
 }
