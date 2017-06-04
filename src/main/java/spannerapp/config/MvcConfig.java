@@ -1,15 +1,15 @@
 package spannerapp.config;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
-
-/**
- * Created by Siekacz on 03.06.2017.
- */
+//import org.springframework.context.annotation.Bean;
+//import org.springframework.context.annotation.Configuration;
+//import org.springframework.jdbc.datasource.DriverManagerDataSource;
+//import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+//import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+//import org.springframework.web.servlet.view.InternalResourceViewResolver;
+//
+///**
+// * Created by Siekacz on 03.06.2017.
+// */
 //@Configuration
 //public class MvcConfig extends WebMvcConfigurerAdapter {
 //
@@ -40,4 +40,4 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 //
 //}
 
-public class MvcConfig {}
+public class MvcConfig{}
