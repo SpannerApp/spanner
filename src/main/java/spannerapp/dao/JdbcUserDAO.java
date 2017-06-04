@@ -1,6 +1,7 @@
 package spannerapp.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -23,7 +24,7 @@ import java.util.List;
 public class JdbcUserDAO implements IUserDAO {
 
     private static final String GET_ALL_USERS = "SELECT UserID, Login, Password, EmployeeID, RoleID FROM AuthUser WHERE 1 = 1";
-    private static final String GET_USER_BY_ID = "SELECT UserID, Login, Password FROM AuthUser WHERE UserID=:id";
+    private static final String GET_USER_BY_ID = "SELECT UserID, Login, Password, EmployeeID, RoleID FROM AuthUser WHERE UserID=:id";
     private static final String DELETE_USER_BY_ID = "DELETE FROM AuthUser WHERE UserID=:id";
     private static final String UPDATE_USER_BY_ID = "UPDATE AuthUser SET Login=:login, Password=:password WHERE UserID = :id";
     private static final String ADD_USER = "INSERT INTO AuthUser (Login, Password, EmployeeID, RoleID) VALUES (";
@@ -59,7 +60,7 @@ public class JdbcUserDAO implements IUserDAO {
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("id", ID);
 
-        return this.namedParameterJdbcTemplate.queryForObject(GET_USER_BY_ID, param, new RowMapper<AuthorizationUser>() {
+        AuthorizationUser user = this.namedParameterJdbcTemplate.queryForObject(GET_USER_BY_ID, param, new RowMapper<AuthorizationUser>() {
             @Override
             public AuthorizationUser mapRow(ResultSet resultSet, int i) throws SQLException {
                 Employee employee = new Employee();
@@ -69,6 +70,10 @@ public class JdbcUserDAO implements IUserDAO {
                 return new AuthorizationUser(resultSet.getInt("UserID"), resultSet.getString("Login"), resultSet.getString("Password"), employee, role);
             }
         });
+        if(user != null)
+            return user;
+        else
+            return null;
     }
 
     @Override
