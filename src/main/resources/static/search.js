@@ -13,16 +13,16 @@ app.config(["$routeProvider", "$locationProvider", function($routeProvider, $loc
     // .otherwise({ redirectTo: '/'})
     ;
 }]);
-   app.controller('controller', function($scope,srvShareData,$http,$window,$log) {
+   app.controller('controller', function($scope,$http,$window,$log) {
 
-       var kod= $scope.code2;
-       $scope.kurwa=kod;
-      srvShareData.addData(kod);
     $scope.Search=function(){
         var data={
             code: $scope.code2
         };
 
+            var mydaata=$scope.code2;
+
+        sessionStorage.mydaata= JSON.stringify(mydaata);
         var config={ headers : {
             'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
         }};
@@ -32,7 +32,7 @@ app.config(["$routeProvider", "$locationProvider", function($routeProvider, $loc
 
                 $log.log(url);
 
-             //$window.location.href = url;
+            $window.location.href = url;
             })
             .error(function (data, status, header, config) {
                 /* $scope.result = "Data: " + data +
@@ -46,20 +46,16 @@ app.config(["$routeProvider", "$locationProvider", function($routeProvider, $loc
 
 
 });
-app.controller('InfoController', function($scope, srvShareData,$http) {
+app.controller('InfoController', function($scope,$http,$window) {
 
-    //var kod=srvShareData.getData().toString();
-    var dane=srvShareData.getData();
-    $scope.jas=dane.toString();
-     $scope.kod = srvShareData.getData();
-     $scope.GetInfo=function(){
+    angular.element(document).ready(function () {
         var data={
-            code: "1885/EXT"
+            code:  JSON.parse(sessionStorage.mydaata)
         };
         var config={ headers : {
             'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
         }};
-        $http.post('http://localhost:8080/machines/findByCode',srvShareData.getData())
+        $http.post('http://localhost:8080/machines/findByCode',data)
             .success(function (data, status, headers, config) {
               $scope.information=data;
 
@@ -72,32 +68,34 @@ app.controller('InfoController', function($scope, srvShareData,$http) {
 
                 $scope.error=true;
             });
-     };
+     });
 });
-app.service('srvShareData', function($window) {
-    var KEY = 'App.SelectedValue';
-
-    var addData = function(newObj) {
-        var mydata = $window.sessionStorage.getItem(KEY);
-        if (mydata) {
-            mydata = JSON.parse(mydata);
-        } else {
-            mydata = [];
-        }
-        mydata.push(newObj);
-        $window.sessionStorage.setItem(KEY, JSON.stringify(mydata));
-    };
-
-    var getData = function(){
-        var mydata = $window.sessionStorage.getItem(KEY);
-        if (mydata) {
-            mydata = JSON.parse(mydata);
-        }
-        return mydata || [];
-    };
-
-    return {
-        addData: addData,
-        getData: getData
-    };
-});
+// app.service('srvShareData', function($window) {
+//     var KEY = 'App.SelectedValue';
+//
+//     var addData = function(newObj) {
+//         var mydata = $window.sessionStorage.getItem(KEY);
+//         if (mydata) {
+//             mydata = JSON.parse(mydata);
+//         } else {
+//             mydata = [];
+//         }
+//         mydata = [];
+//         mydata.push(newObj);
+//
+//         $window.sessionStorage.setItem(KEY, JSON.stringify(mydata));
+//     };
+//
+//     var getData = function(){
+//         var mydata = $window.sessionStorage.getItem(KEY);
+//         if (mydata) {
+//             mydata = JSON.parse(mydata);
+//         }
+//         return mydata || [];
+//     };
+//
+//     return {
+//         addData: addData,
+//         getData: getData
+//     };
+// });

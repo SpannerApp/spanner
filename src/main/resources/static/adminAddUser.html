@@ -59,7 +59,7 @@
             </div>
 
         </div>
-        <div class="col-sm-4" ng-controller="controller">
+        <div class="col-sm-4"  ng-controller="GetEmployeesController">
 
 
             <div class="input-group">
@@ -72,13 +72,6 @@
                 <input id="password" type="text" class="form-control" name="password" ng-model="password" placeholder="Password" >
             </div>
             </br>
-            <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                <input id="email" type="email" class="form-control" name="email" ng-model="mail" placeholder="Email" required>
-            </div>
-
-
-
 
             <script>
                 $(document).ready(function(){
@@ -90,14 +83,15 @@
 
 
             </br>
-
-            <select class="form-control" name="userStatus" ng-model="userStatus" placeholder="EMPLOYEE">
-                <option value="one">ADMIN</option>
-                <option value="two">WORKER</option>
-                <option value="three">SERVICEMAN</option>
-                <option value="four">MANAGER</option>
+            <select required class="form-control" name="userDepartment" ng-model="department">
+                <option selected disabled>Choose the employee</option>
+                <option ng-repeat="department in employees" value="employee.employeeID">{{employee.name}}</option>
             </select>
 
+            <select required class="form-control" name="userStatus" ng-model="employeeId">
+                        <option selected disabled>Choose the employee</option>
+                        <option ng-repeat="employee in employees" value="employee.employeeID">{{employee.name}} {{employee.surname}}</option>
+            </select>
 
 
             </br>
