@@ -71,6 +71,34 @@ app.controller('InfoController', function($scope, srvShareData,$http) {
                 $scope.error=true;
             });
      };
+
+
+    $scope.reportIssue=function(){
+        var data={
+            defectedMachine: {id: parseInt($scope.information.id)},
+            reportingEmployee: {employeeID: parseInt($scope.reportingEmployee)},
+            issueStatus: $scope.issueStatus,
+            issueText: $scope.issueText
+
+        };
+        var config={ headers : {
+            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+        }};
+        $http.post('http://localhost:8080/reportedIssues/newReport', data)
+            .success(function (data, status, headers, config) {
+                $scope.result =data;
+                $scope.error=false;
+            })
+            .error(function (data, status, header, config) {
+                $scope.result = "Data: " + data +
+                    "<hr />status: " + status +
+                    "<hr />headers: " + header +
+                    "<hr />config: " + config;
+                $scope.error=true;
+            });
+
+    };
+
 });
 app.service('srvShareData', function($window) {
     var KEY = 'App.SelectedValue';
@@ -99,3 +127,34 @@ app.service('srvShareData', function($window) {
         getData: getData
     };
 });
+
+// app.controller('issueController',function($scope,$http,$window,$log) {
+//
+//
+//     $scope.parent.reportIssue=function(){
+//         var data={
+//             id: $scope.parent.id,
+//             defectedMachine: $scope.parent.defectedMachine,
+//             reportingEmployee: $scope.parent.reportingEmployee,
+//             issueStatus: $scope.parent.issueStatus,
+//             issueText: $scope.parent.issueText,
+//
+//         };
+//         var config={ headers : {
+//             'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+//         }};
+//         $http.post('http://localhost:8080/reportedIssues/newReport', data)
+//             .success(function (data, status, headers, config) {
+//                 $scope.parent.result =data;
+//                 $scope.parent.error=false;
+//             })
+//             .error(function (data, status, header, config) {
+//                 $scope.parent.result = "Data: " + data +
+//                     "<hr />status: " + status +
+//                     "<hr />headers: " + header +
+//                     "<hr />config: " + config;
+//                 $scope.parent.error=true;
+//             });
+//
+//     };
+// });
