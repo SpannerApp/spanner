@@ -13,7 +13,7 @@ import java.util.Collection;
  */
 @RestController
 @RequestMapping("/users")
-public class LoggedUserController {
+public class AuthorizationUserController {
 
     @Autowired
     private UserService userService;

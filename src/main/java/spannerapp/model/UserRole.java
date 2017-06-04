@@ -5,20 +5,22 @@ package spannerapp.model;
  */
 public class UserRole {
 
-    private int ID;
+    private int roleID;
     private String name;
 
-    public UserRole(Integer ID, String name){
-        this.ID = ID;
+    public UserRole(){};
+
+    public UserRole(Integer roleID, String name){
+        this.roleID = roleID;
         this.name = name;
     }
 
-    public int getID() {
-        return ID;
+    public int getRoleID() {
+        return roleID;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setRoleID(int roleID) {
+        this.roleID = roleID;
     }
 
     public String getName() {
