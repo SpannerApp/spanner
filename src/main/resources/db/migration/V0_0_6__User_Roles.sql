@@ -27,5 +27,4 @@ GO
 INSERT INTO UserRoles (UserID, RoleID) VALUES (1, 1);
 INSERT INTO UserRoles (UserID, RoleID) VALUES (2, 2);
 INSERT INTO UserRoles (UserID, RoleID) VALUES (3, 3);
-INSERT INTO UserRoles (UserID, RoleID) VALUES (4, 3);
 GO
