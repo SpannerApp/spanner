@@ -24,7 +24,7 @@ package spannerapp.config;
 //    private static final String CHECK_AUTH_BY_USERNAME_ROLES = "SELECT au.Login, RoleName FROM AuthUser au join UserRoles ur on au.UserID = ur.UserID join Roles r on ur.RoleID = r.RoleID WHERE au.Login=?";
 //
 //    @Autowired
-//    public void configureAuthentication(AuthenticationManagerBuilder auth) throws Exception{
+//    public void configureAuthentication(AuthenticationManagerBuilder auth) throws Exception {
 //        auth.jdbcAuthentication().dataSource(dataSource).usersByUsernameQuery(CHECK_USER_BY_USERNAME).authoritiesByUsernameQuery(CHECK_AUTH_BY_USERNAME_ROLES);
 //    }
 //
@@ -38,6 +38,6 @@ package spannerapp.config;
 //    public AuthenticationManager authenticationManagerBean() throws Exception {
 //        return super.authenticationManagerBean();
 //    }
+//}
 
 public class SecurityConfig{}
-

@@ -17,7 +17,7 @@ package spannerapp.config;
 //    public void addViewControllers(ViewControllerRegistry registry){
 //        registry.addViewController("/menu").setViewName("menu");
 //        registry.addViewController("/").setViewName("menu");
-//        registry.addViewController("/index").setViewName("index");
+//        registry.addViewController("/login").setViewName("login");
 //    }
 //
 //    @Bean(name = "dataSource")
@@ -39,5 +39,5 @@ package spannerapp.config;
 //    }
 //
 //}
-
+//
 public class MvcConfig{}

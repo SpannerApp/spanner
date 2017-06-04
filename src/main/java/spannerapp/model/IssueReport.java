@@ -2,7 +2,7 @@ package spannerapp.model;
 
 public class IssueReport {
 
-    private int id;
+    private Integer id;
     private Machine defectedMachine;
     private Employee reportingEmployee;
     private String issueStatus;
@@ -10,7 +10,7 @@ public class IssueReport {
 
     public IssueReport(){}
 
-    public IssueReport(int id, Machine defectedMachine, Employee reportingEmployee, String issueStatus, String issueText) {
+    public IssueReport(Integer id, Machine defectedMachine, Employee reportingEmployee, String issueStatus, String issueText) {
         this.id=id;
         this.defectedMachine = defectedMachine;
         this.reportingEmployee = reportingEmployee;
@@ -18,11 +18,11 @@ public class IssueReport {
         this.issueText = issueText;
     }
 
-    public int getID() {
+    public Integer getID() {
         return id;
     }
 
-    public void setID(int id) {
+    public void setID(Integer id) {
         this.id = id;
     }
 

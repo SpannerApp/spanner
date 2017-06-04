@@ -4,7 +4,7 @@ package spannerapp.model;
  * Created by MATI on 26.04.2017.
  */
 public class Machine {
-    private int id;
+    private Integer id;
     private String code;
     private String name;
     private String model;
@@ -13,7 +13,7 @@ public class Machine {
     private String lastrepair;
     private String lastserviceman;
 
-    public Machine(int id, String code, String name, String model, String section, String colour, String lastrepair, String lastserviceman) {
+    public Machine(Integer id, String code, String name, String model, String section, String colour, String lastrepair, String lastserviceman) {
         this.id = id;
         this.code = code;
         this.name = name;
@@ -26,11 +26,11 @@ public class Machine {
 
     public Machine(){};
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

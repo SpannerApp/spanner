@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import spannerapp.service.IEmployeeService;
 import spannerapp.service.IMachineService;
-import spannerapp.service.IRegistrationService;
 import spannerapp.service.IUserService;
 
 
@@ -19,8 +18,6 @@ public class ServiceFactory {
     @Autowired
     private IUserService userService;
     @Autowired
-    private IRegistrationService registrationService;
-    @Autowired
     private IEmployeeService employeeService;
     @Autowired
     private IMachineService machineService;
@@ -28,10 +25,6 @@ public class ServiceFactory {
 
     public IUserService getUserService() {
         return userService;
-    }
-
-    public IRegistrationService getRegistrationService() {
-        return registrationService;
     }
 
     public IEmployeeService getEmployeeService() {

@@ -28,7 +28,7 @@ public class CreateIssueReportProcedure extends StoredProcedure {
         compile();
     }
 
-    public int execute(int machineID, int reportingEmployeeID, String issueStatus, String issueText){
+    public int execute(Integer machineID, Integer reportingEmployeeID, String issueStatus, String issueText){
         Map<String, Object> row = new HashMap<>();
 
         row.put("DefectedMachineID", machineID);

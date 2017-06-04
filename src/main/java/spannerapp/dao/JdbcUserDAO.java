@@ -22,7 +22,7 @@ import java.util.List;
 @Repository("sqlserver")
 public class JdbcUserDAO implements IUserDAO {
 
-    private static final String GET_ALL_USERS = "SELECT UserID, Login, Password FROM AuthUser WHERE 1 = 1";
+    private static final String GET_ALL_USERS = "SELECT UserID, Login, Password, EmployeeID, RoleID FROM AuthUser WHERE 1 = 1";
     private static final String GET_USER_BY_ID = "SELECT UserID, Login, Password FROM AuthUser WHERE UserID=:id";
     private static final String DELETE_USER_BY_ID = "DELETE FROM AuthUser WHERE UserID=:id";
     private static final String UPDATE_USER_BY_ID = "UPDATE AuthUser SET Login=:login, Password=:password WHERE UserID = :id";
