@@ -229,3 +229,24 @@ footer {
     max-height: 155px;
 }
 
+---------------------
+
+body {
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+.img-center {
+    margin: 0 auto;
+}
+
+footer {
+    margin: 50px 0;
+}
+img {
+    vertical-align: middle;
+    box-sizing: border-box;
+
+}
+.text-center {
+    text-align: center;
+}
