@@ -6,8 +6,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="smtp.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="sendEmail.js"></script>
     <link rel="stylesheet" href="SpannerApp.css">
 </head>
 <body>
@@ -66,7 +68,7 @@
                                 <label for="subject">
                                     Subject</label>
                                 <select id="subject" name="subject" class="form-control" required="required">
-                                    <option value="na" selected="">Choose One:</option>
+                                    <option value="other" selected="">Other</option>
                                     <option value="service">Service</option>
                                     <option value="scanning">Problems with scanning</option>
                                     <option value="sugestions">Sugestions</option>
@@ -82,7 +84,7 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <button type="submit" class="btn btn-sky btn-lg pull-right" id="btnContactUs">
+                            <button type="submit" class="btn btn-sky btn-lg pull-right" id="btnContactUs" onclick="sendEmail()">
                                 Send Message</button>
                         </div>
                     </div>

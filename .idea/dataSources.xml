@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="SpannerApp@DESKTOP-OEJEP8S" uuid="58cb6582-2d3e-4bc0-90c8-f23bbebb3c26">
+    <data-source source="LOCAL" name="SpannerApp@EMIL" uuid="58cb6582-2d3e-4bc0-90c8-f23bbebb3c26">
       <driver-ref>sqlserver.ms</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
-      <jdbc-url>jdbc:sqlserver://DESKTOP-OEJEP8S\SQLEXPRESS:1433;databaseName=SpannerApp</jdbc-url>
+      <jdbc-url>jdbc:sqlserver://EMIL\SQLEXPRESS:1433;databaseName=SpannerApp</jdbc-url>
     </data-source>
   </component>
 </project>
