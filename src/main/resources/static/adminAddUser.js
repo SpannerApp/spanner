@@ -1,44 +1,42 @@
 var app = angular.module('adminAddUser', []);
 
-app.controller('controller', function($scope,$http,$window,$log) {
-
-
-
-
-});
 app.controller("GetEmployeesController", function($scope, $http) {
-
+    $scope.showModal = false;
     $http.get('http://localhost:8080/employees')
         .then(function (result) {
             $scope.employees= result.data;
         });
+    $http.get('http://localhost:8080/roles')
+        .then(function (role) {
+            $scope.roles= role.data;
+        });
 
-    // $scope.Register=function(){
-    //     var data={
-    //         name: $scope.name,
-    //         surname: $scope.surname,
-    //         mail: $scope.mail,
-    //         login: $scope.login,
-    //         password: $scope.password
-    //     };
-    //     var config={ headers : {
-    //         'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
-    //     }};
-    //     $http.post('http://localhost:8080/registration', data)
-    //         .success(function (data, status, headers, config) {
-    //             $scope.result =data;
-    //             $scope.error=false;
-    //             var url = "http://" + $window.location.host + "/index.html";
-    //             $log.log(url);
-    //             $window.location.href = url;
-    //         })
-    //         .error(function (data, status, header, config) {
-    //             $scope.result = "Data: " + data +
-    //                 "<hr />status: " + status +
-    //                 "<hr />headers: " + header +
-    //                 "<hr />config: " + config;
-    //             $scope.error=true;
-    //         });
-    //
-    // };
+    $scope.Register=function(){
+        var data={
+            username: $scope.username,
+            password: $scope.password,
+            employee: {employeeID: parseInt($scope.employees.employeeID)},
+            role: {roleID: parseInt($scope.roles.roleID)}
+
+        };
+        var config={ headers : {
+            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+        }};
+        $http.post('http://localhost:8080/users', data)
+            .success(function (data, status, headers, config) {
+                $scope.result =data;
+                $scope.error=false;
+                $scope.success=true;
+              $scope.showModal=true;
+            })
+            .error(function (data, status, header, config) {
+                // $scope.result = "Data: " + data +
+                //     "<hr />status: " + status +
+                //     "<hr />headers: " + header +
+                //     "<hr />config: " + config;
+                $scope.error=true;
+                $scupe.success=false;
+            });
+
+    };
 });
