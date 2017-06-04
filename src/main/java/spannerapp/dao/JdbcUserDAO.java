@@ -8,6 +8,8 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 import spannerapp.UserNotFoundException;
 import spannerapp.model.AuthorizationUser;
+import spannerapp.model.Employee;
+import spannerapp.model.UserRole;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,7 +26,7 @@ public class JdbcUserDAO implements IUserDAO {
     private static final String GET_USER_BY_ID = "SELECT UserID, Login, Password FROM AuthUser WHERE UserID=:id";
     private static final String DELETE_USER_BY_ID = "DELETE FROM AuthUser WHERE UserID=:id";
     private static final String UPDATE_USER_BY_ID = "UPDATE AuthUser SET Login=:login, Password=:password WHERE UserID = :id";
-    private static final String ADD_USER = "INSERT INTO AuthUser (Login, Password, EmployeeID, UserTypeID) VALUES (";
+    private static final String ADD_USER = "INSERT INTO AuthUser (Login, Password, EmployeeID, RoleID) VALUES (";
     private static final String VALIDATE_USER = "SELECT * FROM AuthUser WHERE Login=:login AND Password=:password";
 
     private JdbcTemplate jdbcTemplate;
@@ -41,7 +43,11 @@ public class JdbcUserDAO implements IUserDAO {
         List<AuthorizationUser> users = this.jdbcTemplate.query(GET_ALL_USERS, new RowMapper<AuthorizationUser>() {
             @Override
             public AuthorizationUser mapRow(ResultSet resultSet, int i) throws SQLException {
-                return new AuthorizationUser(resultSet.getInt("UserID"), resultSet.getString("Login"), resultSet.getString("Password"));
+                Employee employee = new Employee();
+                employee.setEmployeeID(resultSet.getInt("EmployeeID"));
+                UserRole role = new UserRole();
+                role.setRoleID(resultSet.getInt("RoleID"));
+                return new AuthorizationUser(resultSet.getInt("UserID"), resultSet.getString("Login"), resultSet.getString("Password"), employee, role);
             }
         });
         return users;
@@ -56,8 +62,11 @@ public class JdbcUserDAO implements IUserDAO {
         return this.namedParameterJdbcTemplate.queryForObject(GET_USER_BY_ID, param, new RowMapper<AuthorizationUser>() {
             @Override
             public AuthorizationUser mapRow(ResultSet resultSet, int i) throws SQLException {
-
-                return new AuthorizationUser(resultSet.getInt("UserID"), resultSet.getString("Login"), resultSet.getString("Password"));
+                Employee employee = new Employee();
+                employee.setEmployeeID(resultSet.getInt("EmployeeID"));
+                UserRole role = new UserRole();
+                role.setRoleID(resultSet.getInt("RoleID"));
+                return new AuthorizationUser(resultSet.getInt("UserID"), resultSet.getString("Login"), resultSet.getString("Password"), employee, role);
             }
         });
     }
@@ -93,7 +102,7 @@ public class JdbcUserDAO implements IUserDAO {
         builder.append("',");
         builder.append(user.getEmployee().getEmployeeID());
         builder.append(",");
-        builder.append("NULL");
+        builder.append(user.getRole().getRoleID());
         builder.append(")");
 
         this.jdbcTemplate.update(builder.toString());

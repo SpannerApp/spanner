@@ -68,7 +68,62 @@ app.controller('InfoController', function($scope,$http,$window) {
 
                 $scope.error=true;
             });
-     });
+     };
+
+
+    $scope.reportIssue=function(){
+        var data={
+            defectedMachine: {id: parseInt($scope.information.id)},
+            reportingEmployee: {employeeID: parseInt($scope.reportingEmployee)},
+            issueStatus: $scope.issueStatus,
+            issueText: $scope.issueText
+
+        };
+        var config={ headers : {
+            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+        }};
+        $http.post('http://localhost:8080/reportedIssues/newReport', data)
+            .success(function (data, status, headers, config) {
+                $scope.result =data;
+                $scope.error=false;
+            })
+            .error(function (data, status, header, config) {
+                $scope.result = "Data: " + data +
+                    "<hr />status: " + status +
+                    "<hr />headers: " + header +
+                    "<hr />config: " + config;
+                $scope.error=true;
+            });
+
+    };
+
+});
+app.service('srvShareData', function($window) {
+    var KEY = 'App.SelectedValue';
+
+    var addData = function(newObj) {
+        var mydata = $window.sessionStorage.getItem(KEY);
+        if (mydata) {
+            mydata = JSON.parse(mydata);
+        } else {
+            mydata = [];
+        }
+        mydata.push(newObj);
+        $window.sessionStorage.setItem(KEY, JSON.stringify(mydata));
+    };
+
+    var getData = function(){
+        var mydata = $window.sessionStorage.getItem(KEY);
+        if (mydata) {
+            mydata = JSON.parse(mydata);
+        }
+        return mydata || [];
+    };
+
+    return {
+        addData: addData,
+        getData: getData
+    };
 });
 // app.service('srvShareData', function($window) {
 //     var KEY = 'App.SelectedValue';
