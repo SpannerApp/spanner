@@ -8,12 +8,17 @@
 
     <script src="adminAddUser.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        function clearField() {
+                document.addUserForm.reset();
+        }
+    </script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="SpannerApp.css">
 </head>
-<body>
+<body ng-controller="GetEmployeesController">
 
 <nav class="navbar navbar-light ">
     <div class="container-fluid" >
@@ -54,22 +59,31 @@
     <h3>Add New User Account</h3><br>
     <div class="row" >
         <div class="col-sm-4">
-            <div class="alert alert-danger" ng-show="error">
-                There was a problem with adding to DB. Please try again.
-            </div>
+
 
         </div>
-        <div class="col-sm-4"  ng-controller="GetEmployeesController">
-
+        <div class="col-sm-4"  >
+            <form name="addUserForm" onSubmit="clearField();">
+            <div class="alert alert-danger" ng-show="error">
+                There was a problem with database. Please try again.
+            </div>
+                <div class="modal" id="myModal" ng-show="success">
+                    <div class="modal-dialog">
+                        <button class="close">Close</button>
+                    </div>
+                </div>
+            <div class="alert alert-success" ng-show="success">
+                <strong>Success!</strong> New user's account has been add.
+            </div>
 
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                <input id="login" type="text" class="form-control" name="login" ng-model="login" placeholder="Login" >
+                <input id="login" type="text" class="form-control" name="login" placeholder="Login" ng-model="username" required>
             </div>
-            </br>
+        </br>
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                <input id="password" type="text" class="form-control" name="password" ng-model="password" placeholder="Password" >
+                <input id="password" type="text" class="form-control" name="password"  placeholder="Password" ng-model="password" required>
             </div>
             </br>
 
@@ -83,29 +97,42 @@
 
 
             </br>
-            <select required class="form-control" name="userDepartment" ng-model="department">
-                <option selected disabled>Choose the employee</option>
-                <option ng-repeat="department in employees" value="employee.employeeID">{{employee.name}}</option>
+            <div class="input-group">
+                <span class="input-group-addon">Role:</span>
+            <select class="form-control" name="userDepartment" ng-model="roles.roleID" required>
+                <option selected disabled>Choose the user's role</option>
+                <option ng-repeat="role in roles" value="{{role.roleID}}">{{role.name}}</option>
             </select>
-
-            <select required class="form-control" name="userStatus" ng-model="employeeId">
+            </div>
+              </br>
+            <div class="input-group">
+                <span class="input-group-addon">Employee:</span>
+            <select class="form-control" placeholder="choose" name="userStatus" ng-model="employees.employeeID" required>
                         <option selected disabled>Choose the employee</option>
-                        <option ng-repeat="employee in employees" value="employee.employeeID">{{employee.name}} {{employee.surname}}</option>
+                        <option ng-repeat="employee in employees" value="{{employee.employeeID}}">{{employee.name}} {{employee.surname}}</option>
             </select>
-
+            </div>
 
             </br>
-            <button ng-click="Register()"  class="btn btn-sky btn-lg btn-block">ADD USER</button>
+            <button ng-click="Register()"  type="submit "class="btn btn-sky btn-lg btn-block">ADD USER</button>
+            </form>
         </div>
         <div class="col-sm-4"></div>
 
 
     </div>
-</div><br></br>
+</div>
+<br></br>
 
 <div class="container text-center">
 
 </div>
+
+
+
+
+
+
 
 
 </body><!--
