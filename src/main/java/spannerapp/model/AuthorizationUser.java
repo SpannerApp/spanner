@@ -3,9 +3,10 @@ package spannerapp.model;
 public class AuthorizationUser {
 
     private int id;
-    private Employee employee;
     private String username;
     private String password;
+    private Employee employee;
+    private UserRole role;
 
 
     public AuthorizationUser() {};
@@ -15,6 +16,15 @@ public class AuthorizationUser {
         this.id = ID;
         this.username = username;
         this.password = password;
+    }
+
+    public AuthorizationUser(int ID, String username, String password, Employee employee, UserRole role)
+    {
+        this.id = ID;
+        this.username = username;
+        this.password = password;
+        this.employee = employee;
+        this.role = role;
     }
 
     public int getId() {
@@ -47,5 +57,13 @@ public class AuthorizationUser {
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
+    }
+
+    public UserRole getRole() {
+        return role;
+    }
+
+    public void setRole(UserRole role) {
+        this.role = role;
     }
 }
