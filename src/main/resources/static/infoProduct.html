@@ -33,6 +33,7 @@
                 <li><a href="workerTaskList.html">WORKER TASKS</a></li>
                 <li><a href="adminAddUser.html">Add User Account</a></li>
                 <li><a href="adminAddEmployee.html">Add Employee</a></li>
+                <li><a href="adminAddProduct.html">Add Product</a></li>
             </ul>
         </div>
     </div>
@@ -101,8 +102,8 @@
                     <div class="modal-body">
                         <p>Please write some details about your problems:</p>
                         <div class="form-group">
-                            <label for="message-text" class="control-label">MACHINE ID:</label>
-                            <p  id="id-text" name="idMachine" ng-model="idMachine">{{information.id}}</p>
+                            <label for="message-text" class="control-label">MACHINE CODE:</label>
+                            <p  id="id-text" name="machineCode" ng-model="machineCode">{{information.code}}</p>
                         </div>
                         <div class="form-group">
                             <label for="message-text" class="control-label" >Message:</label>
@@ -153,8 +154,7 @@
                     <div class="tab-pane fade" id="service-two">
                         <section class="container">
                             <div class="product-title" ng-show="information">{{information.code}}</div>
-                            <p>This is plastic 1.75mm extruder with the 0.4mm nozzle from Marketing Departure. If you found it and don't know what to do, please return it to the room number 3.
-                                If it has some issue please raport the issue or return it to the Marketing Deparutre.</p>
+                            <p id="description-text" name="machineDescription" ng-show="information">{{information.description}}</p>
                         </section>
 
 
@@ -162,8 +162,8 @@
                     <div class="tab-pane fade" id="service-three">
                         <section class="container">
                             <h3>DEPARTMENT RESPONSIBLE: </h3><div class="department">{{information.section}}</div>
-                            <h3>LAST REPARATION: </h3><div class="serial number">{{information.lastrepair}}</div>
-                            <h3>LAST SERVICEMAN: </h3><div class="model">{{information.lastserviceman}}</div>
+                            <h3>LAST REPARATION: </h3><div class="serial number">{{information.lastRepair}}</div>
+                            <h3>LAST SERVICEMAN: </h3><div class="model">{{information.lastServiceman.name}} {{information.lastServiceman.surname}}</div>
                         </section>
                     </div>
                 </div>

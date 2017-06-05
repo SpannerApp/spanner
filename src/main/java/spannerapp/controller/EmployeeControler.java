@@ -19,9 +19,12 @@ public class EmployeeControler {
     @RequestMapping(method = RequestMethod.GET)
     public List<Employee> getAllEmployees(){ return employeeService.getAllEmployees();}
 
+    @RequestMapping(method = RequestMethod.GET, value = "/servicemen")
+    public List<Employee> getAllServicemen(){ return employeeService.getAllServicemen();}
+
     @RequestMapping(value = "/insertEmployee", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public int insertUser(@RequestBody Employee employee){
-        return employeeService.insertEmployee(employee);
+    public int addEmployee(@RequestBody Employee employee){
+        return employeeService.addEmployee(employee);
     }
 
 

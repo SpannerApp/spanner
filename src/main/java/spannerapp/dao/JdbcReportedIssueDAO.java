@@ -39,7 +39,7 @@ public class JdbcReportedIssueDAO implements IReportedIssueDAO{
             @Override
             public IssueReport mapRow(ResultSet rs, int i) throws SQLException {
                 Employee employee = new Employee(rs.getInt("EmployeeID"), rs.getString("Name"), rs.getString("Surname"), rs.getInt("PositionID"), rs.getInt("SupervisorID"), rs.getString("Address"), rs.getString("Phone"), rs.getString("Mail"));
-                Machine machine = new Machine(rs.getInt("MachineID"), rs.getString("Code"), rs.getString("Name"), rs.getString("Model"), rs.getString("Section"), rs.getString("Colour"), rs.getString("LastRepair"), rs.getString("LastServiceman"));
+                Machine machine = new Machine(rs.getInt("MachineID"), rs.getString("Code"), rs.getString("Name"), rs.getString("Model"), rs.getString("Section"), rs.getString("Colour"), rs.getString("LastRepair"), null, rs.getString("Description"));
 
                 return
                         new IssueReport(rs.getInt("ReportedIssueID") ,machine, employee, rs.getString("IssueStatus"), rs.getString("IssueText"));

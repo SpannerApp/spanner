@@ -32,4 +32,9 @@ public class MachineController {
     public Machine getMachineBySerialNumber(@RequestBody Machine machine) {
         return machineService.getMachineByCode(machine.getCode());
     }
+
+    @RequestMapping(value = "/addMachine", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public int addNewMachine(@RequestBody Machine machine) {
+        return machineService.addNewMachine(machine);
+    }
 }

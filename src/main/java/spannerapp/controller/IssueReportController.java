@@ -15,6 +15,7 @@ public class IssueReportController {
     @Autowired
     private ReportedIssueService reportedIssueService;
 
+
     @RequestMapping(method = RequestMethod.GET)
     public Collection<IssueReport> getAllReportedIssues(){ return reportedIssueService.getAllReportedIssues();}
 

@@ -9,8 +9,8 @@ import java.util.Collection;
  */
 public interface IMachineDAO {
     Collection<Machine> getAllMachines();
-
     Machine getMachineByID(int ID);
-
     Machine getMachineByCode(String code);
+    int addNewMachine(Machine machine);
+
 }

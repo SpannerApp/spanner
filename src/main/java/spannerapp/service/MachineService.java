@@ -29,4 +29,9 @@ public class MachineService implements IMachineService{
     public Machine getMachineByCode(String code) {
         return this.machineDAO.getMachineByCode(code);
     }
+
+    @Override
+    public int addNewMachine(Machine machine) {
+        return machineDAO.addNewMachine(machine);
+    }
 }

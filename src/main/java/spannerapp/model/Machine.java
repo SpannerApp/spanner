@@ -8,20 +8,22 @@ public class Machine {
     private String code;
     private String name;
     private String model;
-    private String Section;
+    private String section;
     private String colour;
-    private String lastrepair;
-    private String lastserviceman;
+    private String lastRepair;
+    private Employee lastServiceman;
+    private String description;
 
-    public Machine(Integer id, String code, String name, String model, String section, String colour, String lastrepair, String lastserviceman) {
+    public Machine(Integer id, String code, String name, String model, String section, String colour, String lastRepair, Employee lastServiceman, String description) {
         this.id = id;
         this.code = code;
         this.name = name;
         this.model = model;
-        Section = section;
+        this.section = section;
         this.colour = colour;
-        this.lastrepair = lastrepair;
-        this.lastserviceman = lastserviceman;
+        this.lastRepair = lastRepair;
+        this.lastServiceman = lastServiceman;
+        this.description = description;
     }
 
     public Machine(){};
@@ -59,11 +61,11 @@ public class Machine {
     }
 
     public String getSection() {
-        return Section;
+        return section;
     }
 
     public void setSection(String section) {
-        Section = section;
+        this.section = section;
     }
 
     public String getColour() {
@@ -74,19 +76,27 @@ public class Machine {
         this.colour = colour;
     }
 
-    public String getLastrepair() {
-        return lastrepair;
+    public String getLastRepair() {
+        return lastRepair;
     }
 
-    public void setLastrepair(String lastrepair) {
-        this.lastrepair = lastrepair;
+    public void setLastRepair(String lastRepair) {
+        this.lastRepair = lastRepair;
     }
 
-    public String getLastserviceman() {
-        return lastserviceman;
+    public Employee getLastServiceman() {
+        return lastServiceman;
     }
 
-    public void setLastserviceman(String lastserviceman) {
-        this.lastserviceman = lastserviceman;
+    public void setLastServiceman(Employee lastServiceman) {
+        this.lastServiceman = lastServiceman;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

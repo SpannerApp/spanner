@@ -12,4 +12,6 @@ public interface IMachineService {
     Collection<Machine> getAllMachines();
     Machine getMachineByID(int ID);
     Machine getMachineByCode(String code);
+    int addNewMachine(Machine machine);
+
 }

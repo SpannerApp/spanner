@@ -11,6 +11,8 @@ public interface IEmployeeDAO {
 
     List<Employee> getAllEmployees();
 
+    List<Employee> getAllServicemen();
+
     Employee getEmployeeByID(int ID);
 
     void removeEmployeeByID(int id);
@@ -19,7 +21,7 @@ public interface IEmployeeDAO {
 
     Employee getEmployeeByMail(String mail);
 
-    int insertEmployee(Employee employee);
+    int addEmployee(Employee employee);
 
     boolean validateUser(Employee employee);
 

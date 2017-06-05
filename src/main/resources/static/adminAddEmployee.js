@@ -4,8 +4,8 @@ app.controller('controller', function($scope,$http,$window,$log) {
 
     $scope.AddEmployee=function(){
         var data={
-            positionID: $scope.positionID,
-            supervisorID: $scope.supervisorID,
+            // positionID: $scope.positionID,
+            // supervisorID: $scope.supervisorID,
             address: $scope.address,
             mail: $scope.mail,
             phone: $scope.phone,

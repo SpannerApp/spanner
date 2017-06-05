@@ -27,7 +27,13 @@ public class EmployeeService implements IEmployeeService {
     }
 
     @Override
-    public int insertEmployee(Employee employee) {
-        return employeeDAO.insertEmployee(employee);
+    public List<Employee> getAllServicemen() {
+        return employeeDAO.getAllServicemen();
     }
+
+    @Override
+    public int addEmployee(Employee employee) {
+        return employeeDAO.addEmployee(employee);
+    }
+
 }

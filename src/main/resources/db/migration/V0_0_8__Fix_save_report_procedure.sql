@@ -21,3 +21,4 @@ AS
         SET @ReportedIssueID = -1;
       END
   END
+GO
