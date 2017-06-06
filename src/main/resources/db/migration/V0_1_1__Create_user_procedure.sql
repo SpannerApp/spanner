@@ -8,7 +8,7 @@ CREATE PROCEDURE SP_CREATE_USER
     @Password NVARCHAR(50),
     @EmployeeID INT,
     @RoleID INT,
-    @UserID INT
+    @UserID INT OUTPUT
 AS
   BEGIN
 

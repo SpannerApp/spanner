@@ -16,7 +16,7 @@ public interface IUserDAO {
 
     void updateUserByID(AuthorizationUser user);
 
-    void insertUser(AuthorizationUser user);
+    int addUser(AuthorizationUser user);
 
     boolean validateUser(AuthorizationUser user);
 }

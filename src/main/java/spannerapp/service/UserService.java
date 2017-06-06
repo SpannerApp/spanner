@@ -36,8 +36,8 @@ public class UserService implements IUserService {
 
     }
 
-    public void insertUser(AuthorizationUser user) {
-        userDAO.insertUser(user);
+    public int addUser(AuthorizationUser user) {
+        return userDAO.addUser(user);
     }
 
     public void validateUser(AuthorizationUser user) { userDAO.validateUser(user); }

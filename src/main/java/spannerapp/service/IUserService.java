@@ -18,7 +18,7 @@ public interface IUserService {
 
     void updateUser(AuthorizationUser user);
 
-    void insertUser(AuthorizationUser user);
+    int addUser(AuthorizationUser user);
 
     void validateUser(AuthorizationUser user);
 

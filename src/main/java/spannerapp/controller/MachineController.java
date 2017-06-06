@@ -3,6 +3,7 @@ package spannerapp.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import spannerapp.CreatingException;
 import spannerapp.model.Machine;
 import spannerapp.service.MachineService;
 
@@ -34,7 +35,10 @@ public class MachineController {
     }
 
     @RequestMapping(value = "/addMachine", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public int addNewMachine(@RequestBody Machine machine) {
-        return machineService.addNewMachine(machine);
+    public int addNewMachine(@RequestBody Machine machine) throws CreatingException{
+        int result = machineService.addNewMachine(machine);
+        if (result == -1)
+            throw new CreatingException("machine");
+        return result;
     }
 }

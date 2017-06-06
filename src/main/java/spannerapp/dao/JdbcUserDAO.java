@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 import spannerapp.UserNotFoundException;
+import spannerapp.dao.procedure.CreateNewUserProcedure;
 import spannerapp.model.AuthorizationUser;
 import spannerapp.model.Employee;
 import spannerapp.model.UserRole;
@@ -96,21 +97,9 @@ public class JdbcUserDAO implements IUserDAO {
     }
 
     @Override
-    public void insertUser(AuthorizationUser user) {
-        StringBuilder builder = new StringBuilder();
-        builder.append(ADD_USER);
-
-        builder.append("'");
-        builder.append(user.getUsername());
-        builder.append("','");
-        builder.append(user.getPassword());
-        builder.append("',");
-        builder.append(user.getEmployee().getEmployeeID());
-        builder.append(",");
-        builder.append(user.getRole().getRoleID());
-        builder.append(")");
-
-        this.jdbcTemplate.update(builder.toString());
+    public int addUser(AuthorizationUser user) {
+        CreateNewUserProcedure procedure = new CreateNewUserProcedure(jdbcTemplate.getDataSource());
+        return procedure.execute(user);
     }
 
     @Override

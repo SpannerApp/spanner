@@ -4,6 +4,7 @@ package spannerapp.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import spannerapp.CreatingException;
 import spannerapp.model.Employee;
 import spannerapp.service.EmployeeService;
 
@@ -23,8 +24,11 @@ public class EmployeeControler {
     public List<Employee> getAllServicemen(){ return employeeService.getAllServicemen();}
 
     @RequestMapping(value = "/insertEmployee", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public int addEmployee(@RequestBody Employee employee){
-        return employeeService.addEmployee(employee);
+    public int addEmployee(@RequestBody Employee employee) throws CreatingException{
+        int result = employeeService.addEmployee(employee);
+        if(result == -1)
+            throw new CreatingException("employee");
+        return result;
     }
 
 

@@ -3,9 +3,11 @@ package spannerapp.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import spannerapp.CreatingException;
 import spannerapp.model.AuthorizationUser;
 import spannerapp.service.UserService;
 
+import java.security.cert.CertificateRevokedException;
 import java.util.Collection;
 
 /**
@@ -39,8 +41,11 @@ public class AuthorizationUserController {
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public void insertUserByID(@RequestBody AuthorizationUser user){
-        userService.insertUser(user);
+    public int addUser(@RequestBody AuthorizationUser user) throws CreatingException{
+        int result = userService.addUser(user);
+        if(result == -1)
+            throw new CreatingException("user");
+        return result;
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
