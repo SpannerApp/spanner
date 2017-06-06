@@ -64,6 +64,12 @@
                                 <tbody>
                                 <tr data-status="{{issue.issueStatus}}" ng-repeat="issue in issues">
                                     <td>
+                                        <div class="btn-group-vertical" role="group">
+                                            <button type="button" class="btn btn-primary btn-sm">Accept report</button>
+                                            <button type="button" class="btn btn-primary btn-sm">Reject report</button>
+                                        </div>
+                                    </td>
+                                    <td>
                                         <div class="ckbox">
                                             <input type="checkbox" id="checkbox1" value="{{issue.id}}">
                                             <label for="checkbox1"></label>
@@ -98,118 +104,6 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <!--<tr data-status="pending">-->
-                                    <!--<td>-->
-                                        <!--<div class="ckbox">-->
-                                            <!--<input type="checkbox" id="checkbox3">-->
-                                            <!--<label for="checkbox3"></label>-->
-                                        <!--</div>-->
-                                    <!--</td>-->
-                                    <!--<td>-->
-                                        <!--<a href="javascript:;" class="star">-->
-                                            <!--<i class="glyphicon glyphicon-star"></i>-->
-                                        <!--</a>-->
-                                    <!--</td>-->
-                                    <!--<td>-->
-                                        <!--<div class="media">-->
-                                            <!--<a href="#" class="pull-left">-->
-                                                <!--<img src="http://findicons.com/files/icons/2770/ios_7_icons/128/worker.png" class="media-photo">-->
-                                            <!--</a>-->
-                                            <!--<div class="media-body">-->
-                                                <!--<span class="media-meta pull-right">07.04.2017</span>-->
-                                                <!--<h4 class="title">-->
-                                                    <!--Lorem Impsum-->
-                                                    <!--<span class="pull-right pending">(Pending)</span>-->
-                                                <!--</h4>-->
-                                                <!--<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>-->
-                                            <!--</div>-->
-                                        <!--</div>-->
-                                    <!--</td>-->
-                                <!--</tr>-->
-                                <!--<tr data-status="rejected">-->
-                                    <!--<td>-->
-                                        <!--<div class="ckbox">-->
-                                            <!--<input type="checkbox" id="checkbox2">-->
-                                            <!--<label for="checkbox2"></label>-->
-                                        <!--</div>-->
-                                    <!--</td>-->
-                                    <!--<td>-->
-                                        <!--<a href="javascript:;" class="star">-->
-                                            <!--<i class="glyphicon glyphicon-star"></i>-->
-                                        <!--</a>-->
-                                    <!--</td>-->
-                                    <!--<td>-->
-                                        <!--<div class="media">-->
-                                            <!--<a href="#" class="pull-left">-->
-                                                <!--<img src="http://findicons.com/files/icons/2770/ios_7_icons/128/worker.png" class="media-photo">-->
-                                            <!--</a>-->
-                                            <!--<div class="media-body">-->
-                                                <!--<span class="media-meta pull-right">07.04.2017</span>-->
-                                                <!--<h4 class="title">-->
-                                                    <!--Lorem Impsum-->
-                                                    <!--<span class="pull-right rejected">(Rejected)</span>-->
-                                                <!--</h4>-->
-                                                <!--<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>-->
-                                            <!--</div>-->
-                                        <!--</div>-->
-                                    <!--</td>-->
-                                <!--</tr>-->
-                                <!--<tr data-status="accepted" class="selected">-->
-                                    <!--<td>-->
-                                        <!--<div class="ckbox">-->
-                                            <!--<input type="checkbox" id="checkbox4" checked>-->
-                                            <!--<label for="checkbox4"></label>-->
-                                        <!--</div>-->
-                                    <!--</td>-->
-                                    <!--<td>-->
-                                        <!--<a href="javascript:;" class="star star-checked">-->
-                                            <!--<i class="glyphicon glyphicon-star"></i>-->
-                                        <!--</a>-->
-                                    <!--</td>-->
-                                    <!--<td>-->
-                                        <!--<div class="media">-->
-                                            <!--<a href="#" class="pull-left">-->
-                                                <!--<img src="http://findicons.com/files/icons/2770/ios_7_icons/128/worker.png" class="media-photo">-->
-                                            <!--</a>-->
-                                            <!--<div class="media-body">-->
-                                                <!--<span class="media-meta pull-right">07.04.2017</span>-->
-                                                <!--<h4 class="title">-->
-                                                    <!--Lorem Impsum-->
-                                                    <!--<span class="pull-right accepted">(Accepted)</span>-->
-                                                <!--</h4>-->
-                                                <!--<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>-->
-                                            <!--</div>-->
-                                        <!--</div>-->
-                                    <!--</td>-->
-                                <!--</tr>-->
-                                <!--<tr data-status="pending">-->
-                                    <!--<td>-->
-                                        <!--<div class="ckbox">-->
-                                            <!--<input type="checkbox" id="checkbox5">-->
-                                            <!--<label for="checkbox5"></label>-->
-                                        <!--</div>-->
-                                    <!--</td>-->
-                                    <!--<td>-->
-                                        <!--<a href="javascript:;" class="star">-->
-                                            <!--<i class="glyphicon glyphicon-star"></i>-->
-                                        <!--</a>-->
-                                    <!--</td>-->
-                                    <!--<td>-->
-                                        <!--<div class="media">-->
-                                            <!--<a href="#" class="pull-left">-->
-                                                <!--<img src="http://findicons.com/files/icons/2770/ios_7_icons/128/worker.png" class="media-photo">-->
-                                            <!--</a>-->
-                                            <!--<div class="media-body">-->
-                                                <!--<span class="media-meta pull-right">07.04.2017</span>-->
-                                                <!--<h4 class="title">-->
-                                                    <!--Lorem Impsum-->
-                                                    <!--<span class="pull-right pending">(Pending)</span>-->
-                                                <!--</h4>-->
-                                                <!--<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>-->
-                                            <!--</div>-->
-                                        <!--</div>-->
-                                    <!--</td>-->
-                                <!--</tr>-->
                                 </tbody>
                             </table>
                         </div>

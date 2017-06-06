@@ -25,10 +25,8 @@ function sendEmail(){
              "spannerapp@gmail.com",
              "spanner123");
 
+         alert("Massage sent SUCCES. Thank you for contact.");
      }
-
-
-
 
 }
 
