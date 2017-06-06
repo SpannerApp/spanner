@@ -3,7 +3,7 @@ package spannerapp.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import spannerapp.model.User;
+import spannerapp.model.AuthorizationUser;
 import spannerapp.service.UserService;
 
 import java.util.Collection;
@@ -13,18 +13,18 @@ import java.util.Collection;
  */
 @RestController
 @RequestMapping("/users")
-public class UsersController {
+public class AuthorizationUserController {
 
     @Autowired
     private UserService userService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public Collection<User> getAllUsers(){
+    public Collection<AuthorizationUser> getAllUsers(){
         return userService.getAllUsers();
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public User getUserByID(@PathVariable ("id") int id) {
+    public AuthorizationUser getUserByID(@PathVariable ("id") int id) {
         return userService.getUserByID(id);
     }
 
@@ -34,17 +34,17 @@ public class UsersController {
     }
 
     @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public void updateUserByID(@RequestBody User user){
+    public void updateUserByID(@RequestBody AuthorizationUser user){
         userService.updateUser(user);
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public void insertUserByID(@RequestBody User user){
+    public void insertUserByID(@RequestBody AuthorizationUser user){
         userService.insertUser(user);
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public void validateUser(@RequestBody User user){
+    public void validateUser(@RequestBody AuthorizationUser user){
         userService.validateUser(user);
     }
 }

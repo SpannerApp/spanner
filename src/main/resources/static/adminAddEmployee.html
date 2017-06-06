@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html ng-app="adminAddEmployee" lang="en">
+<head>
+    <title>SpannerApp</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+
+    <script src="adminAddEmployee.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="SpannerApp.css">
+</head>
+<body>
+
+<nav class="navbar navbar-light ">
+    <div class="container-fluid" >
+        <div class="navbar-header">
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="index.html">Home</a></li>
+                <li><a href="info.html">Information</a></li>
+                <li><a href="contact.html">Contact and Help</a></li>
+                <li><a href="writeCode.html">Write Code</a></li>
+                <li><a href="workerTaskList.html">Service Tasks</a></li>
+                <li><a href="adminAddUser.html">Add User Account</a></li>
+                <li><a href="adminAddEmployee.html">Add Employee</a></li>
+                <li><a href="adminAddProduct.html">Add Product</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="jumbotron jumbotron-sm pasek">
+    <div class="container ">
+        <div class="row">
+            <div class="col-sm-12 col-lg-12">
+                <h1 class="h1"> SpannerApp</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container text-center" >
+    <div class="row">
+        <div class="col-sm-4"><br>
+            <br></div>
+        <div class="col-sm-4">
+            <br></div>
+        <div class="col-sm-4"><br></div>
+    </div></div>
+<div class="container text-center">
+    <h3>Add New Employee</h3><br>
+    <div class="row" >
+        <div class="col-sm-4">
+
+        </div>
+        <div class="col-sm-4" ng-controller="controller">
+
+
+            <div class="alert alert-danger" ng-show="error">
+                There was a problem with adding to DB. Please try again.
+            </div>
+
+
+            <!--<div class="input-group">-->
+                <!--<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>-->
+                <!--<input id="positionID" type="text" class="form-control" name="positionID" ng-model="positionID" placeholder="Position Id" >-->
+            <!--</div>-->
+            <!--</br>-->
+
+            <!--<div class="input-group">-->
+                <!--<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>-->
+                <!--<input id="suervisorID" type="text" class="form-control" name="supervisorID" ng-model="supervisorID" placeholder="Supervisor Id" >-->
+            <!--</div>-->
+            <!--</br>-->
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input id="address" type="text" class="form-control" name="address" ng-model="address" placeholder="Adress" >
+            </div>
+            </br>
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input id="mail" type="text" class="form-control" name="mail" ng-model="mail" placeholder="mail" >
+            </div>
+            </br>
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                <input id="phone" type="text" class="form-control" name="phone" ng-model="phone" placeholder="Phone" >
+            </div>
+            </br>
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                <input id="name" type="text" class="form-control" name="name" ng-model="name" placeholder="Name" >
+            </div>
+            </br>
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                <input id="surname" type="text" class="form-control" name="surname" ng-model="surname" placeholder="Surname" >
+            </div>
+            </br>
+
+
+            </br>
+            <button ng-click="AddEmployee()"  class="btn btn-sky btn-lg btn-block">ADD EMPLOYEE</button>
+        </div>
+        <div class="col-sm-4"></div>
+
+
+    </div>
+</div><br></br>
+
+<div class="container text-center">
+
+</div>
+
+
+</body><!--
+<script>angular.module('demo', []).controller('Users', function($scope, $http) {
+    $http.get('http://localhost:8080/users').then(function(response) {
+        $scope.users = response.data;
+    });
+});</script>-->
+</html>

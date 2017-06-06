@@ -1,6 +1,6 @@
 package spannerapp.dao;
 
-import spannerapp.model.User;
+import spannerapp.model.AuthorizationUser;
 
 import java.util.Collection;
 
@@ -8,15 +8,15 @@ import java.util.Collection;
  * Created by Siekacz on 24.03.2017.
  */
 public interface IUserDAO {
-    Collection<User> getAllUsers();
+    Collection<AuthorizationUser> getAllUsers();
 
-    User getUserByID(int ID);
+    AuthorizationUser getUserByID(int ID);
 
     void removeUserByID(int id);
 
-    void updateUserByID(User user);
+    void updateUserByID(AuthorizationUser user);
 
-    void insertUser(User user);
+    void insertUser(AuthorizationUser user);
 
-    boolean validateUser(User user);
+    boolean validateUser(AuthorizationUser user);
 }

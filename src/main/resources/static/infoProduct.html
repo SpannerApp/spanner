@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html ng-app="search" lang="en" >
+<head>
+    <title>SpannerApp</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.2.28/angular-route.js"></script>
+    <script src="search.js"></script>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="SpannerApp.css">
+</head>
+<body ng-controller="InfoController">
+
+
+<nav class="navbar navbar-light ">
+    <div class="container-fluid" >
+        <div class="navbar-header">
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="menu.html">Home</a></li>
+                <li><a href="info.html">Information</a></li>
+                <li><a href="contact.html">Contact and Help</a></li>
+                <li><a href="writeCode.html">Write Code</a></li>
+                <li><a href="workerTaskList.html">Service Tasks</a></li>
+                <li><a href="adminAddUser.html">Add User Account</a></li>
+                <li><a href="adminAddEmployee.html">Add Employee</a></li>
+                <li><a href="adminAddProduct.html">Add Product</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="jumbotron jumbotron-sm pasek">
+    <div class="container ">
+        <div class="row">
+            <div class="col-sm-12 col-lg-12">
+                <h1 class="h1"> Found!
+                    <small> information about product:</small></h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid"  >
+    <div class="content-wrapper">
+        <div class="item-container">
+            <div class="container" >
+    <div class="row">
+                <div class="col-md-4">
+                    <div class="product-title" >{{jas}}</div>
+                    <div class="product-title" >{{kod}}</div>
+                    <div class="product-title" ng-show="information">{{information.code}}</div>
+                   <!--<div class="product-desc" ng-show="information">InFO:{{information.name}}</div>-->
+                    <!--<div class="product-stock" ng-model="jas">{{jas}}</div>-->
+                    <!--<div class="serial number">serial number</div>-->
+                    <!--<div class="model">model</div>-->
+                    <!--<div class="department">DEPARTMENT</div> -->
+                    <hr>
+                    <div class="alert alert-danger" ng-show="error">
+                        There was a problem with database.
+                    </div>
+                    <div class="btn-group wishlist">
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">
+                            REPORT ISSSUE
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-8">
+
+                    <img src="images/LogoNew.png"></img>
+
+                </div>
+            </div>
+            </div>
+        </div>
+
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <br>
+                    <div class="alert alert-danger" ng-show="errorReportDB">
+                        There is problem with DB'.
+                    </div>
+                    <div class="alert alert-danger" ng-show="errorReport">
+                        There is problem with sending Report. Be sure that you fill all textboxes INCLUDING 'Reporting Employee'.
+                    </div>
+                    <div class="alert alert-danger" ng-show="errorMessageReport">
+                        Message is REQUIRED.
+                    </div>
+                    <div class="alert alert-success" ng-show="succesMessageReport">
+                        SUCCES. Raport delivered.
+                    </div>
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Report Issue</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Please write some details about your problems:</p>
+                        <div class="form-group">
+                            <label for="message-text" class="control-label">MACHINE CODE:</label>
+                            <p  id="id-text" name="machineCode" ng-model="machineCode">{{information.code}}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="control-label" >Message:</label>
+                            <textarea class="form-control" id="message-text" name="issueText"  ng-model="issueText" ></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="control-label">Reporting Employee</label>
+                            <textarea class="form-control" id="reporting-employee" name="reportingEmployee" ng-model="reportingEmployee" ></textarea>
+                        </div>
+                    </div>
+
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" ng-click="reportIssue()">Send Report</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--END of MODAL to ISSU RAPORT-->
+
+
+
+        <div class="container-fluid">
+            <div class="col-md-12 product-info">
+                <ul id="myTab" class="nav nav-tabs nav_tabs">
+
+                    <li class="active"><a href="#service-one" data-toggle="tab">PRODUCT INFO</a></li>
+                    <li><a href="#service-two" data-toggle="tab">DESCRIPTION</a></li>
+                    <li><a href="#service-three" data-toggle="tab">RESPONISIBLE PERSONS</a></li>
+
+
+
+                </ul>
+                <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane fade in active" id="service-one">
+
+                        <section class="container product-info">
+                            <div class="product-title" ng-show="information">{{information.code}}</div>
+                            <h3>PRODUCT NAME: </h3><div class="product-desc" ng-show="information">{{information.name}}</div>
+                            <h3>PRODUCT MODEL: </h3><div class="product-stock" ng-model="information">{{information.model}}</div>
+
+
+                        </section>
+
+                    </div>
+                    <div class="tab-pane fade" id="service-two">
+                        <section class="container">
+                            <div class="product-title" ng-show="information">{{information.code}}</div>
+                            <p id="description-text" name="machineDescription" ng-show="information">{{information.description}}</p>
+                        </section>
+
+
+                    </div>
+                    <div class="tab-pane fade" id="service-three">
+                        <section class="container">
+                            <h3>DEPARTMENT RESPONSIBLE: </h3><div class="department">{{information.section}}</div>
+                            <h3>LAST REPARATION: </h3><div class="serial number">{{information.lastRepair}}</div>
+                            <h3>LAST SERVICEMAN: </h3><div class="model">{{information.lastServiceman.name}} {{information.lastServiceman.surname}}</div>
+                        </section>
+                    </div>
+                </div>
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

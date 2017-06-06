@@ -15,7 +15,7 @@ footer {
 .pasek .h1 small{
     color:black;
 }
-.a .button {text-decoration: none;}
+
 .carousel-inner img {
     width: 100%; /* Set width to 100% */
     margin: auto;
@@ -64,143 +64,190 @@ footer {
  .btn-sky a {color:#fff;}
 .btn-sky a:hover {text-decoration:none; color:#fff;}
 
-/*    --------------------------------------------------
-	:: General for workerTaskList
-	-------------------------------------------------- */
-body {
-    font-family: 'Open Sans', sans-serif;
-    color: #353535;
-}
-.content h1 {
-    text-align: center;
-}
-.content .content-footer p {
-    color: #6d6d6d;
-    font-size: 12px;
-    text-align: center;
-}
-.content .content-footer p a {
-    color: inherit;
-    font-weight: bold;
+.row .col-lg-3 img{
+    padding:1px 10px 10px 2px;
+    margin-left: 30px;
+    position:relative;
+    width:190px;
+    height:210px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.4);
+
 }
 
-/*	--------------------------------------------------
-	:: Table Filter
-	-------------------------------------------------- */
-.panel {
-    border: 1px solid #ddd;
-    background-color: #fcfcfc;
+
+ .logo {
+     font-size: 200px;
+     color: #f4511e;
+ }
+@media screen and (max-width: 768px) {
+    .col-sm-4 {
+        text-align: center;
+        margin: 25px 0;
+    }
+
 }
-.panel .btn-group {
-    margin: 15px 0 30px;
+
+/*********************************************
+    			Call Bootstrap
+*********************************************/
+
+@import url("bootstrap/bootstrap.min.css");
+@import url("bootstrap-override.css");
+@import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
+
+/*********************************************
+        		Theme Elements
+*********************************************/
+
+.gold{
+    color: #FFBF00;
 }
-.panel .btn-group .btn {
-    transition: background-color .3s ease;
+
+/*********************************************
+					PRODUCTS
+*********************************************/
+
+.product{
+    border: 1px solid #dddddd;
+    height: 321px;
 }
-.table-filter {
-    background-color: #fff;
-    border-bottom: 1px solid #eee;
+
+.product>img{
+    max-width: 230px;
 }
-.table-filter tbody tr:hover {
-    cursor: pointer;
-    background-color: #eee;
+
+.product-rating{
+    font-size: 20px;
+    margin-bottom: 25px;
 }
-.table-filter tbody tr td {
-    padding: 10px;
-    vertical-align: middle;
-    border-top-color: #eee;
-}
-.table-filter tbody tr.selected td {
-    background-color: #eee;
-}
-.table-filter tr td:first-child {
-    width: 38px;
-}
-.table-filter tr td:nth-child(2) {
-    width: 35px;
-}
-.ckbox {
-    position: relative;
-}
-.ckbox input[type="checkbox"] {
-    opacity: 0;
-}
-.ckbox label {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-.ckbox label:before {
-    content: '';
-    top: 1px;
-    left: 0;
-    width: 18px;
-    height: 18px;
-    display: block;
-    position: absolute;
-    border-radius: 2px;
-    border: 1px solid #bbb;
-    background-color: #fff;
-}
-.ckbox input[type="checkbox"]:checked + label:before {
-    border-color: #2BBCDE;
-    background-color: #2BBCDE;
-}
-.ckbox input[type="checkbox"]:checked + label:after {
-    top: 3px;
-    left: 3.5px;
-    content: '\e013';
-    color: #fff;
-    font-size: 11px;
-    font-family: 'Glyphicons Halflings';
-    position: absolute;
-}
-.table-filter .star {
-    color: #ccc;
-    text-align: center;
-    display: block;
-}
-.table-filter .star.star-checked {
-    color: #F0AD4E;
-}
-.table-filter .star:hover {
-    color: #ccc;
-}
-.table-filter .star.star-checked:hover {
-    color: #F0AD4E;
-}
-.table-filter .media-photo {
-    width: 35px;
-}
-/*.table-filter .media-body {*/
-    /*display: block;*/
-    /*!* Had to use this style to force the div to expand (wasn't necessary with my bootstrap version 3.3.6) *!*/
-/*}*/
-.table-filter .media-meta {
-    font-size: 11px;
-    color: #999;
-}
-.table-filter .media .title {
-    color: #2BBCDE;
-    font-size: 14px;
+
+.product-title{
+    font-size: 45px;
     font-weight: bold;
-    line-height: normal;
-    margin: 0;
+    font-family: "Comic Sans MS";
 }
-.table-filter .media .title span {
-    font-size: .8em;
-    margin-right: 20px;
-}
-.table-filter .media .title span.accepted {
-    color: #5cb85c;
-}
-.table-filter .media .title span.pending {
-    color: #f0ad4e;
-}
-.table-filter .media .title span.rejected {
-    color: #d9534f;
-}
-.table-filter .media .summary {
+
+.product-desc{
     font-size: 14px;
 }
+
+.product-price{
+    font-size: 22px;
+}
+
+.product-stock{
+    color: #74DF00;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.product-info{
+    margin-top: 50px;
+}
+
+/*********************************************
+					VIEW
+*********************************************/
+
+.content-wrapper {
+    max-width: 1140px;
+    background: #fff;
+    margin: 0 auto;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    border: 0px;
+    border-radius: 0px;
+}
+
+.container-fluid{
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+.view-wrapper {
+    float: right;
+    max-width: 70%;
+    margin-top: 25px;
+}
+
+.container {
+    padding-left: 0px;
+    padding-right: 0px;
+    max-width: 100%;
+}
+
+/*********************************************
+				ITEM
+*********************************************/
+
+.service1-items {
+    padding: 0px 0 0px 0;
+    float: left;
+    position: relative;
+    overflow: hidden;
+    max-width: 100%;
+    height: 321px;
+    width: 130px;
+}
+
+.service1-item {
+    height: 107px;
+    width: 120px;
+    display: block;
+    float: left;
+    position: relative;
+    padding-right: 20px;
+    border-right: 1px solid #DDD;
+    border-top: 1px solid #DDD;
+    border-bottom: 1px solid #DDD;
+}
+
+.service1-item > img {
+    max-height: 110px;
+    max-width: 110px;
+    opacity: 0.6;
+    transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    -moz-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+}
+
+.service1-item > img:hover {
+    cursor: pointer;
+    opacity: 1;
+}
+
+.service-image-left {
+    padding-right: 50px;
+}
+
+.service-image-right {
+    padding-left: 50px;
+}
+
+.service-image-left > center > img,.service-image-right > center > img{
+    max-height: 155px;
+}
+
+---------------------
+
+body {
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+.img-center {
+    margin: 0 auto;
+}
+
+footer {
+    margin: 50px 0;
+}
+img {
+    vertical-align: middle;
+    box-sizing: border-box;
+
+}
+.text-center {
+    text-align: center;
+}
+

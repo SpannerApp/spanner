@@ -2,6 +2,7 @@ IF OBJECT_ID('dbo.AuthUser', 'U') IS NOT NULL
   DROP TABLE dbo.AuthUser;
 IF OBJECT_ID('dbo.ModelEmployee', 'U') IS NOT NULL
   DROP TABLE dbo.ModelEmployee;
+GO
 
 CREATE TABLE dbo.ModelEmployee
 (
@@ -12,25 +13,25 @@ CREATE TABLE dbo.ModelEmployee
   SupervisorID INT,
   Address NVARCHAR(50),
   Phone NVARCHAR(20),
-  Mail NVARCHAR(50)
+  Mail NVARCHAR(50),
 );
-GO;
+GO
 
 INSERT INTO dbo.ModelEmployee VALUES ('Pawel', 'Rymer', 1, NULL, NULL, NULL, NULL);
-GO;
+GO
 
 CREATE TABLE dbo.AuthUser
 (
   UserID INT PRIMARY KEY NOT NULL IDENTITY,
   Login NVARCHAR(50) NOT NULL,
   Password NVARCHAR(50) NOT NULL,
-  EmployeeID INT NOT NULL,
+  EmployeeID INT,
   UserTypeID INT,
   CONSTRAINT FK_AuthUser_ModelEmployee FOREIGN KEY (EmployeeID) REFERENCES ModelEmployee (EmployeeID)
 );
-GO;
+GO
 
 INSERT INTO dbo.AuthUser VALUES ('Zabek', 'hehehe', 1, NULL);
 INSERT INTO dbo.AuthUser VALUES ('Owca', 'cococo', 1, NULL);
 INSERT INTO dbo.AuthUser VALUES ('Miszu', 'gdziegdzie', 1, NULL);
-GO;
+GO

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html  ng-app="serviceTasks" lang="en">
+<head>
+    <title>Worker Task List</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="serviceTasks.js"></script>
+    <link rel="stylesheet" type="text/css" href="SpannerApp.css">
+</head>
+<body ng-controller="TasksController">
+
+<nav class="navbar navbar-light">
+    <div class="container-fluid">
+        <div class="navbar-header">
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="info.html">Information</a></li>
+                <li><a href="contact.html">Contact and Help</a></li>
+                <li><a href="writeCode.html">Write Code</a></li>
+                <li><a href="workerTaskList.html">Service Tasks</a></li>
+                <li><a href="adminAddUser.html">Add User Account</a></li>
+                <li><a href="adminAddEmployee.html">Add Employee</a></li>
+                <li><a href="adminAddProduct.html">Add Product</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="jumbotron jumbotron-sm pasek" >
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-lg-12">
+                <h1 class="h1">
+                    My Reports.<small> see all notifications!</small></h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+
+        <section class="content">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="pull-right">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-warning btn-filter" data-target="NEW">New</button>
+                                <button type="button" class="btn btn-success btn-filter" data-target="ACCEPTED">Accepted</button>
+                                <button type="button" class="btn btn-info btn-filter" data-target="READY">Ready</button>
+                                <button type="button" class="btn btn-danger btn-filter" data-target="REJECTED">Rejected</button>
+                                <button type="button" class="btn btn-default btn-filter" data-target="all">All</button>
+                            </div>
+                        </div>
+                        <div class="table-container">
+                            <table class="table table-filter">
+                                <tbody>
+                                <tr data-status="{{issue.issueStatus}}" ng-repeat="issue in issues">
+                                    <td>
+                                        <div class="btn-group-vertical" role="group">
+                                            <button type="button" class="btn btn-primary btn-sm">Accept report</button>
+                                            <button type="button" class="btn btn-primary btn-sm">Reject report</button>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="ckbox">
+                                            <input type="checkbox" id="checkbox1" value="{{issue.id}}">
+                                            <label for="checkbox1"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="javascript:;" class="star">
+                                            <i class="glyphicon glyphicon-star"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <div class="media">
+                                            <a href="#" class="pull-left">
+                                                <img src="http://findicons.com/files/icons/2770/ios_7_icons/128/worker.png" class="media-photo">
+                                            </a>
+                                            <div class="media-body">
+                                                <span class="media-meta pull-right"></span>
+                                                <h4 class="title">
+                                                    <span class="pull-right accepted" style="font-weight: bolder">{{issue.issueStatus}}</span>
+                                                    PRODUCT NUMBER:
+                                                    <h4 style="font-style: italic">{{issue.defectedMachine.code}}</h4>
+
+
+                                                </h4>
+                                                <p class="summary">{{issue.issueText}}</p>
+                                                <h5 class="title">
+
+                                                    <span class="pull-right accepted">Report sent by:
+                                                        <h4 style="font-weight: bold; color:#29b6d8">{{issue.reportingEmployee.name}} {{issue.reportingEmployee.surname}}</h4></span>
+                                                </h5>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('.star').on('click', function () {
+            $(this).toggleClass('star-checked');
+        });
+
+        $('.ckbox label').on('click', function () {
+            $(this).parents('tr').toggleClass('selected');
+        });
+
+        $('.btn-filter').on('click', function () {
+            var $target = $(this).data('target');
+            if ($target != 'all') {
+                $('.table tr').css('display', 'none');
+                $('.table tr[data-status="' + $target + '"]').fadeIn('slow');
+            } else {
+                $('.table tr').css('display', 'none').fadeIn('slow');
+            }
+        });
+
+    });
+</script>
+</body>
+</html>
