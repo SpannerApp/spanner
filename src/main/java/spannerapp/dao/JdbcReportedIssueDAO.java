@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 import spannerapp.dao.procedure.CreateIssueReportProcedure;
@@ -23,6 +24,7 @@ public class JdbcReportedIssueDAO implements IReportedIssueDAO{
 
     private static final String SAVE_NEW_REPORT = "INSERT INTO ReportedIssue(DefectedMachineID, ReportingEmployeeID, IssueStatus, IssueText)";
     private static final String GET_ALL_REPORTS = "SELECT * FROM ReportedIssue ri join Machine m on ri.DefectedMachineID=m.MachineID join ModelEmployee e on ri.ReportingEmployeeID=e.EmployeeID WHERE 1=1";
+    private static final String UPDATE_REPORT_STATUS = "UPDATE ReportedIssue SET IssueStatus=:status WHERE ReportedIssueID=:reportedIssueID";
 
     private final JdbcTemplate jdbcTemplate;
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
@@ -61,7 +63,14 @@ public class JdbcReportedIssueDAO implements IReportedIssueDAO{
     @Override
     public IssueReport getReportedIssueByCode(String code){
         return null;
-    };
+    }
 
+    @Override
+    public void updateReportStatus(IssueReport report) {
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("status", report.getIssueStatus());
+        params.addValue("reportedIssueID", report.getID());
 
+        this.namedParameterJdbcTemplate.update(UPDATE_REPORT_STATUS, params);
+    }
 }

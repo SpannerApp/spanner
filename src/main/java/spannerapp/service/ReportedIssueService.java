@@ -31,5 +31,9 @@ public class ReportedIssueService {
     public int saveNewReport(IssueReport report) {
         return reportedIssueDAO.saveNewReport(report.getDefectedMachine().getId(), report.getReportingEmployee().getEmployeeID(), report.getIssueText());
     }
+
+    public void updateReportStatus(IssueReport report) {
+        reportedIssueDAO.updateReportStatus(report);
+    }
 }
 

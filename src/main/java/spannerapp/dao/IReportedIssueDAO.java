@@ -13,4 +13,6 @@ public interface IReportedIssueDAO {
     IssueReport getReportedIssueByID(int ID);
     int saveNewReport(int machineID, int reportingEmployeeID, String issueText);
     IssueReport getReportedIssueByCode(String code);
+    void updateReportStatus(IssueReport report);
+
 }

@@ -26,4 +26,10 @@ public class IssueReportController {
     public int reportNewIssue(@RequestBody IssueReport report){
         return reportedIssueService.saveNewReport(report);
     }
+
+    @RequestMapping(value = "/changeStatus", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public void acceptReport(@RequestBody IssueReport report){
+        reportedIssueService.updateReportStatus(report);
+    }
+
 }
