@@ -28,7 +28,7 @@ app.controller('controller', function($scope,$http,$window,$log) {
             .success(function (data, status, headers, config) {
                 $scope.result =data;
                 $scope.error=false;
-                $scope.success=true;
+                $scope.addProductSuccess=true;
                 $scope.showModal=true;
             })
             .error(function (data, status, header, config) {
@@ -37,7 +37,7 @@ app.controller('controller', function($scope,$http,$window,$log) {
                 //     "<hr />headers: " + header +
                 //     "<hr />config: " + config;
                 $scope.error=true;
-                $scope.success=false;
+                $scope.addProductSuccess=false;
             });
     };
 

@@ -31,5 +31,8 @@ public class EmployeeControler {
         return result;
     }
 
+    @RequestMapping(value = "/removeEmployee/{id}", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void removeEmployee(@PathVariable("id") String id){employeeService.removeEmployeeByID(Integer.parseInt(id));}
+
 
 }

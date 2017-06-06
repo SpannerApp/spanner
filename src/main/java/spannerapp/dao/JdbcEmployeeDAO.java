@@ -24,6 +24,7 @@ public class JdbcEmployeeDAO implements IEmployeeDAO {
     private static final String GET_EMPLOYEE_BY_ID = "SELECT * FROM ModelEmployee WHERE EmployeeID=:id";
     private static final String GET_ALL_EMPLOYEES = "SELECT * FROM ModelEmployee WHERE 1=1";
     private static final String GET_ALL_SERVICEMEN = "SELECT * FROM ModelEmployee me JOIN AuthUser au on au.EmployeeID = me.EmployeeID WHERE au.RoleID=2 GROUP BY me.Name, me.Surname, me.EmployeeID, me.PositionID, me.SupervisorID, me.Address, me.Mail, me.Phone, au.UserID, au.Login, au.EmployeeID, au.Password, au.RoleID";
+    private static final String DELETE_EMPLOYEE_BY_ID = "DELETE FROM ModelEmployee WHERE EmployeeID=:id";
 
     private final JdbcTemplate jdbcTemplate;
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
@@ -69,7 +70,10 @@ public class JdbcEmployeeDAO implements IEmployeeDAO {
 
     @Override
     public void removeEmployeeByID(int id) {
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("id", id);
 
+        this.namedParameterJdbcTemplate.update(DELETE_EMPLOYEE_BY_ID, param);
     }
 
     @Override

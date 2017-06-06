@@ -36,4 +36,9 @@ public class EmployeeService implements IEmployeeService {
         return employeeDAO.addEmployee(employee);
     }
 
+    @Override
+    public void removeEmployeeByID(int id) {
+        this.employeeDAO.removeEmployeeByID(id);
+    }
+
 }

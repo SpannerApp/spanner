@@ -1,6 +1,6 @@
 var app = angular.module('adminAddEmployee', []);
 
-app.controller('controller', function($scope,$http,$window,$log) {
+app.controller('controller', function($scope,$http,$window,$log, $timeout) {
 
     $scope.AddEmployee=function(){
         var data={
@@ -17,11 +17,14 @@ app.controller('controller', function($scope,$http,$window,$log) {
         }};
         $http.post('http://localhost:8080/employees/insertEmployee', data)
             .success(function (data, status, headers, config) {
+                $scope.addEmployeeSuccess = true;
                 $scope.result =data;
                 $scope.error=false;
                 var url = "http://" + $window.location.host + "/adminAddUser.html";
                 $log.log(url);
                 $window.location.href = url;
+
+
             })
             .error(function (data, status, header, config) {
                 $scope.result = "Data: " + data +

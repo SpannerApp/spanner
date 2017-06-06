@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html ng-app="adminRemoveEmployee" lang="en">
+<head>
+    <title>SpannerApp</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+    <script src="adminRemoveEmployee.js"></script>
+
+    <script src="adminAddUser.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        function clearField() {
+            document.removeEmployeeForm.reset();
+        }
+    </script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="SpannerApp.css">
+</head>
+<body ng-controller="RemoveEmployeeController">
+
+<nav class="navbar navbar-light ">
+    <div class="container-fluid" >
+        <div class="navbar-header">
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="index.html">Home</a></li>
+                <li><a href="info.html">Information</a></li>
+                <li><a href="contact.html">Contact and Help</a></li>
+                <li><a href="writeCode.html">Write Code</a></li>
+                <li><a href="workerTaskList.html">Service Tasks</a></li>
+                <li><a href="adminAddUser.html">Add User Account</a></li>
+                <li><a href="adminAddEmployee.html">Add Employee</a></li>
+                <li><a href="adminAddProduct.html">Add Product</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="jumbotron jumbotron-sm pasek">
+    <div class="container ">
+        <div class="row">
+            <div class="col-sm-12 col-lg-12">
+                <h1 class="h1"> SpannerApp</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container text-center">
+    <h3>Remove Employee</h3><br>
+    <div class="row" >
+        <div class="col-sm-4">
+
+
+        </div>
+        <div class="col-sm-4"  >
+            <form name="removeEmployeeForm" onSubmit="clearField();">
+                <div class="alert alert-danger" ng-show="error">
+                    There was a problem with database. Please try again.
+                </div>
+
+                <div class="alert alert-success" ng-show="success">
+                    <strong>Success!</strong> Employee was removed successfully.
+                </div>
+
+
+                <script>
+                    $(document).ready(function(){
+                        $(".dropdown-menu li a").click(function(){
+                            $("#options").text($(this).text());
+                        });
+                    });
+                </script>
+
+                <div class="input-group">
+                    <span class="input-group-addon">Employee:</span>
+                    <select class="form-control" placeholder="choose" name="userStatus" ng-model="employees.employeeID" required>
+                        <option selected disabled>Choose the employee</option>
+                        <option ng-repeat="employee in employees" value="{{employee.employeeID}}">{{employee.name}} {{employee.surname}}</option>
+                    </select>
+                </div>
+
+                </br>
+                <button ng-click="RemoveEmployeeFromDB(employee.EmployeeID)"  type="submit "class="btn btn-sky btn-lg btn-block">Remove Employee From DB</button>
+            </form>
+        </div>
+        <div class="col-sm-4"></div>
+
+
+    </div>
+</div>
+<br>
+
+<div class="container text-center">
+
+</div>
+
+
+
+
+
+
+
+
+</body><!--
+<script>angular.module('demo', []).controller('Users', function($scope, $http) {
+    $http.get('http://localhost:8080/users').then(function(response) {
+        $scope.users = response.data;
+    });
+});</script>-->
+</html>
