@@ -60,51 +60,40 @@
 
 
             <div class="alert alert-danger" ng-show="error">
-                There was a problem with adding to DB. Please try again.
+                There was a problem with adding to the data base. </br> Make sure that you fill all fields and try again.
             </div>
-
-
-            <!--<div class="input-group">-->
-                <!--<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>-->
-                <!--<input id="positionID" type="text" class="form-control" name="positionID" ng-model="positionID" placeholder="Position Id" >-->
-            <!--</div>-->
-            <!--</br>-->
-
-            <!--<div class="input-group">-->
-                <!--<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>-->
-                <!--<input id="suervisorID" type="text" class="form-control" name="supervisorID" ng-model="supervisorID" placeholder="Supervisor Id" >-->
-            <!--</div>-->
-            <!--</br>-->
 
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                <input id="address" type="text" class="form-control" name="address" ng-model="address" placeholder="Adress" >
+                <input id="name" type="text" class="form-control" name="name" ng-model="name" placeholder="Name" required>
             </div>
             </br>
 
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                <input id="mail" type="text" class="form-control" name="mail" ng-model="mail" placeholder="mail" >
+                <input id="surname" type="text" class="form-control" name="surname" ng-model="surname" placeholder="Surname" required>
             </div>
             </br>
 
             <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                <input id="phone" type="text" class="form-control" name="phone" ng-model="phone" placeholder="Phone" >
+                <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                <input id="address" type="text" class="form-control" name="address" ng-model="address" placeholder="Adress" required>
             </div>
             </br>
 
             <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                <input id="name" type="text" class="form-control" name="name" ng-model="name" placeholder="Name" >
+                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                <input id="mail" type="text" class="form-control" name="mail" ng-model="mail" placeholder="E-mail" required>
             </div>
             </br>
 
             <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                <input id="surname" type="text" class="form-control" name="surname" ng-model="surname" placeholder="Surname" >
+                <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+                <input id="phone" type="text" class="form-control" name="phone" ng-model="phone" placeholder="Phone" required="required">
             </div>
             </br>
+
+
 
 
             </br>

@@ -62,11 +62,11 @@
                         <div class="table-container">
                             <table class="table table-filter">
                                 <tbody>
-                                <tr data-status="{{issue.issueStatus}}" ng-repeat="issue in issues">
-                                    <td>
-                                        <div class="btn-group-vertical" role="group">
-                                            <button type="button" class="btn btn-primary btn-sm">Accept report</button>
-                                            <button type="button" class="btn btn-primary btn-sm">Reject report</button>
+                                <tr data-status="{{issue.issueStatus}}" ng-repeat="issue in issues" >
+                                    <td class="statusChange">
+                                        <div class="btn-group btn-group-sm " role="group" aria-label="...">
+                                            <button type="button" ng-click="Reject(issue.id)" class="btn btn-danger">Reject</button>
+                                            <button type="button" ng-click="Accept(issue.id)" class="btn btn-success">Accept</button>
                                         </div>
                                     </td>
                                     <td>
@@ -88,7 +88,7 @@
                                             <div class="media-body">
                                                 <span class="media-meta pull-right"></span>
                                                 <h4 class="title">
-                                                    <span class="pull-right accepted" style="font-weight: bolder">{{issue.issueStatus}}</span>
+                                                    <span class="pull-right accepted" style="font-weight: bolder" ng-model="task" id="taskStatus">{{issue.issueStatus}}</span>
                                                     PRODUCT NUMBER:
                                                     <h4 style="font-style: italic">{{issue.defectedMachine.code}}</h4>
 
@@ -104,6 +104,7 @@
                                         </div>
                                     </td>
                                 </tr>
+
                                 </tbody>
                             </table>
                         </div>
@@ -116,7 +117,12 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-
+        $('.table tbody tr').each(function(){
+        var $status = $(this).data('status');
+        if($status != 'NEW') {
+            $('.table td.statusChange').css('display', 'none');
+        }
+    });
         $('.star').on('click', function () {
             $(this).toggleClass('star-checked');
         });
@@ -127,12 +133,17 @@
 
         $('.btn-filter').on('click', function () {
             var $target = $(this).data('target');
+
             if ($target != 'all') {
-                $('.table tr').css('display', 'none');
+                 $('.table tr').css('display', 'none');
                 $('.table tr[data-status="' + $target + '"]').fadeIn('slow');
+
             } else {
                 $('.table tr').css('display', 'none').fadeIn('slow');
-            }
+                }
+
+
+
         });
 
     });

@@ -19,7 +19,7 @@ app.controller('controller', function($scope,$http,$window,$log) {
             .success(function (data, status, headers, config) {
                 $scope.result =data;
                 $scope.error=false;
-                var url = "http://" + $window.location.host + "/index.html";
+                var url = "http://" + $window.location.host + "/adminAddUser.html";
                 $log.log(url);
                 $window.location.href = url;
             })
