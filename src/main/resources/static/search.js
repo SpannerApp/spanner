@@ -84,23 +84,35 @@ app.controller('InfoController', function($scope,$http,$window) {
         }};
 
         $scope.errorMessageReport=false;
+        $scope.succesMessageReport = false;
+        $scope.errorReport=false;
+
         var messageExist = false;
         if (document.getElementById("message-text").value != "") {
             messageExist = true;
         }
 
-        if(messageExist){
+        var ReportingEmployeeExist = false;
+        if (document.getElementById("reporting-employee").value != "") {
+            ReportingEmployeeExist = true;
+        }
+
+        if(messageExist &&  ReportingEmployeeExist){
             $http.post('http://localhost:8080/reportedIssues/newReport', data)
                 .success(function (data, status, headers, config) {
                     $scope.errorReport=false;
+                    $scope.errorMessageReport=false;
                     $scope.result =data;
+                    $scope.succesMessageReport = true;
 
                 })
                 .error(function (data, status, header, config) {
-                    $scope.errorReport=true;
+                    $scope.errorReportDB=true;
                 });
+
         }else{
             $scope.errorMessageReport=true;
+            $scope.errorReport=true;
         }
 
 
