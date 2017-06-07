@@ -80,23 +80,23 @@
                                     <td class="statusChange">
                                         <div class="btn-group btn-group-sm " role="group" aria-label="...">
                                             <button type="button" ng-click="ChangeStatus(issue.id,'REJECTED')" class="btn btn-danger">Reject</button>
-                                            <button type="button" ng-click="ChangeStatus(issue.id,'ACCEPTED')" class="btn btn-success">Accept</button>
+                                            <button type="button"  class="Acceptation btn btn-success" data-toggle="modal" data-target="#myModal">Accept</button>
                                             <button type="button" ng-click="ChangeStatus(issue.id,'READY')" class="btn btn-info">Ready</button>
                                         </div>
                                     </td>
+                                    <!--<td>-->
+                                        <!--<div class="ckbox">-->
+                                            <!--<input type="checkbox" id="checkbox1" value="{{issue.id}}">-->
+                                            <!--<label for="checkbox1"></label>-->
+                                        <!--</div>-->
+                                    <!--</td>-->
+                                    <!--<td>-->
+                                        <!--<a href="javascript:;" class="star">-->
+                                            <!--<i class="glyphicon glyphicon-star"></i>-->
+                                        <!--</a>-->
+                                    <!--</td>-->
                                     <td>
-                                        <div class="ckbox">
-                                            <input type="checkbox" id="checkbox1" value="{{issue.id}}">
-                                            <label for="checkbox1"></label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a href="javascript:;" class="star">
-                                            <i class="glyphicon glyphicon-star"></i>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <div class="media">
+                                        <div class="media" data-id="{{issue.id}}">
                                             <a href="#" class="pull-left">
                                                 <img src="http://findicons.com/files/icons/2770/ios_7_icons/128/worker.png" class="media-photo">
                                             </a>
@@ -105,7 +105,7 @@
                                                 <h4 class="title">
                                                     <span class="pull-right accepted" style="font-weight: bolder" ng-model="task" id="taskStatus">{{issue.issueStatus}}</span>
                                                     PRODUCT NUMBER:
-                                                    <h4 style="font-style: italic">{{issue.defectedMachine.code}}</h4>
+                                                    <h4 style="font-style: italic" ng-model="machineNr">{{issue.defectedMachine.code}}</h4>
 
 
                                                 </h4>
@@ -163,5 +163,79 @@
 
     });
 </script>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <br>
+            <div class="alert alert-danger" ng-show="errorReportDB">
+                There is problem with DB.
+            </div>
+            <div class="alert alert-danger" ng-show="errorReportEmployee">
+                There is problem with sending Report. Be sure that you fill all textboxes INCLUDING 'Reporting Employee'.
+            </div>
+            <div class="alert alert-danger" ng-show="errorMessageReport">
+                Message is REQUIRED.
+            </div>
+            <div class="alert alert-success" ng-show="succesMessageReport">
+                SUCCES. Task accepted.
+            </div>
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Report Issue</h4>
+            </div>
+            <div class="modal-body">
+            <div class="row">
+            <div class="col-sm-4" >
+                <div class="form-group">
+                    <label for="message-text" class="control-label" >Write your login:</label>
+                    <input class="form-control" id="message-text" name="issueText"  ng-model="issueText" >
+                </div>
+            </div><div class="col-sm-8" ></div>
+            </div>
+                <div class="form-group">
+                    <label for="message-text" class="control-label">Do you accept the task?</label>
+                    <div class="media">
+                        <a href="#" class="pull-left">
+                            <img src="http://findicons.com/files/icons/2770/ios_7_icons/128/worker.png" class="media-photo">
+                        </a>
+                        <div class="media-body">
+                            <span class="media-meta pull-right"></span>
+                            <h4 class="title">
+                                <span class="pull-right accepted" style="font-weight: bolder" ng-model="task" id="IssueId" >{{issue.issueStatus}}</span>
+                                PRODUCT NUMBER:
+                                <h4 style="font-style: italic" ng-model="machineNr">{{issue.defectedMachine.code}}</h4>
+
+
+                            </h4>
+                            <p class="summary">{{issue.issueText}}</p>
+                            <h5 class="title">
+
+                                                    <span class="pull-right accepted">Report sent by:
+                                                        <h4 style="font-weight: bold; color:#29b6d8">{{issue.reportingEmployee.name}} {{issue.reportingEmployee.surname}}</h4></span>
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" ng-click="acceptTask(issue.id)">Accept</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END of MODAL to ISSU RAPORT-->
 </body>
+<script  type="text/javascript">
+    $(document).on("click", ".Acceptation", function () {
+        var myId = $(this).data('id');
+        $(".modal-body #IssueId").val( myId );
+
+    });
+</script>
 </html>
