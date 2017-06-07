@@ -23,4 +23,5 @@ public interface IReportedIssueService {
 
     Collection<IssueReport> findReportsByLogin(AuthorizationUser user);
 
+    void assignServicemanToReport(IssueReport report);
 }

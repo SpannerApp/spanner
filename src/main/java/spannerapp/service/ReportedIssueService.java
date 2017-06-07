@@ -39,5 +39,10 @@ public class ReportedIssueService implements IReportedIssueService {
     }
 
     public Collection<IssueReport> findReportsByLogin(AuthorizationUser user) { return reportedIssueDAO.findReportsByLogin(user.getUsername()); }
+
+    @Override
+    public void assignServicemanToReport(IssueReport report) {
+        reportedIssueDAO.assignServicemanToReport(report.getID(), report.getAssignedServiceman().getUsername());
+    }
 }
 

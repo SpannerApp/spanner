@@ -28,6 +28,11 @@ public class IssueReportController {
         return reportedIssueService.saveNewReport(report);
     }
 
+    @RequestMapping(value = "/assignServiceman", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public void assignServicemanToTask(@RequestBody IssueReport report){
+        reportedIssueService.assignServicemanToReport(report);
+    }
+
     @RequestMapping(value = "/changeStatus", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public void acceptReport(@RequestBody IssueReport report){
         reportedIssueService.updateReportStatus(report);
