@@ -55,7 +55,15 @@
         <div class="col-sm-1">
 
         </div>
+
         <div class="col-sm-4" ng-controller="controller">
+            <div class="alert alert-danger" ng-show="error">
+                There was a problem with find this SERIAL NUMBER. Please be sure that you enter valid serial number.
+            </div>
+
+            <div class="alert alert-success" ng-show="findSerialNumberSuccess">
+                Sucesss. Machine is existing in DB.
+            </div>
             <h3>Check the serial number</h3>
             <form class="form-signin">
 

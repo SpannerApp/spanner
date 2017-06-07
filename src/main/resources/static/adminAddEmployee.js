@@ -12,9 +12,11 @@ app.controller('controller', function($scope,$http,$window,$log, $timeout) {
             name: $scope.name,
             surname: $scope.surname,
         };
+
         var config={ headers : {
             'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
         }};
+
         $http.post('http://localhost:8080/employees/insertEmployee', data)
             .success(function (data, status, headers, config) {
                 $scope.addEmployeeSuccess = true;

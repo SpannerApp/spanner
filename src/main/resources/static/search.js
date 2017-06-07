@@ -88,13 +88,21 @@ app.controller('InfoController', function($scope,$http,$window) {
         $scope.errorReport=false;
 
         var messageExist = false;
+        var ReportingEmployeeExist = false;
         if (document.getElementById("message-text").value != "") {
             messageExist = true;
         }
 
-        var ReportingEmployeeExist = false;
         if (document.getElementById("reporting-employee").value != "") {
             ReportingEmployeeExist = true;
+        }
+
+        if(!messageExist){
+            $scope.errorMessageReport=true;
+        }
+
+        if(!ReportingEmployeeExist){
+            $scope.errorReportEmployee=true;
         }
 
         if(messageExist &&  ReportingEmployeeExist){
@@ -102,19 +110,15 @@ app.controller('InfoController', function($scope,$http,$window) {
                 .success(function (data, status, headers, config) {
                     $scope.errorReport=false;
                     $scope.errorMessageReport=false;
+                    $scope.errorReportDB=false;
                     $scope.result =data;
                     $scope.succesMessageReport = true;
-
                 })
                 .error(function (data, status, header, config) {
                     $scope.errorReportDB=true;
                 });
 
-        }else{
-            $scope.errorMessageReport=true;
-            $scope.errorReport=true;
         }
-
 
     };
 

@@ -17,12 +17,14 @@ app.controller("RemoveEmployeeController", function($scope, $http) {
 
     $scope.RemoveEmployeeFromDB=function(id){
         var data={
-            EmployeeID: parseInt(id)
+            employeeID: parseInt(id)
 
         };
-        var config= {data: JSON.stringify(data)};
+        var config={ headers : {
+            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+        }};
 
-        $http.delete("http://localhost:8080/employees/removeEmployee/" + data)
+        $http.delete("http://localhost:8080/employees/removeEmployee", data, config)
             .success(function (data, status, headers, config) {
             $scope.result =data;
             $scope.error=false;
