@@ -10,7 +10,7 @@ app.controller('controller', function($scope,$http,$window,$log, $timeout) {
             mail: $scope.mail,
             phone: $scope.phone,
             name: $scope.name,
-            surname: $scope.name,
+            surname: $scope.surname,
         };
         var config={ headers : {
             'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'

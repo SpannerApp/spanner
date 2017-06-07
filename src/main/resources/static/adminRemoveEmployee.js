@@ -20,16 +20,13 @@ app.controller("RemoveEmployeeController", function($scope, $http) {
             EmployeeID: parseInt(id)
 
         };
-        var config={ headers : {
-            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
-        }};
+        var config= {data: JSON.stringify(data)};
 
-        $http.delete("http://localhost:8080/employees/removeEmployee?" + data)
+        $http.delete("http://localhost:8080/employees/removeEmployee/" + data)
             .success(function (data, status, headers, config) {
             $scope.result =data;
             $scope.error=false;
             $scope.success=true;
-            $scope.showModal=true;
         })
             .error(function (data, status, header, config) {
                 // $scope.result = "Data: " + data +
