@@ -74,7 +74,7 @@ app.controller('InfoController', function($scope,$http,$window) {
     $scope.reportIssue=function(){
         var data={
             defectedMachine: {id: parseInt($scope.information.id)},
-            reportingEmployee: {employeeID: parseInt($scope.reportingEmployee)},
+            reportingUser: {username: $scope.reportingUser},
             issueStatus: $scope.issueStatus,
             issueText: $scope.issueText
 
@@ -88,24 +88,24 @@ app.controller('InfoController', function($scope,$http,$window) {
         $scope.errorReport=false;
 
         var messageExist = false;
-        var ReportingEmployeeExist = false;
+        var ReportingUserExist = false;
         if (document.getElementById("message-text").value != "") {
             messageExist = true;
         }
 
-        if (document.getElementById("reporting-employee").value != "") {
-            ReportingEmployeeExist = true;
+        if (document.getElementById("reporting-user").value != "") {
+            ReportingUserExist = true;
         }
 
         if(!messageExist){
             $scope.errorMessageReport=true;
         }
 
-        if(!ReportingEmployeeExist){
+        if(!ReportingUserExist){
             $scope.errorReportEmployee=true;
         }
 
-        if(messageExist &&  ReportingEmployeeExist){
+        if(messageExist &&  ReportingUserExist){
             $http.post('http://localhost:8080/reportedIssues/newReport', data)
                 .success(function (data, status, headers, config) {
                     $scope.errorReport=false;

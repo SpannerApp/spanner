@@ -5,16 +5,18 @@ public class IssueReport {
     private Integer id;
     private Machine defectedMachine;
     private Employee reportingEmployee;
+    private AuthorizationUser reportingUser;
     private AuthorizationUser assignedServiceman;
     private String issueStatus;
     private String issueText;
 
     public IssueReport(){}
 
-    public IssueReport(Integer id, Machine defectedMachine, Employee reportingEmployee, AuthorizationUser assignedServiceman, String issueStatus, String issueText) {
+    public IssueReport(Integer id, Machine defectedMachine, Employee reportingEmployee, AuthorizationUser reportingUser, AuthorizationUser assignedServiceman, String issueStatus, String issueText) {
         this.id=id;
         this.defectedMachine = defectedMachine;
         this.reportingEmployee = reportingEmployee;
+        this.reportingUser = reportingUser;
         this.assignedServiceman = assignedServiceman;
         this.issueStatus = issueStatus;
         this.issueText = issueText;
@@ -66,6 +68,14 @@ public class IssueReport {
 
     public void setAssignedServiceman(AuthorizationUser assignedServiceman) {
         this.assignedServiceman = assignedServiceman;
+    }
+
+    public AuthorizationUser getReportingUser() {
+        return reportingUser;
+    }
+
+    public void setReportingUser(AuthorizationUser reportingUser) {
+        this.reportingUser = reportingUser;
     }
 }
 

@@ -31,7 +31,7 @@ public class ReportedIssueService implements IReportedIssueService {
    }
 
     public int saveNewReport(IssueReport report) {
-        return reportedIssueDAO.saveNewReport(report.getDefectedMachine().getId(), report.getReportingEmployee().getEmployeeID(), report.getIssueText());
+        return reportedIssueDAO.saveNewReport(report.getDefectedMachine().getId(), report.getReportingUser().getUsername(), report.getIssueText());
     }
 
     public void updateReportStatus(IssueReport report) {
