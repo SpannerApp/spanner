@@ -1,8 +1,10 @@
 package spannerapp.service;
 
+import spannerapp.model.AuthorizationUser;
 import spannerapp.model.IssueReport;
 
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by Siekacz on 02.06.2017.
@@ -15,6 +17,10 @@ public interface IReportedIssueService {
 
     IssueReport getReportedIssueByCode(String code);
 
-    void saveNewReport(int defectedMachineID, int reportingEmployeeID, String issueText);
+    int saveNewReport(IssueReport report);
+
+    void updateReportStatus(IssueReport report);
+
+    Collection<IssueReport> findReportsByLogin(AuthorizationUser user);
 
 }
