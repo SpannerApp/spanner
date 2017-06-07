@@ -3,6 +3,7 @@ package spannerapp.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import spannerapp.model.AuthorizationUser;
 import spannerapp.model.IssueReport;
 import spannerapp.service.ReportedIssueService;
 
@@ -32,4 +33,6 @@ public class IssueReportController {
         reportedIssueService.updateReportStatus(report);
     }
 
+    @RequestMapping(value ="/tasksForServiceman", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public Collection<IssueReport> findReportsByLogin(@RequestBody AuthorizationUser user){return reportedIssueService.findReportsByLogin(user);}
 }
