@@ -42,7 +42,7 @@ public class JdbcReportedIssueDAO implements IReportedIssueDAO{
         return namedParameterJdbcTemplate.query(GET_ALL_REPORTS, new RowMapper<IssueReport>() {
             @Override
             public IssueReport mapRow(ResultSet rs, int i) throws SQLException {
-                Employee employee = new Employee(rs.getInt("EmployeeID"), rs.getString("Name"), rs.getString("Surname"), rs.getInt("PositionID"), rs.getInt("SupervisorID"), rs.getString("Address"), rs.getString("Phone"), rs.getString("Mail"));
+                Employee employee = new Employee(rs.getInt("EmployeeID"), rs.getString("Name"), rs.getString("Surname"), rs.getString("Address"), rs.getString("Phone"), rs.getString("Mail"));
                 Machine machine = new Machine(rs.getInt("MachineID"), rs.getString("Code"), rs.getString("Name"), rs.getString("Model"), rs.getString("Section"), rs.getString("Colour"), rs.getString("LastRepair"), null, rs.getString("Description"));
 
                 return new IssueReport(rs.getInt("ReportedIssueID") ,machine, employee, null, null, rs.getString("IssueStatus"), rs.getString("IssueText"));
@@ -62,7 +62,7 @@ public class JdbcReportedIssueDAO implements IReportedIssueDAO{
         Employee employee = this.namedParameterJdbcTemplate.queryForObject(FIND_EMPLOYEE_BY_USER_LOGIN, param, new RowMapper<Employee>() {
             @Override
             public Employee mapRow(ResultSet rs, int i) throws SQLException {
-                return new Employee(rs.getInt("EmployeeID"), rs.getString("Name"), rs.getString("Surname"), null, null, rs.getString("Address"), rs.getString("Phone"), rs.getString("Mail") );
+                return new Employee(rs.getInt("EmployeeID"), rs.getString("Name"), rs.getString("Surname"), rs.getString("Address"), rs.getString("Phone"), rs.getString("Mail") );
             }
         });
         CreateIssueReportProcedure procedure = new CreateIssueReportProcedure(jdbcTemplate.getDataSource());

@@ -22,8 +22,6 @@ public class CreateEmployeeProcedure extends StoredProcedure {
 
         declareParameter(new SqlParameter("Name", Types.NVARCHAR));
         declareParameter(new SqlParameter("Surname", Types.NVARCHAR));
-        declareParameter(new SqlParameter("PositionID", Types.INTEGER));
-        declareParameter(new SqlParameter("SupervisorID", Types.INTEGER));
         declareParameter(new SqlParameter("Address", Types.NVARCHAR));
         declareParameter(new SqlParameter("Phone", Types.NVARCHAR));
         declareParameter(new SqlParameter("Mail", Types.NVARCHAR));
@@ -36,8 +34,6 @@ public class CreateEmployeeProcedure extends StoredProcedure {
 
          row.put("Name", employee.getName());
          row.put("Surname", employee.getSurname());
-         row.put("PositionID", employee.getPositionID());
-         row.put("SupervisorID", employee.getSupervisorID());
          row.put("Address", employee.getAddress());
          row.put("Phone", employee.getPhone());
          row.put("Mail", employee.getMail());

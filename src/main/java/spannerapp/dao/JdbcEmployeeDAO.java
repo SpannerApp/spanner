@@ -19,11 +19,10 @@ import java.util.List;
 @Repository
 public class JdbcEmployeeDAO implements IEmployeeDAO {
 
-    private static final String ADD_EMPLOYEE = "INSERT INTO ModelEmployee (Name, Surname, PositionID, SupervisorID, Address, Phone, Mail) VALUES (";
     private static final String GET_EMPLOYEE_BY_MAIL = "SELECT * FROM ModelEmployee WHERE Mail=:mail";
     private static final String GET_EMPLOYEE_BY_ID = "SELECT * FROM ModelEmployee WHERE EmployeeID=:id";
     private static final String GET_ALL_EMPLOYEES = "SELECT * FROM ModelEmployee WHERE 1=1";
-    private static final String GET_ALL_SERVICEMEN = "SELECT * FROM ModelEmployee me JOIN AuthUser au on au.EmployeeID = me.EmployeeID WHERE au.RoleID=2 GROUP BY me.Name, me.Surname, me.EmployeeID, me.PositionID, me.SupervisorID, me.Address, me.Mail, me.Phone, au.UserID, au.Login, au.EmployeeID, au.Password, au.RoleID";
+    private static final String GET_ALL_SERVICEMEN = "SELECT * FROM ModelEmployee me JOIN AuthUser au on au.EmployeeID = me.EmployeeID WHERE au.RoleID=2 GROUP BY me.Name, me.Surname, me.EmployeeID, me.Address, me.Mail, me.Phone, au.UserID, au.Login, au.EmployeeID, au.Password, au.RoleID";
     private static final String DELETE_EMPLOYEE_BY_ID = "DELETE FROM AuthUser WHERE EmployeeID=:id " +
             "DELETE FROM ModelEmployee WHERE EmployeeID=:id";
 
@@ -41,7 +40,7 @@ public class JdbcEmployeeDAO implements IEmployeeDAO {
         return this.namedParameterJdbcTemplate.query(GET_ALL_EMPLOYEES, new RowMapper<Employee>() {
             @Override
             public Employee mapRow(ResultSet rs, int i) throws SQLException {
-                return new Employee(rs.getInt("EmployeeID"), rs.getString("Name"), rs.getString("Surname"), rs.getInt("PositionID"), rs.getInt("SupervisorID"), rs.getString("Address"), rs.getString("Phone"), rs.getString("Mail"));
+                return new Employee(rs.getInt("EmployeeID"), rs.getString("Name"), rs.getString("Surname"), rs.getString("Address"), rs.getString("Phone"), rs.getString("Mail"));
             }
         });
     }
@@ -51,7 +50,7 @@ public class JdbcEmployeeDAO implements IEmployeeDAO {
         return this.namedParameterJdbcTemplate.query(GET_ALL_SERVICEMEN, new RowMapper<Employee>() {
             @Override
             public Employee mapRow(ResultSet rs, int i) throws SQLException {
-                return new Employee(rs.getInt("EmployeeID"), rs.getString("Name"), rs.getString("Surname"), rs.getInt("PositionID"), rs.getInt("SupervisorID"), rs.getString("Address"), rs.getString("Phone"), rs.getString("Mail"));
+                return new Employee(rs.getInt("EmployeeID"), rs.getString("Name"), rs.getString("Surname"), rs.getString("Address"), rs.getString("Phone"), rs.getString("Mail"));
             }
         });
     }
@@ -64,7 +63,7 @@ public class JdbcEmployeeDAO implements IEmployeeDAO {
         return this.namedParameterJdbcTemplate.queryForObject(GET_EMPLOYEE_BY_ID, param, new RowMapper<Employee>() {
             @Override
             public Employee mapRow(ResultSet rs, int i) throws SQLException {
-                return new Employee(rs.getInt("EmployeeID"), rs.getString("Name"), rs.getString("Surname"), rs.getInt("PositionID"), rs.getInt("SupervisorID"), rs.getString("Address"), rs.getString("Phone"), rs.getString("Mail"));
+                return new Employee(rs.getInt("EmployeeID"), rs.getString("Name"), rs.getString("Surname"), rs.getString("Address"), rs.getString("Phone"), rs.getString("Mail"));
             }
         });
     }
@@ -94,7 +93,7 @@ public class JdbcEmployeeDAO implements IEmployeeDAO {
         return this.namedParameterJdbcTemplate.queryForObject(GET_EMPLOYEE_BY_MAIL, param, new RowMapper<Employee>() {
             @Override
             public Employee mapRow(ResultSet rs, int i) throws SQLException {
-                return new Employee(rs.getInt("EmployeeID"), rs.getString("Name"), rs.getString("Surname"), rs.getInt("PositionID"), rs.getInt("SupervisorID"), rs.getString("Address"), rs.getString("Phone"), rs.getString("Mail"));
+                return new Employee(rs.getInt("EmployeeID"), rs.getString("Name"), rs.getString("Surname"), rs.getString("Address"), rs.getString("Phone"), rs.getString("Mail"));
             }
         });
     }

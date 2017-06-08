@@ -21,9 +21,9 @@ import java.util.List;
 @Repository("sqlserver2")
 public class JdbcMachineDAO implements IMachineDAO {
 
-    private static final String GET_ALL_MACHINES = "SELECT MachineID, Code, MachineName, Model, Section, Colour, LastRepair, LastServicemanID, Description, EmployeeID, Name, Surname, PositionID, SupervisorID, Address, Phone, Mail FROM Machine m LEFT JOIN ModelEmployee me on m.LastServicemanID=me.EmployeeID WHERE 1 = 1";
-    private static final String GET_MACHINE_BY_ID = "SELECT MachineID, Code, MachineName, Model, Section, Colour, LastRepair, LastServicemanID, Description, EmployeeID, Name, Surname, PositionID, SupervisorID, Address, Phone, Mail FROM Machine m LEFT JOIN ModelEmployee me on m.LastServicemanID=me.EmployeeID WHERE MachineID=:id";
-    private static final String GET_MACHINE_BY_CODE = "SELECT MachineID, Code, MachineName, Model, Section, Colour, LastRepair, LastServicemanID, Description, EmployeeID, Name, Surname, PositionID, SupervisorID, Address, Phone, Mail FROM Machine m LEFT JOIN ModelEmployee me on m.LastServicemanID=me.EmployeeID WHERE Code=:code";
+    private static final String GET_ALL_MACHINES = "SELECT MachineID, Code, MachineName, Model, Section, Colour, LastRepair, LastServicemanID, Description, EmployeeID, Name, Surname, Address, Phone, Mail FROM Machine m LEFT JOIN ModelEmployee me on m.LastServicemanID=me.EmployeeID WHERE 1 = 1";
+    private static final String GET_MACHINE_BY_ID = "SELECT MachineID, Code, MachineName, Model, Section, Colour, LastRepair, LastServicemanID, Description, EmployeeID, Name, Surname, Address, Phone, Mail FROM Machine m LEFT JOIN ModelEmployee me on m.LastServicemanID=me.EmployeeID WHERE MachineID=:id";
+    private static final String GET_MACHINE_BY_CODE = "SELECT MachineID, Code, MachineName, Model, Section, Colour, LastRepair, LastServicemanID, Description, EmployeeID, Name, Surname, Address, Phone, Mail FROM Machine m LEFT JOIN ModelEmployee me on m.LastServicemanID=me.EmployeeID WHERE Code=:code";
 
     private JdbcTemplate jdbcTemplate;
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
@@ -39,7 +39,7 @@ public class JdbcMachineDAO implements IMachineDAO {
         List<Machine> machines = jdbcTemplate.query(GET_ALL_MACHINES, new RowMapper<Machine>() {
             @Override
             public Machine mapRow(ResultSet rs, int i) throws SQLException {
-                Employee serviceman = new Employee(rs.getInt("EmployeeID"), rs.getString("Name"), rs.getString("Surname"), rs.getInt("PositionID"), rs.getInt("SupervisorID"), rs.getString("Address"), rs.getString("Phone"), rs.getString("Mail"));
+                Employee serviceman = new Employee(rs.getInt("EmployeeID"), rs.getString("Name"), rs.getString("Surname"), rs.getString("Address"), rs.getString("Phone"), rs.getString("Mail"));
                 return new Machine(rs.getInt("MachineID"), rs.getString("Code"), rs.getString("MachineName"), rs.getString("Model"), rs.getString("Section"), rs.getString("Colour"), rs.getString("LastRepair"), serviceman, rs.getString("Description"));
             }
         });
@@ -54,7 +54,7 @@ public class JdbcMachineDAO implements IMachineDAO {
         return this.namedParameterJdbcTemplate.queryForObject(GET_MACHINE_BY_ID, param, new RowMapper<Machine>() {
             @Override
             public Machine mapRow(ResultSet rs, int i) throws SQLException {
-                Employee serviceman = new Employee(rs.getInt("EmployeeID"), rs.getString("Name"), rs.getString("Surname"), rs.getInt("PositionID"), rs.getInt("SupervisorID"), rs.getString("Address"), rs.getString("Phone"), rs.getString("Mail"));
+                Employee serviceman = new Employee(rs.getInt("EmployeeID"), rs.getString("Name"), rs.getString("Surname"), rs.getString("Address"), rs.getString("Phone"), rs.getString("Mail"));
                 return new Machine(rs.getInt("MachineID"), rs.getString("Code"), rs.getString("MachineName"), rs.getString("Model"), rs.getString("Section"), rs.getString("Colour"), rs.getString("LastRepair"), serviceman, rs.getString("Description"));
 
             }
@@ -69,7 +69,7 @@ public class JdbcMachineDAO implements IMachineDAO {
         return this.namedParameterJdbcTemplate.queryForObject(GET_MACHINE_BY_CODE, param, new RowMapper<Machine>() {
             @Override
             public Machine mapRow(ResultSet rs, int i) throws SQLException {
-                Employee serviceman = new Employee(rs.getInt("EmployeeID"), rs.getString("Name"), rs.getString("Surname"), rs.getInt("PositionID"), rs.getInt("SupervisorID"), rs.getString("Address"), rs.getString("Phone"), rs.getString("Mail"));
+                Employee serviceman = new Employee(rs.getInt("EmployeeID"), rs.getString("Name"), rs.getString("Surname"), rs.getString("Address"), rs.getString("Phone"), rs.getString("Mail"));
                 return new Machine(rs.getInt("MachineID"), rs.getString("Code"), rs.getString("MachineName"), rs.getString("Model"), rs.getString("Section"), rs.getString("Colour"), rs.getString("LastRepair"), serviceman, rs.getString("Description"));
             }
         });
