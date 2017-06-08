@@ -38,7 +38,8 @@
     <div class="container ">
         <div class="row">
             <div class="col-sm-12 col-lg-12">
-                <h1 class="h1"> SpannerApp</h1>
+                <h1 class="h1"> Log in
+                    <small> And let's begin!</small></h1>
             </div>
         </div>
     </div>
@@ -55,13 +56,8 @@
     <h3>PLEASE SIGN IN</h3><br>
     <div class="row">
         <div class="col-sm-4">
-            <!--<div ng-controller="Users">
-                <ul>
-              <li ng-repeat="user in users"> <h5>{{user.id}}</h5>
-                        <h6>{{user.username}}</h6>
-                  <h6 style="color:red">{{user.password}}</h6></li>
-                </ul>
-            </div>-->
+            <img src="images/LogoNew.png" class="img-responsive" style="width:100%" alt="Image">
+
         </div>
         <div class="col-sm-4" ng-controller="controller">
             <div class="alert alert-danger" ng-show="error">
@@ -80,7 +76,7 @@
                 <input id="password" type="password" class="form-control" name="password" ng-model="password" placeholder="Password" >
             </div>
             </br>
-            <button ng-click="Login()"  class="btn btn-sky btn-lg btn-block">Login</button>
+            <button ng-click="Login()"  class="btn btn-sky btn-lg btn-block">Log in</button>
             <!--    <p ng-model="result">Result: {{result}}</p>-->
             <div class="col-sm-4"></div>
         </div>
