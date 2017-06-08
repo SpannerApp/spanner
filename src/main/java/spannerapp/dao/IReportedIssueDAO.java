@@ -15,4 +15,5 @@ public interface IReportedIssueDAO {
     IssueReport getReportedIssueByCode(String code);
     void updateReportStatus(IssueReport report);
     Collection<IssueReport> findReportsByLogin(String username);
+    void assignServicemanToReport(Integer id, String username);
 }

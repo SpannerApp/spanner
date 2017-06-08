@@ -25,6 +25,8 @@ public class JdbcReportedIssueDAO implements IReportedIssueDAO{
     private static final String UPDATE_REPORT_STATUS = "UPDATE ReportedIssue SET IssueStatus=:status WHERE ReportedIssueID=:reportedIssueID";
     private static final String FIND_REPORTS_BY_USER_LOGIN = "SELECT ReportedIssueID, IssueStatus, IssueText, m.MachineID, m.Code, m.MachineName, m.Model, m.Section, m.Description, e.EmployeeID as ReportingEmployeeID, e.Name, e.Surname, au.UserID, au.Login FROM AuthUser au LEFT JOIN ReportedIssue ri on ri.AssignedServicemanID=au.UserID LEFT JOIN Machine m on ri.DefectedMachineID=m.MachineID LEFT JOIN ModelEmployee e on ri.ReportingEmployeeID=e.EmployeeID WHERE au.Login=:username";
     private static final String FIND_EMPLOYEE_BY_USER_LOGIN = "SELECT me.EmployeeID, me.Name, me.Surname, me.Address, me.Phone, me.Mail FROM ModelEmployee me LEFT JOIN AuthUser au on au.EmployeeID=me.EmployeeID WHERE au.Login=:login";
+    private static final String FIND_SERVICEMAN_BY_LOGIN = "SELECT UserID, Login, Password FROM AuthUser WHERE Login = :login";
+    private static final String ASSIGN_SERVICEMAN_TO_REPORT = "UPDATE ReportedIssue SET AssignedServicemanID = :servicemanID WHERE ReportedIssueID = :id";
 
     private final JdbcTemplate jdbcTemplate;
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
@@ -96,5 +98,22 @@ public class JdbcReportedIssueDAO implements IReportedIssueDAO{
                 return new IssueReport(rs.getInt("ReportedIssueID"), machine, employee, null, user, rs.getString("IssueStatus"), rs.getString("IssueText"));
             }
         });
+    }
+
+    @Override
+    public void assignServicemanToReport(Integer id, String username) {
+        MapSqlParameterSource servicemanLogin = new MapSqlParameterSource();
+        servicemanLogin.addValue("login", username);
+        MapSqlParameterSource paramsForAssignment = new MapSqlParameterSource();
+        AuthorizationUser serviceman = this.namedParameterJdbcTemplate.queryForObject(FIND_SERVICEMAN_BY_LOGIN, servicemanLogin, new RowMapper<AuthorizationUser>() {
+            @Override
+            public AuthorizationUser mapRow(ResultSet rs, int i) throws SQLException {
+                return new AuthorizationUser(rs.getInt("UserID"), rs.getString("Login"), rs.getString("Password"));
+            }
+        });
+
+        paramsForAssignment.addValue("servicemanID", serviceman.getId());
+        paramsForAssignment.addValue("id", id);
+        this.namedParameterJdbcTemplate.update(ASSIGN_SERVICEMAN_TO_REPORT, paramsForAssignment);
     }
 }
