@@ -20,7 +20,7 @@ public class IssueReportController {
     @RequestMapping(method = RequestMethod.GET)
     public Collection<IssueReport> getAllReportedIssues(){ return reportedIssueService.getAllReportedIssues();}
 
-    @RequestMapping(value = "/getReportByID", method = RequestMethod.GET)
+    @RequestMapping(value = "/getReportByID", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public IssueReport getReportedIssueById(@RequestBody IssueReport report){ return  reportedIssueService.getReportedIssueByID(report.getID());}
 
     @RequestMapping(value = "/newReport", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)

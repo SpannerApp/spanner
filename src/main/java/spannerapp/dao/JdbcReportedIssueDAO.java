@@ -28,6 +28,7 @@ public class JdbcReportedIssueDAO implements IReportedIssueDAO{
     private static final String FIND_EMPLOYEE_BY_USER_LOGIN = "SELECT me.EmployeeID, me.Name, me.Surname, me.Address, me.Phone, me.Mail FROM ModelEmployee me LEFT JOIN AuthUser au on au.EmployeeID=me.EmployeeID WHERE au.Login=:login";
     private static final String FIND_SERVICEMAN_BY_LOGIN = "SELECT UserID, Login, Password FROM AuthUser WHERE Login = :login";
     private static final String ASSIGN_SERVICEMAN_TO_REPORT = "UPDATE ReportedIssue SET AssignedServicemanID = :servicemanID WHERE ReportedIssueID = :id";
+    private static final String GET_REPORT_BY_ID = "SELECT ReportedIssueID, IssueStatus, IssueText, m.MachineID, m.Code, m.MachineName, m.Model, m.Section, m.Description, e.EmployeeID as ReportingEmployeeID, e.Name, e.Surname, au.UserID, au.Login FROM AuthUser au LEFT JOIN ReportedIssue ri on ri.AssignedServicemanID=au.UserID LEFT JOIN Machine m on ri.DefectedMachineID=m.MachineID LEFT JOIN ModelEmployee e on ri.ReportingEmployeeID=e.EmployeeID WHERE ri.ReportedIssueID=:id";
 
     private final JdbcTemplate jdbcTemplate;
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
@@ -53,7 +54,20 @@ public class JdbcReportedIssueDAO implements IReportedIssueDAO{
 
     @Override
     public IssueReport getReportedIssueByID(int ID){
-        return null;
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("id", ID);
+
+        return this.namedParameterJdbcTemplate.queryForObject(GET_REPORT_BY_ID, param, new RowMapper<IssueReport>() {
+            @Override
+            public IssueReport mapRow(ResultSet rs, int i) throws SQLException {
+                if (rs.getInt("ReportedIssueID") == 0)
+                    return null;
+                AuthorizationUser user = new AuthorizationUser(rs.getInt("UserID"), rs.getString("Login"), null, null, null);
+                Employee employee = new Employee(rs.getInt("ReportingEmployeeID"), rs.getString("Name"), rs.getString("Surname"), null);
+                Machine machine = new Machine(rs.getInt("MachineID"), rs.getString("Code"), rs.getString("MachineName"), rs.getString("Model"), rs.getString("Section"), null, null, null, rs.getString("Description"));
+                return new IssueReport(rs.getInt("ReportedIssueID"), machine, employee, null, user, rs.getString("IssueStatus"), rs.getString("IssueText"));
+            }
+        });
     }
 
     @Override
