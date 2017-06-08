@@ -1,6 +1,7 @@
 package spannerapp.dao;
 
 import com.sun.rowset.internal.Row;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -88,16 +89,20 @@ public class JdbcReportedIssueDAO implements IReportedIssueDAO{
 
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("username", username);
-
-        return this.namedParameterJdbcTemplate.query(FIND_REPORTS_BY_USER_LOGIN, param, new RowMapper<IssueReport>() {
+        Collection<IssueReport> collection = this.namedParameterJdbcTemplate.query(FIND_REPORTS_BY_USER_LOGIN, param, new RowMapper<IssueReport>() {
             @Override
             public IssueReport mapRow(ResultSet rs, int i) throws SQLException {
+                if (rs.getInt("ReportedIssueID") == 0)
+                    return null;
                 AuthorizationUser user = new AuthorizationUser(rs.getInt("UserID"), rs.getString("Login"), null, null, null);
                 Employee employee = new Employee(rs.getInt("ReportingEmployeeID"), rs.getString("Name"), rs.getString("Surname"), null);
                 Machine machine = new Machine(rs.getInt("MachineID"), rs.getString("Code"), rs.getString("MachineName"), rs.getString("Model"), rs.getString("Section"), null, null, null, rs.getString("Description"));
                 return new IssueReport(rs.getInt("ReportedIssueID"), machine, employee, null, user, rs.getString("IssueStatus"), rs.getString("IssueText"));
             }
         });
+        if(collection.contains(null))
+            collection.clear();
+        return collection;
     }
 
     @Override
